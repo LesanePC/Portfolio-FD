@@ -1,0 +1,447 @@
+/* ==========================================================================
+  ОБЩИЕ СТИЛИ
+========================================================================== */
+
+html,
+body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    margin: 0;
+    width: 100%;
+    font-family: font-family: 'Inter', sans-serif;
+    line-height: 1.6;
+    background-color: #111;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    padding-top: 150px;
+    /* отступ под фиксированную шапку */
+    overflow-x: hidden;
+
+}
+
+h1,
+h2,
+h3 {
+    margin-top: 0;
+    font-family: 'Montserrat', sans-serif;
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+}
+
+li {
+    margin-bottom: 10px;
+}
+
+a {
+    color: #007acc;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* ==========================================================================
+  ШАПКА
+========================================================================== */
+
+header {
+    position: absolute;
+    top: -100px;
+    /* скрыта при загрузке, потом меняется классом visible */
+    left: 0;
+    width: 100%;
+    background-color: #222;
+    color: azure;
+    padding: 20px;
+    text-align: center;
+    transition: top 0.5s ease;
+    /* плавное появление */
+    z-index: 1000;
+}
+
+header.visible {
+    top: 0;
+    /* шапка появляется */
+}
+
+/* ==========================================================================
+  ФОН И ОСНОВНОЙ КОНТЕНТ
+========================================================================== */
+
+#backgroundCanvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    display: block;
+    z-index: -1;
+    pointer-events: none;
+}
+
+main {
+    flex-grow: 1;
+    max-width: 900px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* ==========================================================================
+  СЕКЦИИ С КОНТЕНТОМ
+========================================================================== */
+
+section {
+    background: #fff;
+    margin-bottom: 20px;
+    padding: 20px;
+    border-radius: 8px;
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.6s ease, transform 0.4s ease;
+}
+
+.section.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.section:hover {
+    transform: translateY(-10px) scale(1.05);
+    box-shadow: 0 10px 15px rgba(0, 0, 0, 0.50);
+}
+
+/* ==========================================================================
+  ВЫДЕЛЕНИЕ ТЕКСТА
+========================================================================== */
+
+.highlight {
+    background-color: lightslategray;
+    opacity: 0.7;
+    font-weight: bold;
+}
+
+/* ==========================================================================
+  БЛОК «О СЕБЕ»
+========================================================================== */
+
+.about-container {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.about-text {
+    flex: 1;
+    font-size: 14px;
+}
+
+.about-photo img {
+    width: 180px;
+    height: 180px;
+    border-radius: 50%;
+    object-fit: cover;
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.25);
+}
+
+@media (max-width: 768px) {
+    .about-container {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .about-photo {
+        order: 1;
+    }
+
+    .about-text {
+        order: 2;
+    }
+
+    .about-photo img {
+        margin-top: 20px;
+        width: 140px;
+        height: 140px;
+    }
+}
+
+
+/* ==========================================================================
+  ГАЛЕРЕЯ ПРОЕКТОВ
+========================================================================== */
+
+.gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 20px;
+}
+
+.gallery-item {
+    background-color: #222;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+    transition: transform 0.3s ease;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    color: azure;
+}
+
+.gallery-item:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3);
+    background: linear-gradient(to top right, #778899 0%, #ffffff 100%);
+    color: #222;
+}
+
+.gallery-item img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+    display: block;
+}
+
+.gallery-info {
+    padding: 15px;
+}
+
+.gallery-info h3 {
+    margin: 0 0 10px;
+    font-size: 18px;
+}
+
+.gallery-info p {
+    margin: 0 0 15px;
+    font-size: 14px;
+}
+
+.gallery-info a {
+    color: #007acc;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.gallery-info a:hover {
+    text-decoration: underline;
+}
+
+.section#skills {
+    background: #f6f8fa;
+    color: #222;
+}
+
+/* ==========================================================================
+ БЛОК НАВЫКИ 
+========================================================================= */
+
+.skills-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 24px;
+    justify-content: center;
+    margin-top: 30px;
+}
+
+.skill-card {
+    flex: 1 1 180px;
+    max-width: 210px;
+    background: #222;
+    border-radius: 12px;
+    box-shadow: 0 4px 18px rgba(60, 90, 150, 0.07);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 28px 14px 18px 14px;
+    transition: box-shadow 0.22s, transform 0.2s;
+    text-align: center;
+}
+
+.skill-card:hover {
+    box-shadow: 0 8px 22px rgba(46, 84, 144, 0.12);
+    transform: translateY(-5px) scale(1.04);
+}
+
+.skill-card img {
+    width: 52px;
+    height: 52px;
+    margin-bottom: 14px;
+    filter: grayscale(0.15);
+}
+
+.skill-card span {
+    font-size: 1.05rem;
+    font-weight: 500;
+    color: #fff;
+}
+
+@media (max-width: 860px) {
+    .skills-grid {
+        gap: 14px;
+    }
+
+    .skill-card {
+        flex-basis: 44%;
+        max-width: 100%;
+    }
+}
+
+@media (max-width: 540px) {
+    .skills-grid {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .skill-card {
+        flex-basis: 100%;
+    }
+}
+
+/* ==========================================================================
+  КОНТАКТЫ И ФОРМА - ГОРИЗОНТАЛЬНОЕ РАСПОЛОЖЕНИЕ
+========================================================================== */
+
+.contacts-container {
+    display: flex;
+    gap: 40px;
+    flex-wrap: wrap;
+    /* адаптивное поведение */
+}
+
+.contact-info,
+.contact-form {
+    flex: 1 1 300px;
+    /* гибкий размер и минимальная ширина */
+    min-width: 280px;
+}
+
+.contact-info {
+    padding: 20px;
+    background: #fff;
+    border-radius: 8px;
+    font-size: 14px;
+}
+
+.contact-form {
+    padding: 20px;
+    color: azure;
+    background: linear-gradient(90deg, rgba(2, 0, 36, 1) 0%, rgba(88, 102, 130, 1) 100%, rgba(0, 115, 255, 1) 100%);
+    border-radius: 8px;
+    transition: transform 0.3s cubic-bezier(.4, 0, .2, 1), box-shadow 0.3s cubic-bezier(.4, 0, .2, 1);
+    box-shadow: 0 6px 36px rgba(10, 10, 10, 0.19);
+}
+
+.contact-form:hover,
+.contact-form:focus-within {
+    transform: scale(1.03) translateY(-6px);
+    box-shadow: 0 12px 44px 0 rgba(0, 0, 0, 0.25);
+    z-index: 2;
+}
+
+.contact-form label {
+    font-weight: bold;
+}
+
+.contact-form input,
+.contact-form textarea {
+    padding: 10px;
+    border: 2px solid #ccc;
+    border-radius: 6px;
+    transition: border-color 0.3s;
+    font-size: 1em;
+    font-family: Arial, sans-serif;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus {
+    border-color: #007bff;
+    outline: none;
+}
+
+.contact-form button {
+    padding: 12px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 1em;
+    transition: background-color 0.3s;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.contact-form button:hover {
+    background-color: #0056b3;
+}
+
+.form-message {
+    margin-top: 10px;
+    font-weight: bold;
+    min-height: 1.4em;
+}
+
+/* ==========================================================================
+  ФУТЕР
+========================================================================== */
+
+footer {
+    position: relative;
+    text-align: center;
+    padding: 10px;
+    background-color: #222;
+    color: #fff;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.25);
+    flex-shrink: 0;
+}
+
+.social-btn {
+    display: inline-block;
+    margin: 0 10px;
+    font-size: 15px;
+    color: #fff;
+    border-radius: 50%;
+    transition: background 0.3s, color 0.3s;
+}
+
+.social-btn:hover {
+    color: #444;
+}
+
+.scroll-footer {
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    right: 20px;
+    bottom: 10px;
+    transform: translateX(-50%);
+    background-color: #222;
+    border: none;
+    padding: 20px 20px;
+    border-radius: 50%;
+    font-size: 20px;
+    cursor: pointer;
+    color: #fff;
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.scroll-footer:hover {
+    opacity: 1;
+    color: #007bff;
+    transform: translateX(-50%) translateY(-8px) scale(1.07);
+}

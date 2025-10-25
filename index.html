@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Portfolio Frontend Developer</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="icon" href="img/favicon.svg" type="image/svg+xml">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Montserrat:wght@700&display=swap" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/magnific-popup@1.1.0/dist/magnific-popup.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/magnific-popup@1.1.0/dist/jquery.magnific-popup.min.js"></script>
+
+
+</head>
+
+<body>
+    <header id="header" class="header">
+        <h1>Eugene Fokin — Frontend Developer</h1>
+        <p>HTML · CSS · JavaScript · Адаптивная верстка</p>
+    </header>
+
+    <canvas id="backgroundCanvas" width="1521" height="388" style="display: block;"></canvas>
+    <main>
+        <section class="section" id="about">
+            <h2>О себе</h2>
+            <div class="about-container">
+                <div class="about-text">
+                    <p id="text">Начинающий фронтенд-разработчик с опытом создания адаптивных и интерактивных веб-приложений. Уверенно работаю с JavaScript, HTML и CSS, умею реализовывать сложную логику и интеграции с API. Опыт разработки проектов в сферах кино и недвижимости, включая динамическое бронирование и карты. Активно изучаю современные технологии и лучшие практики веб-разработки. Ответственный, быстро обучаюсь, открыт к новым вызовам и командной работе.
+                    </p>
+                </div>
+                <div class="about-photo">
+                    <img src="img/Fokin.JPG" alt="Фото Евгения">
+                </div>
+            </div>
+        </section>
+
+        <section class="section" id="projects">
+
+            <h2>Проекты</h2>
+            <div class="gallery popup-gallery">
+                <div class="gallery-item">
+                    <a href="img/layouts.jpg" class="image-popup" title="Адаптивный блог">
+                        <img src="img/layouts.jpg" alt="Адаптивный блог" />
+                    </a>
+                    <div class="gallery-info">
+                        <h3>Адаптивный блог</h3>
+                        <p>HTML5 · CSS3 · JavaScript (jQuery) · Google Fonts · адаптивный дизайн</p>
+                        <a href="https://lesanepc.github.io/MQ-Diplom/" target="_blank">Перейти к проекту</a>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <a href="img/altair.png" class="image-popup" title="Риелторский проект">
+                        <img src="img/altair.png" alt="Риелторский проект" />
+                    </a>
+                    <div class="gallery-info">
+                        <h3>Риелторский проект</h3>
+                        <p>HTML5 · CSS3 · Google Fonts · jQuery · Slick Carousel · Яндекс.Карты</p>
+                        <a href="https://lesanepc.github.io/altair-projects/" target="_blank">Перейти к проекту</a>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <a href="img/Rem-Stroy.png" class="image-popup" title="Сайт для строительной компании">
+                        <img src="img/Rem-Stroy.png" alt="Сайт для строительной компании" />
+                    </a>
+                    <div class="gallery-info">
+                        <h3>Сайт для строительной компании</h3>
+                        <p>HTML5 · CSS3 · JavaScript (jQuery) · Google Fonts · Яндекс.Карты · адаптивный дизайн.</p>
+                        <a href="https://lesanepc.github.io/Rem-Stroy/index.html" target="_blank">Перейти к проекту</a>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <a href="img/Cinema.png" class="image-popup" title="Проект киносайта + админка">
+                        <img src="img/Cinema.png" alt="Проект киносайта + админка" />
+                    </a>
+                    <div class="gallery-info">
+                        <h3>Проект киносайта + админка</h3>
+                        <p>JavaScript · HTML · CSS · LocalStorage · fetch API · Git · GitHub · Vite · ESLint.</p>
+                        <a href="https://lesanepc.github.io/shfe-diplom/index.html" target="_blank">Перейти к проекту</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <section class="section" id="skills">
+            <h2>Навыки</h2>
+            <div class="skills-grid">
+                <div class="skill-card">
+                    <img src="svg/skill-icons--html.svg" alt="HTML5" />
+                    <span>HTML5 · CSS3 · Flexbox · Grid</span>
+                </div>
+                <div class="skill-card">
+                    <img src="svg/skill-icons--javascript.svg" alt="JavaScript" />
+                    <span>JavaScript (ES6+) · DOM · API</span>
+                </div>
+                <div class="skill-card">
+                    <img src="svg/skill-icons--react-dark.svg" alt="React" />
+                    <span>React (основы)</span>
+                </div>
+                <div class="skill-card">
+                    <img src="svg/skill-icons--jquery.svg" alt="jQuery" />
+                    <span>jQuery</span>
+                </div>
+                <div class="skill-card">
+                    <img src="svg/skill-icons--nodejs-dark.svg" alt="Node.js" />
+                    <span>Node.JS</span>
+                </div>
+                <div class="skill-card">
+                    <img src="svg/skill-icons--git.svg" alt="Git" />
+                    <span>Git · Vite · Google Fonts · ESLint</span>
+                </div>
+            </div>
+        </section>
+
+
+        <section class="section" id="contacts">
+            <div class="contacts-container">
+                <div class="contact-info">
+                    <h2>Свяжитесь со мной</h2>
+                    <p>Буду рад обсудить ваши проекты, сотрудничество, поделиться идеями или ответить на вопросы о своих работах. Просто заполните форму или используйте указанные контакты.</p>
+                    <ul class="contact-list">
+                        <li><strong>E-mail:</strong> <a href="mailto:evgen94@bk.ru" target="_blank" rel="noopener noreferrer">evgen94@bk.ru</a></li>
+                        <li><strong>GitHub:</strong> <a href="https://github.com/LesanePC" target="_blank" rel="noopener noreferrer">https://github.com/LesanePC</a></li>
+                    </ul>
+                    <p>Спасибо!</p>
+                </div>
+
+                <form action="https://formspree.io/f/meoryqdl" method="POST" id="contactForm" class="contact-form" novalidate>
+                    <label for="name">Ваше имя:</label>
+                    <input type="text" id="name" name="name" placeholder="Введите имя" required>
+
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" name="email" placeholder="Введите email" required>
+
+                    <label for="message">Сообщение:</label>
+                    <textarea id="message" name="message" placeholder="Ваше сообщение" required></textarea>
+
+                    <button type="submit">Отправить</button>
+                    <div class="form-message"></div>
+                </form>
+            </div>
+        </section>
+
+    </main>
+
+    <footer>
+        <p>© 2025 Eugene Fokin</p>
+        <a href="https://github.com/LesanePC" class="social-btn" target="_blank" aria-label="GitHub">
+            <i class="fab fa-github"></i>
+        </a>
+        <a href="https://codepen.io/Eugene-Fokin" class="social-btn" target="_blank" aria-label="CodePen">
+            <i class="fab fa-codepen"></i>
+        </a>
+        <button id="scrollTopBtn" class="scroll-footer" title="Наверх">&#x25B2;</button>
+    </footer>
+
+
+
+
+    <script src="script.js"></script>
+
+
+</body>
+
+</html>
