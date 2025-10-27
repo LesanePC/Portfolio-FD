@@ -19,7 +19,6 @@ body {
     flex-direction: column;
     min-height: 100vh;
     padding-top: 150px;
-    /* отступ под фиксированную шапку */
     overflow-x: hidden;
 
 }
@@ -56,7 +55,6 @@ a:hover {
 header {
     position: absolute;
     top: -100px;
-    /* скрыта при загрузке, потом меняется классом visible */
     left: 0;
     width: 100%;
     background-color: #222;
@@ -64,13 +62,11 @@ header {
     padding: 20px;
     text-align: center;
     transition: top 0.5s ease;
-    /* плавное появление */
     z-index: 1000;
 }
 
 header.visible {
     top: 0;
-    /* шапка появляется */
 }
 
 /* ==========================================================================
@@ -156,28 +152,6 @@ section {
     object-fit: cover;
     box-shadow: 0 8px 15px rgba(0, 0, 0, 0.25);
 }
-
-@media (max-width: 768px) {
-    .about-container {
-        flex-direction: column;
-        text-align: center;
-    }
-
-    .about-photo {
-        order: 1;
-    }
-
-    .about-text {
-        order: 2;
-    }
-
-    .about-photo img {
-        margin-top: 20px;
-        width: 140px;
-        height: 140px;
-    }
-}
-
 
 /* ==========================================================================
   ГАЛЕРЕЯ ПРОЕКТОВ
@@ -288,28 +262,6 @@ section {
     color: #fff;
 }
 
-@media (max-width: 860px) {
-    .skills-grid {
-        gap: 14px;
-    }
-
-    .skill-card {
-        flex-basis: 44%;
-        max-width: 100%;
-    }
-}
-
-@media (max-width: 540px) {
-    .skills-grid {
-        flex-direction: column;
-        gap: 10px;
-    }
-
-    .skill-card {
-        flex-basis: 100%;
-    }
-}
-
 /* ==========================================================================
   КОНТАКТЫ И ФОРМА - ГОРИЗОНТАЛЬНОЕ РАСПОЛОЖЕНИЕ
 ========================================================================== */
@@ -318,13 +270,11 @@ section {
     display: flex;
     gap: 40px;
     flex-wrap: wrap;
-    /* адаптивное поведение */
 }
 
 .contact-info,
 .contact-form {
     flex: 1 1 300px;
-    /* гибкий размер и минимальная ширина */
     min-width: 280px;
 }
 
@@ -423,6 +373,7 @@ footer {
     color: #444;
 }
 
+
 .scroll-footer {
     position: absolute;
     width: 100px;
@@ -444,4 +395,53 @@ footer {
     opacity: 1;
     color: #007bff;
     transform: translateX(-50%) translateY(-8px) scale(1.07);
+}
+/* ==========================================================================
+  МОБИЛЬНАЯ ВЕРСТКА
+========================================================================== */
+@media (max-width: 860px) {
+    .skills-grid {
+        gap: 14px;
+    }
+
+    .skill-card {
+        flex-basis: 44%;
+        max-width: 100%;
+    }
+}
+
+@media (max-width: 768px) {
+    .about-container {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .about-photo {
+        order: 1;
+    }
+
+    .about-text {
+        order: 2;
+    }
+
+    .about-photo img {
+        margin-top: 20px;
+        width: 140px;
+        height: 140px;
+    }
+
+    .scroll-footer {
+        left: 80px;
+    }
+}
+
+@media (max-width: 540px) {
+    .skills-grid {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .skill-card {
+        flex-basis: 100%;
+    }
 }
