@@ -115,27 +115,6 @@ function animate() {
 // Запуск анимации
 animate();
 
-// Подсветка слов в тексте
-const words = ["JavaScript", "HTML", "CSS", "API"];
-let index = 0;
-
-function highlightNextWord() {
-    const textContainer = document.getElementById('text');
-    let html = textContainer.innerHTML;
-
-    // Удаляем старые выделения
-    html = html.replace(/<span class="highlight">\s*(\w+)\s*<\/span>/gi, '$1');
-
-    // Выделяем слово
-    const regex = new RegExp(`\\b(${words[index]})\\b`, 'gi');
-    html = html.replace(regex, '<span class="highlight">$1</span>');
-    textContainer.innerHTML = html;
-
-    index = (index + 1) % words.length;
-}
-
-// Выделяем слова каждые 1.2 секунды
-setInterval(highlightNextWord, 1200);
 
 // Инициализация Magnific Popup для галереи изображений
 $(document).ready(function() {
