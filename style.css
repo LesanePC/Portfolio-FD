@@ -15,6 +15,8 @@
     --footer-text: #fff;
     --scroll-footer-bg: #222;
     --scroll-footer-text: #fff;
+    --icon-color-dark: #fff;
+    --icon-color-light: #696969;
 }
 
 
@@ -33,6 +35,8 @@ body.light-theme {
     --footer-text: #fff;
     --scroll-footer-bg: #222;
     --scroll-footer-text: #fff;
+    --icon-color: var(--icon-color-light);
+
 }
 
 html,
@@ -54,6 +58,7 @@ body {
     padding-top: 150px;
     overflow-x: hidden;
     color: var(--text-color);
+
 }
 
 h1,
@@ -370,6 +375,21 @@ section {
     color: var(--section-text);
 }
 
+.social-btn {
+    display: inline-block;
+    margin: 0 10px;
+    font-size: 25px;
+    color: var(--icon-color);
+    background: var(--section-bg);
+    border-radius: 50%;
+    transition: background 0.3s, color 0.3s;
+}
+
+.social-btn:hover {
+    color: #444;
+
+}
+
 .contact-form {
     padding: 20px;
     color: var(--section-text);
@@ -451,20 +471,6 @@ footer {
     flex-shrink: 0;
 }
 
-.social-btn {
-    display: inline-block;
-    margin: 0 10px;
-    font-size: 15px;
-    color: #fff;
-    border-radius: 50%;
-    transition: background 0.3s, color 0.3s;
-}
-
-.social-btn:hover {
-    color: #444;
-}
-
-
 .scroll-footer {
     position: absolute;
     width: 100px;
@@ -499,6 +505,7 @@ footer {
 
     header {
         position: static;
+        padding: 8px 4px;
         width: 100%;
         font-size: 8px;
     }
@@ -508,13 +515,12 @@ footer {
         top: 12px;
         right: 12px;
         z-index: 10000;
-        width: 100%;
     }
 
     .about-photo img {
         width: 100px;
         height: 100px;
-        max-width: 100%
+        max-width: 90px;
     }
 
     .scroll-footer {
@@ -523,11 +529,16 @@ footer {
 
     .skills-grid {
         flex-direction: column;
-        gap: 8px;
+        gap: 10px;
     }
 
     .skill-card {
         flex-basis: 100%;
+        margin-bottom: 7px;
+    }
+
+    section {
+        padding: 10px;
     }
 }
 
