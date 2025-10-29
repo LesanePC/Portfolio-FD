@@ -8,6 +8,17 @@ document.querySelectorAll('.section').forEach(sec => {
     });
     observer.observe(sec);
 });
+window.addEventListener('load', () => {
+  const loader = document.querySelector('.loader');
+  
+  setTimeout(() => {
+    loader.style.opacity = '0';
+    loader.style.pointerEvents = 'none';
+    setTimeout(() => {
+      loader.style.display = 'none';
+    }, 500);
+  }, 2000);
+});
 
 // Кнопка "вверх" с плавным скроллом
 document.getElementById('scrollTopBtn').addEventListener('click', () => {
