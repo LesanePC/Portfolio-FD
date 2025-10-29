@@ -1,7 +1,43 @@
 /* ==========================================================================
   ОБЩИЕ СТИЛИ
 ========================================================================== */
+/* =========================== */
+/* ОБЩИЕ CSS ПЕРЕМЕННЫЕ ТЕМЫ */
+/* =========================== */
 
+:root {
+    --bg-color: #111;
+    --text-color: #fff;
+    --link-color: #007acc;
+    --header-bg: #222;
+    --section-bg: #222;
+    --section-text: azure;
+    --skill-card-bg: azure;
+    --skill-card-text: #222;
+    --form-bg-gradient: linear-gradient(90deg, #444 0%, azure 100%);
+    --footer-bg: #222;
+    --footer-text: #fff;
+    --scroll-footer-bg: #222;
+    --scroll-footer-text: #fff;
+}
+
+
+body.light-theme {
+    --bg-color: #f6f8fa;
+    --text-color: #222;
+    --link-color: #007acc;
+    --header-bg: #222;
+    --header-text: #fff;
+    --section-bg: #fff;
+    --section-text: #222;
+    --skill-card-bg: #222;
+    --skill-card-text: #fff;
+    --form-bg-gradient: linear-gradient(90deg, azure 0%, #444 100%);
+    --footer-bg: #222;
+    --footer-text: #fff;
+    --scroll-footer-bg: #222;
+    --scroll-footer-text: #fff;
+}
 html,
 body {
     height: 100%;
@@ -14,13 +50,13 @@ body {
     width: 100%;
     font-family: font-family: 'Inter', sans-serif;
     line-height: 1.6;
-    background-color: #111;
+    background-color: var(--bg-color);
     display: flex;
     flex-direction: column;
     min-height: 100vh;
     padding-top: 150px;
     overflow-x: hidden;
-
+    color: var(--text-color);
 }
 
 h1,
@@ -40,13 +76,14 @@ li {
 }
 
 a {
-    color: #007acc;
+    color: var(--link-color);
     text-decoration: none;
 }
 
 a:hover {
     text-decoration: underline;
 }
+
 
 /* ==========================================================================
   ШАПКА
@@ -57,8 +94,8 @@ header {
     top: -100px;
     left: 0;
     width: 100%;
-    background-color: #222;
-    color: azure;
+    background-color: var(--header-bg);
+    color: var(--header-text);
     padding: 20px;
     text-align: center;
     transition: top 0.5s ease;
@@ -67,6 +104,51 @@ header {
 
 header.visible {
     top: 0;
+}
+
+#theme-toggle {
+    background: none;
+    border: none;
+    cursor: pointer;
+    outline: none;
+    width: 40px;
+    height: 40px;
+    position: fixed;
+  top: 30px;
+  right: 30px;
+}
+
+.lightbulb {
+    display: block;
+    width: 30px;
+    height: 30px;
+    border-radius: 50% 50% 45% 45% / 60% 60% 40% 40%;
+    background-color: #777;
+    box-shadow: inset 0 0 8px 3px #bbb;
+    transition: background-color 0.3s, box-shadow 0.3s;
+    position: relative;
+    margin: 0 auto;
+}
+
+/* "Нить" лампочки */
+.lightbulb::after {
+    content: '';
+    position: absolute;
+    bottom: -8px;
+    left: 50%;
+    width: 12px;
+    height: 8px;
+    background: #555;
+    border-radius: 2px;
+    transform: translateX(-50%);
+}
+
+/* Состояние включено - яркая лампочка */
+body.light-theme #theme-toggle .lightbulb {
+    background-color: #ffeb3b;
+    box-shadow:
+        0 0 12px 6px #fff176,
+        inset 0 0 8px 3px #fdd835;
 }
 
 /* ==========================================================================
@@ -90,7 +172,7 @@ main {
     margin: 0 auto;
     position: relative;
     z-index: 1;
-    padding: 20px;
+    padding: 15px;
     display: flex;
     flex-direction: column;
     gap: 20px;
@@ -108,6 +190,8 @@ section {
     opacity: 0;
     transform: translateY(30px);
     transition: opacity 0.6s ease, transform 0.4s ease;
+    background-color: var(--section-bg);
+    color: var(--section-text);
 }
 
 .section.visible {
@@ -138,6 +222,7 @@ section {
     display: flex;
     align-items: center;
     gap: 20px;
+
 }
 
 .about-text {
@@ -214,9 +299,10 @@ section {
 }
 
 .section#skills {
-    background: #f6f8fa;
-    color: #222;
+    background-color: var(--section-bg);
+    color: var(--section-text);
 }
+
 
 /* ==========================================================================
  БЛОК НАВЫКИ 
@@ -233,7 +319,7 @@ section {
 .skill-card {
     flex: 1 1 180px;
     max-width: 210px;
-    background: #222;
+    background-color: var(--skill-card-bg);
     border-radius: 12px;
     box-shadow: 0 4px 18px rgba(60, 90, 150, 0.07);
     display: flex;
@@ -242,6 +328,7 @@ section {
     padding: 28px 14px 18px 14px;
     transition: box-shadow 0.22s, transform 0.2s;
     text-align: center;
+
 }
 
 .skill-card:hover {
@@ -259,7 +346,7 @@ section {
 .skill-card span {
     font-size: 1.05rem;
     font-weight: 500;
-    color: #fff;
+    color: var(--skill-card-text);
 }
 
 /* ==========================================================================
@@ -280,18 +367,21 @@ section {
 
 .contact-info {
     padding: 20px;
-    background: #fff;
+    background-color: var(--section-bg);
     border-radius: 8px;
     font-size: 14px;
+    color: var(--section-text);
 }
 
 .contact-form {
     padding: 20px;
-    color: azure;
-    background: linear-gradient(90deg, rgba(2, 0, 36, 1) 0%, rgba(88, 102, 130, 1) 100%, rgba(0, 115, 255, 1) 100%);
+    color: var(--section-text);
+    background: var(--form-bg-gradient);
     border-radius: 8px;
     transition: transform 0.3s cubic-bezier(.4, 0, .2, 1), box-shadow 0.3s cubic-bezier(.4, 0, .2, 1);
     box-shadow: 0 6px 36px rgba(10, 10, 10, 0.19);
+    
+    
 }
 
 .contact-form:hover,
@@ -299,6 +389,8 @@ section {
     transform: scale(1.03) translateY(-6px);
     box-shadow: 0 12px 44px 0 rgba(0, 0, 0, 0.25);
     z-index: 2;
+    
+    
 }
 
 .contact-form label {
@@ -315,6 +407,8 @@ section {
     font-family: Arial, sans-serif;
     width: 100%;
     box-sizing: border-box;
+    
+    
 }
 
 .contact-form input:focus,
@@ -354,8 +448,8 @@ footer {
     position: relative;
     text-align: center;
     padding: 10px;
-    background-color: #222;
-    color: #fff;
+    background-color: var(--footer-bg);
+    color: var(--footer-text);
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.25);
     flex-shrink: 0;
 }
@@ -381,13 +475,13 @@ footer {
     right: 20px;
     bottom: 10px;
     transform: translateX(-50%);
-    background-color: #222;
+    background-color: var(--scroll-footer-bg);
     border: none;
     padding: 20px 20px;
     border-radius: 50%;
     font-size: 20px;
     cursor: pointer;
-    color: #fff;
+    color: var(--scroll-footer-text);
     transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
@@ -396,46 +490,43 @@ footer {
     color: #007bff;
     transform: translateX(-50%) translateY(-8px) scale(1.07);
 }
+
 /* ==========================================================================
   МОБИЛЬНАЯ ВЕРСТКА
 ========================================================================== */
-@media (max-width: 860px) {
-    .skills-grid {
-        gap: 14px;
-    }
 
-    .skill-card {
-        flex-basis: 44%;
-        max-width: 100%;
-    }
-}
-
-@media (max-width: 768px) {
-    .about-container {
-        flex-direction: column;
-        text-align: center;
-    }
-
-    .about-photo {
-        order: 1;
-    }
-
-    .about-text {
-        order: 2;
-    }
-
+@media (max-width: 320px) {
+    
     .about-photo img {
-        margin-top: 20px;
-        width: 140px;
-        height: 140px;
+        width: 100px;
+        height: 100px;
     }
 
     .scroll-footer {
-        left: 80px;
+        left: 20px;
+    }
+
+    .skills-grid {
+        flex-direction: column;
+        gap: 8px;
+    }
+
+    .skill-card {
+        flex-basis: 100%;
     }
 }
 
-@media (max-width: 540px) {
+@media (max-width: 480px) {
+    
+    .about-photo img {
+        width: 120px;
+        height: 120px;
+    }
+
+    .scroll-footer {
+        left: 40px;
+    }
+
     .skills-grid {
         flex-direction: column;
         gap: 10px;
@@ -444,4 +535,53 @@ footer {
     .skill-card {
         flex-basis: 100%;
     }
+}
+
+@media (max-width: 768px) {
+    
+.about-container {
+    flex-direction: column;
+    text-align: center;
+    gap: 15px;
+}
+
+.about-photo {
+    order: 1;
+    margin: 0 auto;
+}
+
+.about-text {
+    order: 2;
+}
+
+.about-photo img {
+    width: 140px;
+    height: 140px;
+    border-radius: 50%;
+    margin-top: 20px;
+}
+
+.scroll-footer {
+    left: 80px;
+}
+
+.skills-grid {
+    gap: 14px;
+}
+
+.skill-card {
+    flex-basis: 44%;
+}
+}
+
+@media (max-width: 1024px) {
+   
+
+.skills-grid {
+    gap: 16px;
+}
+
+.skill-card {
+    flex-basis: 33%;
+}
 }

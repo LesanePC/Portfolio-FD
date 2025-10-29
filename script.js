@@ -17,6 +17,21 @@ document.getElementById('scrollTopBtn').addEventListener('click', () => {
         behavior: 'smooth'
     });
 });
+const toggleButton = document.getElementById('theme-toggle');
+const body = document.body;
+
+if (localStorage.getItem('theme') === 'light') {
+  body.classList.add('light-theme');
+}
+
+toggleButton.addEventListener('click', () => {
+  body.classList.toggle('light-theme');
+  if (body.classList.contains('light-theme')) {
+    localStorage.setItem('theme', 'light');
+  } else {
+    localStorage.removeItem('theme');
+  }
+});
 
 // Плавное появление header при загрузке
 window.addEventListener('load', () => {
