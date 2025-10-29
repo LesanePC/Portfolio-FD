@@ -1,10 +1,6 @@
 /* ==========================================================================
   ОБЩИЕ СТИЛИ
 ========================================================================== */
-/* =========================== */
-/* ОБЩИЕ CSS ПЕРЕМЕННЫЕ ТЕМЫ */
-/* =========================== */
-
 :root {
     --bg-color: #111;
     --text-color: #fff;
@@ -38,6 +34,7 @@ body.light-theme {
     --scroll-footer-bg: #222;
     --scroll-footer-text: #fff;
 }
+
 html,
 body {
     height: 100%;
@@ -114,8 +111,8 @@ header.visible {
     width: 40px;
     height: 40px;
     position: fixed;
-  top: 30px;
-  right: 30px;
+    top: 30px;
+    right: 30px;
 }
 
 .lightbulb {
@@ -380,8 +377,8 @@ section {
     border-radius: 8px;
     transition: transform 0.3s cubic-bezier(.4, 0, .2, 1), box-shadow 0.3s cubic-bezier(.4, 0, .2, 1);
     box-shadow: 0 6px 36px rgba(10, 10, 10, 0.19);
-    
-    
+
+
 }
 
 .contact-form:hover,
@@ -389,8 +386,8 @@ section {
     transform: scale(1.03) translateY(-6px);
     box-shadow: 0 12px 44px 0 rgba(0, 0, 0, 0.25);
     z-index: 2;
-    
-    
+
+
 }
 
 .contact-form label {
@@ -407,8 +404,8 @@ section {
     font-family: Arial, sans-serif;
     width: 100%;
     box-sizing: border-box;
-    
-    
+
+
 }
 
 .contact-form input:focus,
@@ -496,10 +493,28 @@ footer {
 ========================================================================== */
 
 @media (max-width: 320px) {
-    
+    body {
+        padding-top: 0;
+    }
+
+    header {
+        position: static;
+        width: 100%;
+        font-size: 8px;
+    }
+
+    #theme-toggle {
+        position: relative;
+        top: 12px;
+        right: 12px;
+        z-index: 10000;
+        width: 100%;
+    }
+
     .about-photo img {
         width: 100px;
         height: 100px;
+        max-width: 100%
     }
 
     .scroll-footer {
@@ -517,10 +532,14 @@ footer {
 }
 
 @media (max-width: 480px) {
-    
+    main {
+        padding-top: 25px;
+    }
+
     .about-photo img {
         width: 120px;
         height: 120px;
+        max-width: 100%
     }
 
     .scroll-footer {
@@ -529,6 +548,7 @@ footer {
 
     .skills-grid {
         flex-direction: column;
+        align-content: center;
         gap: 10px;
     }
 
@@ -538,50 +558,51 @@ footer {
 }
 
 @media (max-width: 768px) {
-    
-.about-container {
-    flex-direction: column;
-    text-align: center;
-    gap: 15px;
-}
 
-.about-photo {
-    order: 1;
-    margin: 0 auto;
-}
+    .about-container {
+        flex-direction: column;
+        text-align: center;
+        gap: 15px;
+    }
 
-.about-text {
-    order: 2;
-}
+    .about-photo {
+        order: 1;
+        margin: 0 auto;
+    }
 
-.about-photo img {
-    width: 140px;
-    height: 140px;
-    border-radius: 50%;
-    margin-top: 20px;
-}
+    .about-text {
+        order: 2;
+    }
 
-.scroll-footer {
-    left: 80px;
-}
+    .about-photo img {
+        width: 140px;
+        height: 140px;
+        border-radius: 50%;
+        margin-top: 20px;
+        max-width: 100%
+    }
 
-.skills-grid {
-    gap: 14px;
-}
+    .scroll-footer {
+        left: 80px;
+    }
 
-.skill-card {
-    flex-basis: 44%;
-}
+    .skills-grid {
+        gap: 18px;
+    }
+
+    .skill-card {
+        flex-basis: 44%;
+    }
 }
 
 @media (max-width: 1024px) {
-   
 
-.skills-grid {
-    gap: 16px;
-}
 
-.skill-card {
-    flex-basis: 33%;
-}
+    .skills-grid {
+        gap: 20px;
+    }
+
+    .skill-card {
+        flex-basis: 33%;
+    }
 }

@@ -1,4 +1,3 @@
-// Добавляем плавное появление секций при прокрутке
 document.querySelectorAll('.section').forEach(sec => {
     const observer = new IntersectionObserver(entries => {
         entries.forEach(entry => {
@@ -21,16 +20,16 @@ const toggleButton = document.getElementById('theme-toggle');
 const body = document.body;
 
 if (localStorage.getItem('theme') === 'light') {
-  body.classList.add('light-theme');
+    body.classList.add('light-theme');
 }
 
 toggleButton.addEventListener('click', () => {
-  body.classList.toggle('light-theme');
-  if (body.classList.contains('light-theme')) {
-    localStorage.setItem('theme', 'light');
-  } else {
-    localStorage.removeItem('theme');
-  }
+    body.classList.toggle('light-theme');
+    if (body.classList.contains('light-theme')) {
+        localStorage.setItem('theme', 'light');
+    } else {
+        localStorage.removeItem('theme');
+    }
 });
 
 // Плавное появление header при загрузке
@@ -91,8 +90,6 @@ function resize() {
     createParticles();
 }
 
-// Вешаем обработчики для resize и load,
-// вызываем resize при загрузке и при изменении размера
 window.addEventListener('load', resize);
 window.addEventListener('resize', resize);
 resize();
@@ -131,7 +128,6 @@ function animate() {
 animate();
 
 
-// Инициализация Magnific Popup для галереи изображений
 $(document).ready(function() {
     $('.popup-gallery').magnificPopup({
         delegate: 'a.image-popup',
