@@ -32,6 +32,12 @@ body.light-theme {
     --icon-color: var(--icon-color-light);
 }
 
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
 html, body {
     height: 100%;
     margin: 0;
@@ -557,7 +563,7 @@ footer {
     }
 
     header {
-        position: static;
+        position: fixed;
         padding: 8px 4px;
         width: 100%;
         font-size: 9px;
@@ -595,24 +601,19 @@ footer {
 
     section {
         padding: 10px;
+
     }
 }
 
 @media (max-width: 480px) {
+
+    html,
     body {
-        padding-top: 0;
+        max-width: 100vw;
+        overflow-x: hidden;
+        overflow-y: auto;
     }
 
-    header {
-        position: static;
-        width: 100%;
-        font-size: 9px;
-    }
-
-    main {
-        padding-top: 15px;
-        padding-right: 55px;
-    }
 
     #theme-toggle {
         position: fixed;
@@ -643,26 +644,15 @@ footer {
     .skill-card {
         flex-basis: 100%;
     }
-
-    footer {
-        width: 100%;
-    }
 }
 
 @media (max-width: 768px) {
+
+    html,
     body {
-        padding-top: 0;
-    }
-
-    header {
-        position: static;
-        width: 100%;
-        font-size: 9px;
-    }
-
-    main {
-        padding-top: 15px;
-        padding-left: 50px;
+        max-width: 100vw;
+        overflow-x: hidden;
+        overflow-y: auto;
     }
 
     .about-container {
@@ -702,17 +692,17 @@ footer {
     .skill-card {
         flex-basis: 44%;
     }
+
+    footer {}
 }
 
 @media (min-width: 769px) and (max-width: 1024px) {
-    body {
-        padding-top: 0;
-    }
 
-    header {
-        position: static;
-        width: 100%;
-        font-size: 9px;
+    html,
+    body {
+        max-width: 100vw;
+        overflow-x: hidden;
+        overflow-y: auto;
     }
 
     main {
