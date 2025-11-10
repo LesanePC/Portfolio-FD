@@ -559,7 +559,7 @@ footer {
 ========================================================================== */
 @media (max-width: 320px) {
     body {
-        padding-top: 0;
+        padding-top: 100px;
     }
 
     header {
@@ -692,8 +692,6 @@ footer {
     .skill-card {
         flex-basis: 44%;
     }
-
-    footer {}
 }
 
 @media (min-width: 769px) and (max-width: 1024px) {
