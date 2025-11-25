@@ -1,6 +1,7 @@
 /* ========================================================================== 
   ОБЩИЕ СТИЛИ 
 ========================================================================== */
+
 :root {
     --bg-color: #111;
     --text-color: #fff;
@@ -9,6 +10,8 @@
     --header-text: #fff;
     --section-bg: #222;
     --section-text: azure;
+    --gallery-item-bg: #222;
+    --gallery-item-text: #fff;
     --skill-card-bg: azure;
     --skill-card-text: #222;
     --form-bg-gradient: linear-gradient(90deg, #444 0%, azure 100%);
@@ -26,6 +29,8 @@ body.light-theme {
     --link-color: #007acc;
     --section-bg: #fff;
     --section-text: #222;
+    --gallery-item-bg: #fff;
+    --gallery-item-text: #222;
     --skill-card-bg: #222;
     --skill-card-text: #fff;
     --form-bg-gradient: linear-gradient(90deg, azure 0%, #444 100%);
@@ -35,15 +40,16 @@ body.light-theme {
 *,
 *::before,
 *::after {
-  box-sizing: border-box;
+    box-sizing: border-box;
 }
 
-html, body {
+html,
+body {
     height: 100%;
     margin: 0;
     padding: 0;
-    
-    
+
+
 }
 
 body {
@@ -58,10 +64,12 @@ body {
     color: var(--text-color);
     overflow-x: hidden;
     overflow-y: auto;
-    
+
 }
 
-h1, h2, h3 {
+h1,
+h2,
+h3 {
     margin-top: 0;
     font-family: 'Montserrat', sans-serif;
 }
@@ -85,110 +93,113 @@ a:hover {
 }
 
 .center-body {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  height: 100%;
-  background: #262626;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    background: #262626;
 }
 
 .loader {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 70px;
-  height: 70px;
-  background: transparent;
-  border: 3px solid #3c3c3c;
-  border-radius: 50%;
-  text-align: center;
-  line-height: 70px;
-  font-family: sans-serif;
-  font-size: 12px;
-  color: #00eaff;
-  text-transform: uppercase;
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 70px;
+    height: 70px;
+    background: transparent;
+    border: 3px solid #3c3c3c;
+    border-radius: 50%;
+    text-align: center;
+    line-height: 70px;
+    font-family: sans-serif;
+    font-size: 12px;
+    color: #00eaff;
+    text-transform: uppercase;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
 }
 
 .loader:before {
-  content: "";
-  position: absolute;
-  top: -3px;
-  left: -3px;
-  width: 100%;
-  height: 100%;
-  border: 3px solid transparent;
-  border-top: 3px solid #00eaff;
-  border-right: 3px solid #00eaff;
-  border-radius: 50%;
-  animation: animateC 2s linear infinite;
+    content: "";
+    position: absolute;
+    top: -3px;
+    left: -3px;
+    width: 100%;
+    height: 100%;
+    border: 3px solid transparent;
+    border-top: 3px solid #00eaff;
+    border-right: 3px solid #00eaff;
+    border-radius: 50%;
+    animation: animateC 2s linear infinite;
 }
 
 .loader span {
-  display: block;
-  position: absolute;
-  top: calc(50% - 2px);
-  left: 50%;
-  width: 50%;
-  height: 4px;
-  background: transparent;
-  transform-origin: left;
-  animation: animate 2s linear infinite;
+    display: block;
+    position: absolute;
+    top: calc(50% - 2px);
+    left: 50%;
+    width: 50%;
+    height: 4px;
+    background: transparent;
+    transform-origin: left;
+    animation: animate 2s linear infinite;
 }
 
 .loader span:before {
-  content: "";
-  position: absolute;
-  width: 16px;
-  height: 16px;
-  border-radius: 50%;
-  background: #00eaff;
-  top: -6px;
-  right: -8px;
-  box-shadow: 0 0 20px #00eaff;
+    content: "";
+    position: absolute;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background: #00eaff;
+    top: -6px;
+    right: -8px;
+    box-shadow: 0 0 20px #00eaff;
 }
 
 @keyframes animateC {
-  0% {
-    transform: rotate(0deg);
-  }
-  100% {
-    transform: rotate(360deg);
-  }
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
 }
 
 @keyframes animate {
-  0% {
-    transform: rotate(45deg);
-  }
-  100% {
-    transform: rotate(405deg);
-  }
+    0% {
+        transform: rotate(45deg);
+    }
+
+    100% {
+        transform: rotate(405deg);
+    }
 }
 
 /* ========================================================================== 
   ШАПКА 
 ========================================================================== */
+
 header {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  background-color: var(--header-bg);
-  color: var(--header-text);
-  padding: 20px;
-  text-align: center;
-  transform: translateY(-100%);
-  opacity: 0;
-  transition: transform 0.5s ease, opacity 0.5s ease;
-  z-index: 1000;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: var(--header-bg);
+    color: var(--header-text);
+    padding: 20px;
+    text-align: center;
+    transform: translateY(-100%);
+    opacity: 0;
+    transition: transform 0.5s ease, opacity 0.5s ease;
+    z-index: 1000;
 }
 
 header.visible {
-  transform: translateY(0);
-  opacity: 1;
+    transform: translateY(0);
+    opacity: 1;
 }
 
 #theme-toggle {
@@ -237,6 +248,7 @@ body.light-theme #theme-toggle .lightbulb {
 /* ========================================================================== 
   ФОН И ОСНОВНОЙ КОНТЕНТ 
 ========================================================================== */
+
 #backgroundCanvas {
     position: fixed;
     top: 0;
@@ -263,9 +275,10 @@ main {
 /* ========================================================================== 
   СЕКЦИИ С КОНТЕНТОМ 
 ========================================================================== */
+
 section {
     background: #fff;
-    margin: 20px;
+    margin: 40px;
     padding: 20px;
     border-radius: 8px;
     opacity: 0;
@@ -288,6 +301,7 @@ section {
 /* ========================================================================== 
   ВЫДЕЛЕНИЕ ТЕКСТА 
 ========================================================================== */
+
 .highlight {
     background-color: lightslategray;
     opacity: 0.7;
@@ -297,6 +311,7 @@ section {
 /* ========================================================================== 
   БЛОК «О СЕБЕ» 
 ========================================================================== */
+
 .about-container {
     display: flex;
     align-items: center;
@@ -310,8 +325,8 @@ section {
 }
 
 .about-photo img {
-    width: 180px;
-    height: 180px;
+    width: 300px;
+    height: 300px;
     border-radius: 50%;
     object-fit: cover;
     box-shadow: 0 8px 15px rgba(0, 0, 0, 0.25);
@@ -320,14 +335,16 @@ section {
 /* ========================================================================== 
   ГАЛЕРЕЯ ПРОЕКТОВ 
 ========================================================================== */
-.gallery {
+
+.gallery-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
     gap: 20px;
 }
 
 .gallery-item {
-    background-color: #222;
+    background-color: var(--gallery-item-bg, #222);
+    color: var(--gallery-item-text, #fff);
     border-radius: 8px;
     overflow: hidden;
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
@@ -335,7 +352,7 @@ section {
     cursor: pointer;
     display: flex;
     flex-direction: column;
-    color: azure;
+    text-align: center;
 }
 
 .gallery-item:hover {
@@ -343,6 +360,7 @@ section {
     box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3);
     background: linear-gradient(to top right, #778899 0%, #ffffff 100%);
     color: #222;
+    background-color: #fff;
 }
 
 .gallery-item img {
@@ -381,9 +399,86 @@ section {
     color: var(--section-text);
 }
 
+.desc-btn {
+    width: 88%;
+    margin: 12px auto 10px auto;
+    padding: 11px 0;
+    background: linear-gradient(to top right, #778899 0%, #ffffff 100%);
+    color: #fff;
+    font-size: 1.06rem;
+    font-family: inherit;
+    border: none;
+    border-radius: 24px;
+    box-shadow: 0 2px 9px rgba(232, 123, 62, 0.17);
+    cursor: pointer;
+    font-weight: 600;
+    letter-spacing: 0.03em;
+    transition: background 0.19s, transform 0.19s, box-shadow 0.19s;
+    outline: none;
+}
+
+.desc-btn:hover,
+.desc-btn:focus {
+    background: linear-gradient(to top right, #778899 0%, #ffffff 100%);
+    transform: translateY(-3px) scale(1.04);
+    box-shadow: 0 8px 24px rgba(202, 134, 60, 0.23);
+}
+
+.desc-btn:active {
+    background: #007bff;
+    transform: scale(0.98);
+}
+
+.desc-btn span {
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: none;
+    background: rgba(0, 0, 0, 0.6);
+    z-index: 1000;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal.active {
+    display: flex;
+}
+
+.modal-content {
+    background: #fff;
+    color: #333;
+    padding: 32px 22px;
+    border-radius: 18px;
+    max-width: 800px;
+    width: 94vw;
+    box-shadow: 0 8px 24px rgba(71, 61, 29, 0.22);
+    text-align: center;
+    position: relative;
+    overflow-y: auto;
+}
+
+.modal-close {
+    position: absolute;
+    right: 18px;
+    top: 18px;
+    background: none;
+    border: none;
+    font-size: 3rem;
+    color: red;
+    cursor: pointer;
+}
+
 /* ========================================================================== 
   БЛОК НАВЫКИ 
 ========================================================================== */
+
 .skills-grid {
     display: flex;
     flex-wrap: wrap;
@@ -427,13 +522,15 @@ section {
 /* ========================================================================== 
   КОНТАКТЫ И ФОРМА - ГОРИЗОНТАЛЬНОЕ РАСПОЛОЖЕНИЕ 
 ========================================================================== */
+
 .contacts-container {
     display: flex;
     gap: 40px;
     flex-wrap: wrap;
 }
 
-.contact-info, .contact-form {
+.contact-info,
+.contact-form {
     flex: 1 1 300px;
     min-width: 280px;
 }
@@ -469,7 +566,8 @@ section {
     box-shadow: 0 6px 36px rgba(10, 10, 10, 0.19);
 }
 
-.contact-form:hover, .contact-form:focus-within {
+.contact-form:hover,
+.contact-form:focus-within {
     transform: scale(1.03) translateY(-6px);
     box-shadow: 0 12px 44px 0 rgba(0, 0, 0, 0.25);
     z-index: 2;
@@ -479,7 +577,8 @@ section {
     font-weight: bold;
 }
 
-.contact-form input, .contact-form textarea {
+.contact-form input,
+.contact-form textarea {
     padding: 10px;
     border: 2px solid #ccc;
     border-radius: 6px;
@@ -490,7 +589,8 @@ section {
     box-sizing: border-box;
 }
 
-.contact-form input:focus, .contact-form textarea:focus {
+.contact-form input:focus,
+.contact-form textarea:focus {
     border-color: #007bff;
     outline: none;
 }
@@ -521,6 +621,7 @@ section {
 /* ========================================================================== 
   ФУТЕР 
 ========================================================================== */
+
 footer {
     position: relative;
     text-align: center;
@@ -554,208 +655,128 @@ footer {
     transform: translateY(-8px) scale(1.07);
 }
 
+}
+
+body,
+html {
+    max-width: 100vw;
+    overflow-x: hidden;
+    background: var(--bg-color);
+}
+}
+
 /* ========================================================================== 
-  МОБИЛЬНАЯ ВЕРСТКА 
+  MEDIA 
 ========================================================================== */
-@media (max-width: 320px) {
-    body {
-        padding-top: 100px;
-    }
-
-    header {
-        position: fixed;
-        padding: 8px 4px;
-        width: 100%;
-        font-size: 9px;
-    }
-
-    #theme-toggle {
-        position: fixed;
-        top: 50px;
-        right: 12px;
-        z-index: 10000;
-    }
-
-    .about-photo img {
-        width: 100px;
-        height: 100px;
-        max-width: 90px;
-    }
-
-    .scroll-footer {
-        width: 40px;
-        height: 40px;
-        font-size: 12px;
-        padding: 8px;
-    }
-
-    .skills-grid {
-        flex-direction: column;
-        gap: 10px;
-    }
-
-    .skill-card {
-        flex-basis: 100%;
-        margin-bottom: 7px;
-    }
-
-    section {
-        padding: 10px;
-
-    }
-}
-
-@media (max-width: 480px) {
-
-    html,
-    body {
-        max-width: 100vw;
-        overflow-x: hidden;
-        overflow-y: auto;
-    }
-
-
-    #theme-toggle {
-        position: fixed;
-        top: 50px;
-        right: 12px;
-        z-index: 10000;
-    }
-
-    .about-photo img {
-        width: 120px;
-        height: 120px;
-        max-width: 100%;
-    }
-
-    .scroll-footer {
-        width: 60px;
-        height: 60px;
-        font-size: 14px;
-        padding: 10px;
-    }
-
-    .skills-grid {
-        flex-direction: column;
-        align-content: center;
-        gap: 10px;
-    }
-
-    .skill-card {
-        flex-basis: 100%;
-    }
-}
 
 @media (max-width: 768px) {
 
-    html,
-    body {
+    body,
+    html {
         max-width: 100vw;
         overflow-x: hidden;
-        overflow-y: auto;
+        padding: 0;
+        background: var(--bg-color);
+    }
+
+    main,
+    .main-container {
+        max-width: 98vw;
+        margin: 0 auto;
+        padding: 0 2vw;
+        box-sizing: border-box;
+    }
+
+    header,
+    footer,
+    section {
+        width: 100vw;
+        min-width: 0;
+        text-align: center;
+        padding: 14px 0;
+        box-sizing: border-box;
     }
 
     .about-container {
         flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 16px;
         text-align: center;
-        gap: 15px;
     }
 
-    .about-photo {
-        order: 1;
+    .skills-grid,
+    .gallery-grid {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 14px;
+        width: 100%;
+        margin: 0;
+        padding: 0;
+    }
+
+    .skill-card,
+    .gallery-item {
+        width: 97vw;
+        max-width: 360px;
+        margin: 0 auto 10px auto;
+        box-sizing: border-box;
+    }
+
+    .gallery-item img,
+    .skill-card img {
+        max-width: 96vw;
+        height: auto;
+        border-radius: 10px;
         margin: 0 auto;
+        display: block;
     }
 
-    .about-text {
-        order: 2;
+    .gallery-info,
+    .gallery-info h3,
+    .gallery-info p {
+        text-align: center;
+        word-break: break-word;
     }
 
-    .about-photo img {
-        width: 140px;
-        height: 140px;
-        border-radius: 50%;
-        margin-top: 20px;
-        max-width: 100%;
+    .desc-btn,
+    .gallery-info a {
+        display: block;
+        margin: 12px auto;
+        width: 90%;
+        max-width: 310px;
     }
 
-    .scroll-footer {
-        width: 60px;
-        height: 60px;
-        font-size: 16px;
-        padding: 12px;
-    }
-
-    .skills-grid {
-        gap: 18px;
-    }
-
-    .skill-card {
-        flex-basis: 44%;
-    }
-}
-
-@media (min-width: 769px) and (max-width: 1024px) {
-
-    html,
-    body {
-        max-width: 100vw;
-        overflow-x: hidden;
-        overflow-y: auto;
-    }
-
-    main {
-        padding-top: 15px;
-        padding-left: 55px;
-    }
-
-    .skills-grid {
-        gap: 20px;
-    }
-
-    .skill-card {
-        flex-basis: 33%;
-    }
-
-    .scroll-footer {
-        width: 60px;
-        height: 60px;
-        font-size: 16px;
-        padding: 12px;
-    }
-
-    footer {
+    .contacts-container,
+    .contact-info,
+    .contact-form {
+        flex-direction: column;
+        align-items: center;
         width: 100%;
-    }
-}
-
-@media (min-width: 1025px) {
-    body {
-        padding-top: 0;
+        padding: 0 0 10px 0;
+        min-width: 0;
+        text-align: center;
     }
 
-    header {
+    .contact-form input,
+    .contact-form textarea {
+        width: 96vw;
+        max-width: 340px;
+        margin: 0 auto 14px auto;
+    }
+
+    #theme-toggle {
         position: static;
-        width: 100%;
-        font-size: 9px;
-    }
-
-    main {
-        padding-top: 15px;
-        padding-left: 30px;
-    }
-
-    .skills-grid {
-        gap: 20px;
-    }
-
-    .skill-card {
-        flex-basis: 33%;
+        margin: 18px auto 8px auto;
+        display: block;
     }
 
     .scroll-footer {
-        width: 60px;
-        height: 60px;
-        font-size: 16px;
-        padding: 12px;
+        position: static;
+        width: 52px;
+        height: 52px;
+        margin: 14px auto;
+        display: block;
     }
 }

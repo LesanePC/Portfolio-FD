@@ -9,15 +9,15 @@ document.querySelectorAll('.section').forEach(sec => {
     observer.observe(sec);
 });
 window.addEventListener('load', () => {
-  const loader = document.querySelector('.loader');
-  
-  setTimeout(() => {
-    loader.style.opacity = '0';
-    loader.style.pointerEvents = 'none';
+    const loader = document.querySelector('.loader');
+
     setTimeout(() => {
-      loader.style.display = 'none';
-    }, 500);
-  }, 2000);
+        loader.style.opacity = '0';
+        loader.style.pointerEvents = 'none';
+        setTimeout(() => {
+            loader.style.display = 'none';
+        }, 500);
+    }, 2000);
 });
 
 // Кнопка "вверх" с плавным скроллом
@@ -137,6 +137,21 @@ function animate() {
 
 // Запуск анимации
 animate();
+
+document.querySelectorAll('.desc-btn').forEach(btn => {
+    btn.addEventListener('click', function() {
+        document.getElementById('modal-img').src = btn.dataset.img;
+        document.getElementById('modal-title').textContent = btn.dataset.title;
+        document.getElementById('modal-desc').textContent = btn.dataset.desc;
+        document.getElementById('project-modal').classList.add('active');
+    });
+});
+document.getElementById('modal-close').onclick = function() {
+    document.getElementById('project-modal').classList.remove('active');
+};
+document.getElementById('project-modal').onclick = function(e) {
+    if (e.target === this) this.classList.remove('active');
+};
 
 
 $(document).ready(function() {
