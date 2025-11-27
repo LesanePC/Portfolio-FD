@@ -436,7 +436,7 @@ section {
 
 .modal {
     position: fixed;
-    top: 0;
+    top: 125px;
     left: 0;
     right: 0;
     bottom: 0;
@@ -456,7 +456,8 @@ section {
     color: #333;
     padding: 32px 22px;
     border-radius: 18px;
-    max-width: 800px;
+    max-width: 500px;
+    max-height: 500px;
     width: 94vw;
     box-shadow: 0 8px 24px rgba(71, 61, 29, 0.22);
     text-align: center;
