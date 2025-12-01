@@ -1,253 +1,301 @@
-// -----------------------------
-// Анимации секций 
-// -----------------------------
-const observer = new IntersectionObserver(entries => {
+const $ = selector => document.querySelector(selector);
+const $$ = selector => Array.from(document.querySelectorAll(selector));
+const isVisible = el => !!(el && el.offsetParent !== null);
+
+const debounce = (fn, wait = 150) => {
+  let t;
+  return (...args) => {
+    clearTimeout(t);
+    t = setTimeout(() => fn.apply(this, args), wait);
+  };
+};
+
+/* -----------------------------
+   IntersectionObserver — секции
+----------------------------- */
+const sectionObserver = new IntersectionObserver(
+  (entries) => {
     entries.forEach(entry => {
-        if (entry.isIntersecting) entry.target.classList.add('visible');
+      if (entry.isIntersecting) entry.target.classList.add('visible');
     });
-}, { threshold: 0.2 });
+  },
+  { threshold: 0.15, rootMargin: '0px 0px -10% 0px' }
+);
 
-document.querySelectorAll('.section').forEach(sec => observer.observe(sec));
+$$('.section').forEach(sec => sectionObserver.observe(sec));
 
-
-// -----------------------------
-// Лоадер + появление header
-// -----------------------------
+/* -----------------------------
+   Лоадер + появление header
+----------------------------- */
 window.addEventListener('load', () => {
-    const loader = document.querySelector('.loader');
-    const header = document.querySelector('header');
+  const loader = $('.loader');
+  const header = $('header');
 
-    if (loader) {
-        loader.style.opacity = '0';
-        loader.style.pointerEvents = 'none';
+  if (loader) {
+    loader.style.opacity = '0';
+    loader.style.pointerEvents = 'none';
+    setTimeout(() => loader.style.display = 'none', 500);
+  }
 
-        setTimeout(() => {
-            loader.style.display = 'none';
-        }, 500);
-    }
-
-    if (header) {
-        setTimeout(() => header.classList.add('visible'), 300);
-    }
+  if (header) {
+    setTimeout(() => header.classList.add('visible'), 300);
+  }
 });
 
-
-// -----------------------------
-// Кнопка "Вверх"
-// -----------------------------
-const scrollBtn = document.getElementById('scrollTopBtn');
+/* -----------------------------
+   Кнопка "Вверх"
+----------------------------- */
+const scrollBtn = $('#scrollTopBtn');
 if (scrollBtn) {
-    scrollBtn.addEventListener('click', () => {
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-    });
+  // показываем/скрываем кнопку при скролле
+  const toggleScrollBtn = () => scrollBtn.classList.toggle('visible', window.scrollY > 600);
+  window.addEventListener('scroll', toggleScrollBtn, { passive: true });
+
+  scrollBtn.addEventListener('click', () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
 }
 
-
-// -----------------------------
-// Тема (тёмная / светлая)
-// -----------------------------
-const toggleButton = document.getElementById('theme-toggle');
-if (toggleButton) {
-    if (localStorage.getItem('theme') === 'light') {
-        document.body.classList.add('light-theme');
+/* -----------------------------
+   Тема (тёмная / светлая)
+----------------------------- */
+const themeToggle = $('#theme-toggle');
+if (themeToggle) {
+  // respect system preference unless overridden
+  if (!localStorage.getItem('theme')) {
+    if (window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches) {
+      document.body.classList.add('light-theme');
     }
+  } else if (localStorage.getItem('theme') === 'light') {
+    document.body.classList.add('light-theme');
+  }
 
-    toggleButton.addEventListener('click', () => {
-        document.body.classList.toggle('light-theme');
-        document.body.classList.contains('light-theme')
-            ? localStorage.setItem('theme', 'light')
-            : localStorage.removeItem('theme');
-    });
+  themeToggle.addEventListener('click', () => {
+    const isLight = document.body.classList.toggle('light-theme');
+    if (isLight) localStorage.setItem('theme', 'light');
+    else localStorage.removeItem('theme');
+  });
 }
 
+/* -----------------------------
+   Canvas 
+----------------------------- */
+(() => {
+  const canvas = $('#backgroundCanvas');
+  if (!canvas) return;
 
-// -----------------------------
-// Canvas — оптимизированный фон
-// -----------------------------
-const canvas = document.getElementById('backgroundCanvas');
-let ctx, width, height;
-const particles = [];
-let PARTICLES_COUNT = 120; // Оптимальное количество
+  const ctx = canvas.getContext('2d');
+  let width = 0;
+  let height = 0;
+  const particles = [];
+  let PARTICLES_COUNT = 100;
+  let lastTime = 0;
+  const FPS_INTERVAL = 1000 / 50;
 
-if (canvas) {
-    ctx = canvas.getContext('2d');
-
-    class Particle {
-        constructor() {
-            this.reset();
-        }
-        reset() {
-            this.x = Math.random() * width;
-            this.y = Math.random() * height;
-            this.size = Math.random() * 2 + 1;
-            this.speedX = (Math.random() - 0.5);
-            this.speedY = (Math.random() - 0.5);
-        }
-        update() {
-            this.x += this.speedX;
-            this.y += this.speedY;
-            if (this.x < 0 || this.x > width) this.speedX *= -1;
-            if (this.y < 0 || this.y > height) this.speedY *= -1;
-        }
-        draw() {
-            ctx.fillStyle = 'rgba(25, 25, 112, 0.50)';
-            ctx.beginPath();
-            ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-            ctx.fill();
-        }
+  class Particle {
+    constructor() { this.reset(); }
+    reset() {
+      this.x = Math.random() * width;
+      this.y = Math.random() * height;
+      this.size = Math.random() * 2 + 0.8;
+      this.speedX = (Math.random() - 0.5) * 0.6;
+      this.speedY = (Math.random() - 0.5) * 0.6;
     }
+    update() {
+      this.x += this.speedX;
+      this.y += this.speedY;
+      if (this.x < 0 || this.x > width) this.speedX *= -1;
+      if (this.y < 0 || this.y > height) this.speedY *= -1;
+    }
+    draw() {
+      ctx.fillStyle = 'rgba(25,25,112,0.45)';
+      ctx.beginPath();
+      ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+      ctx.fill();
+    }
+  }
 
-    function createParticles() {
-        particles.length = 0;
-        for (let i = 0; i < PARTICLES_COUNT; i++) {
-            particles.push(new Particle());
+  const createParticles = (count = PARTICLES_COUNT) => {
+    particles.length = 0;
+    for (let i = 0; i < count; i++) particles.push(new Particle());
+  };
+
+  const resizeCanvas = () => {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+    width = canvas.width;
+    height = canvas.height;
+
+    // адаптивное количество частиц по разрешению
+    const base = Math.max(60, Math.floor((width * height) / (1920 * 1080) * 120));
+    PARTICLES_COUNT = Math.min(180, base);
+    createParticles(PARTICLES_COUNT);
+  };
+
+  const connectParticles = () => {
+    for (let a = 0; a < particles.length; a++) {
+      for (let b = a + 1; b < particles.length; b++) {
+        const dx = particles[a].x - particles[b].x;
+        const dy = particles[a].y - particles[b].y;
+        const dist = dx * dx + dy * dy;
+        // порог с учётом экрана (динамический)
+        const maxDist = (width + height) * 0.18;
+        if (dist < maxDist * maxDist) {
+          ctx.strokeStyle = 'rgba(100,200,250,0.18)';
+          ctx.lineWidth = 1;
+          ctx.beginPath();
+          ctx.moveTo(particles[a].x, particles[a].y);
+          ctx.lineTo(particles[b].x, particles[b].y);
+          ctx.stroke();
         }
+      }
     }
+  };
 
-    function resize() {
-        canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight;
-        width = canvas.width;
-        height = canvas.height;
-        createParticles();
+  const animate = (timestamp) => {
+    if (!lastTime) lastTime = timestamp;
+    const elapsed = timestamp - lastTime;
+    if (elapsed < FPS_INTERVAL) {
+      requestAnimationFrame(animate);
+      return;
     }
+    lastTime = timestamp;
 
-    window.addEventListener('resize', resize);
-    resize();
+    ctx.clearRect(0, 0, width, height);
+    particles.forEach(p => { p.update(); p.draw(); });
+    connectParticles();
+    requestAnimationFrame(animate);
+  };
 
-    function connectParticles() {
-        for (let a = 0; a < particles.length; a++) {
-            for (let b = a + 1; b < particles.length; b++) {
-                const dx = particles[a].x - particles[b].x;
-                const dy = particles[a].y - particles[b].y;
-                const dist = dx * dx + dy * dy;
+  const handleResize = debounce(resizeCanvas, 200);
 
-                if (dist < 11000) {
-                    ctx.strokeStyle = 'rgba(100,200,250,0.25)';
-                    ctx.lineWidth = 1;
-                    ctx.beginPath();
-                    ctx.moveTo(particles[a].x, particles[a].y);
-                    ctx.lineTo(particles[b].x, particles[b].y);
-                    ctx.stroke();
-                }
-            }
-        }
-    }
+  window.addEventListener('resize', handleResize);
+  resizeCanvas();
+  requestAnimationFrame(animate);
+})();
 
-    function animate() {
-        ctx.clearRect(0, 0, width, height);
-        particles.forEach(p => {
-            p.update();
-            p.draw();
-        });
-        connectParticles();
-        requestAnimationFrame(animate);
-    }
+/* -----------------------------
+   Модальное окно для проектов 
+----------------------------- */
+(() => {
+  const modal = $('#project-modal');
+  const modalImg = $('#modal-img');
+  const modalTitle = $('#modal-title');
+  const modalDesc = $('#modal-desc');
+  const modalClose = $('#modal-close');
 
-    animate();
-}
+  if (!modal || !modalImg || !modalTitle || !modalDesc) return;
 
+  document.body.addEventListener('click', (e) => {
+    const btn = e.target.closest('.desc-btn');
+    if (!btn) return;
 
-// -----------------------------
-// Модальное окно для проектов
-// -----------------------------
-document.querySelectorAll('.desc-btn').forEach(btn => {
-    btn.addEventListener('click', () => {
-        const modal = document.getElementById('project-modal');
-        if (!modal) return;
+    // сбрасываем старое изображение, чтобы избежать мерцания
+    modalImg.classList.remove('loaded');
+    modalImg.src = ''; // сброс
+    modalTitle.textContent = btn.dataset.title || '';
+    modalDesc.textContent = btn.dataset.desc || '';
 
-        document.getElementById('modal-img').src = btn.dataset.img;
-        document.getElementById('modal-title').textContent = btn.dataset.title;
-        document.getElementById('modal-desc').textContent = btn.dataset.desc;
+    // безопасно подставляем src — картинка загрузится и покажется
+    modalImg.src = btn.dataset.img || '';
+    modal.classList.add('active');
+  });
 
-        modal.classList.add('active');
-    });
-});
+  // image load handler: плавное появление
+  modalImg.addEventListener('load', () => modalImg.classList.add('loaded'));
 
-const modalClose = document.getElementById('modal-close');
-const modalWindow = document.getElementById('project-modal');
+  // Закрытие (кнопка)
+  if (modalClose) modalClose.addEventListener('click', () => modal.classList.remove('active'));
 
-if (modalClose && modalWindow) {
-    modalClose.onclick = () => modalWindow.classList.remove('active');
-    modalWindow.onclick = e => {
-        if (e.target === modalWindow) modalWindow.classList.remove('active');
-    };
-}
+  // Закрытие по клику на фон
+  modal.addEventListener('click', (e) => {
+    if (e.target === modal) modal.classList.remove('active');
+  });
 
+  // Закрытие по Esc
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && modal.classList.contains('active')) modal.classList.remove('active');
+  });
+})();
 
-// -----------------------------
-// MagnificPopup (с проверкой jQuery)
-// -----------------------------
+/* -----------------------------
+   MagnificPopup 
+----------------------------- */
 if (window.jQuery) {
-    $('.popup-gallery').magnificPopup({
+  (function($) {
+    if ($.fn && $.fn.magnificPopup) {
+      $('.popup-gallery').magnificPopup({
         delegate: 'a.image-popup',
         type: 'image',
         gallery: { enabled: true, navigateByImgClick: true, preload: [0, 1] },
         zoom: { enabled: true, duration: 300 },
         image: { titleSrc: 'title' }
-    });
+      });
+    }
+  })(jQuery);
 }
 
+/* -----------------------------
+   Отправка формы + валидация email
+----------------------------- */
+(() => {
+  const form = $('#contactForm');
+  if (!form) return;
 
-// -----------------------------
-// Отправка формы + валидация email
-// -----------------------------
-const form = document.getElementById('contactForm');
-if (form) {
-    form.addEventListener('submit', async e => {
-        e.preventDefault();
+  const formMessage = form.querySelector('.form-message');
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-        const formMessage = form.querySelector('.form-message');
-        const formData = new FormData(form);
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
 
-        // Проверка пустых полей
-        for (let [_, value] of formData.entries()) {
-            if (!value.trim()) {
-                formMessage.style.color = 'red';
-                formMessage.textContent = 'Пожалуйста, заполните все поля.';
-                return;
-            }
-        }
+    const formData = new FormData(form);
+    const values = Array.from(formData.values()).map(v => (v || '').toString().trim());
 
-        // Email
-        const email = formData.get('email');
-        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    // Проверка пустых полей
+    if (values.some(v => v === '')) {
+      formMessage.style.color = 'red';
+      formMessage.textContent = 'Пожалуйста, заполните все поля.';
+      return;
+    }
 
-        if (!emailRegex.test(email)) {
-            formMessage.style.color = 'red';
-            formMessage.textContent = 'Введите корректный email.';
-            return;
-        }
+    const email = formData.get('email') || '';
+    if (!emailRegex.test(email)) {
+      formMessage.style.color = 'red';
+      formMessage.textContent = 'Введите корректный email.';
+      return;
+    }
 
-        // Отправка
-        try {
-            const res = await fetch(form.action, {
-                method: form.method,
-                headers: { 'Accept': 'application/json' },
-                body: formData
-            });
+    try {
+      const res = await fetch(form.action, {
+        method: form.method || 'POST',
+        headers: { 'Accept': 'application/json' },
+        body: formData
+      });
 
-            if (res.ok) {
-                formMessage.style.color = 'green';
-                formMessage.textContent = 'Спасибо за ваше сообщение!';
-                form.reset();
-            } else {
-                const data = await res.json();
-                formMessage.style.color = 'red';
-                formMessage.textContent = data.errors
-                    ? data.errors.map(e => e.message).join(', ')
-                    : 'Ошибка при отправке.';
-            }
-        } catch {
-            formMessage.style.color = 'red';
-            formMessage.textContent = 'Ошибка сети, попробуйте позже.';
-        }
-    });
-}
+      if (res.ok) {
+        formMessage.style.color = 'green';
+        formMessage.textContent = 'Спасибо за ваше сообщение!';
+        form.reset();
+      } else {
+        let data;
+        try { data = await res.json(); } catch { data = null; }
+        formMessage.style.color = 'red';
+        formMessage.textContent = data && data.errors
+          ? data.errors.map(er => er.message).join(', ')
+          : 'Ошибка при отправке.';
+      }
+    } catch (err) {
+      formMessage.style.color = 'red';
+      formMessage.textContent = 'Ошибка сети, попробуйте позже.';
+      // console.error(err);
+    }
+  });
+})();
 
-
-// -----------------------------
-// Год в футере
-// -----------------------------
-const yearSpan = document.getElementById('year');
-if (yearSpan) yearSpan.textContent = new Date().getFullYear();
+/* -----------------------------
+   Год в футере
+----------------------------- */
+(() => {
+  const yearSpan = $('#year');
+  if (yearSpan) yearSpan.textContent = new Date().getFullYear();
+})();

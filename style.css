@@ -338,142 +338,215 @@ section {
 .gallery-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-    gap: 20px;
+    gap: 28px;
+    margin-top: 30px;
 }
 
+/* Карточка проекта */
 .gallery-item {
-    background-color: var(--gallery-item-bg, #222);
-    color: var(--gallery-item-text, #fff);
-    border-radius: 8px;
-    overflow: hidden;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
-    transition: transform 0.3s ease;
-    cursor: pointer;
+    background: rgba(20, 20, 20, 0.85);
+    backdrop-filter: blur(6px);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 14px;
+
+    padding: 0 0 16px 0;
     display: flex;
     flex-direction: column;
     text-align: center;
+
+    transition: 0.35s ease;
+    box-shadow: 0 4px 14px rgba(0,0,0,0.28);
 }
 
 .gallery-item:hover {
-    transform: scale(1.05);
-    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3);
-    background: linear-gradient(to top right, #778899 0%, #ffffff 100%);
-    color: #222;
-    background-color: #fff;
+    transform: translateY(-6px);
+    box-shadow: 0 12px 28px rgba(0,0,0,0.45);
+    border-color: rgba(255,255,255,0.12);
+
+    background: rgba(30, 30, 30, 0.92);
 }
 
+/* Изображение */
 .gallery-item img {
     width: 100%;
-    height: 180px;
+    height: 190px;
     object-fit: cover;
-    display: block;
+    border-radius: 14px 14px 0 0;
 }
 
-.gallery-info {
-    padding: 15px;
-}
-
-.gallery-info h3 {
-    margin: 0 0 10px;
-    font-size: 18px;
-}
-
-.gallery-info p {
-    margin: 0 0 15px;
-    font-size: 14px;
-}
-
-.gallery-info a {
-    color: #007acc;
-    font-weight: 600;
-    text-decoration: none;
-}
-
-.gallery-info a:hover {
-    text-decoration: underline;
-}
-
-.section#skills {
-    background-color: var(--section-bg);
-    color: var(--section-text);
-}
-
-.desc-btn {
-    width: 88%;
-    margin: 12px auto 10px auto;
-    padding: 11px 0;
-    background: linear-gradient(to top right, #778899 0%, #ffffff 100%);
+/* Заголовок */
+.gallery-item h3 {
+    font-size: 19px;
+    margin: 16px 0 6px 0;
     color: #fff;
-    font-size: 1.06rem;
-    font-family: inherit;
+}
+
+/* Кнопка "Описание" */
+.desc-btn {
+    width: 86%;
+    margin: 10px auto;
+    padding: 10px 0;
+
+    background: linear-gradient(135deg, #808ea0, #cfd5db);
+    color: #111;
+
+    font-size: 1rem;
     border: none;
-    border-radius: 24px;
-    box-shadow: 0 2px 9px rgba(232, 123, 62, 0.17);
+    border-radius: 18px;
+
+    box-shadow: 0 2px 8px rgba(255, 255, 255, 0.12);
     cursor: pointer;
     font-weight: 600;
-    letter-spacing: 0.03em;
-    transition: background 0.19s, transform 0.19s, box-shadow 0.19s;
-    outline: none;
+
+    transition: 0.25s ease;
 }
 
-.desc-btn:hover,
-.desc-btn:focus {
-    background: linear-gradient(to top right, #778899 0%, #ffffff 100%);
-    transform: translateY(-3px) scale(1.04);
-    box-shadow: 0 8px 24px rgba(202, 134, 60, 0.23);
+.desc-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 18px rgba(255,255,255,0.22);
 }
 
-.desc-btn:active {
-    background: #007bff;
-    transform: scale(0.98);
+/* Кнопка "Перейти к проекту" */
+.gallery-item a {
+    margin-top: auto;
+    display: block;
+    width: 86%;
+    margin-left: auto;
+    margin-right: auto;
+
+    padding: 10px 0;
+    border-radius: 12px;
+
+    border: 1px solid rgba(255,255,255,0.2);
+    color: #eaeaea;
+    text-decoration: none;
+    font-size: 15px;
+
+    transition: 0.25s ease;
 }
 
-.desc-btn span {
-    display: inline-block;
-    vertical-align: middle;
+.gallery-item a:hover {
+    background: #2a2a2a;
+    border-color: rgba(255,255,255,0.35);
 }
+
+/* ===========================
+      POPUP (MODAL) — v2.0
+   =========================== */
 
 .modal {
     position: fixed;
-    top: 125px;
-    left: 0;
-    right: 0;
-    bottom: 0;
+    inset: 0;
     display: none;
-    background: rgba(0, 0, 0, 0.6);
-    z-index: 1000;
+
     justify-content: center;
     align-items: center;
+
+    padding: 30px;
+    background: rgba(0, 0, 0, 0.75);
+    backdrop-filter: blur(4px);
+
+    z-index: 2000;
+    animation: fadeIn 0.3s ease forwards;
+}
+
+/* Появление фона */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
 }
 
 .modal.active {
     display: flex;
 }
 
+/* Контейнер */
 .modal-content {
-    background: #fff;
-    color: #333;
-    padding: 32px 22px;
-    border-radius: 18px;
-    max-width: 500px;
-    max-height: 500px;
-    width: 94vw;
-    box-shadow: 0 8px 24px rgba(71, 61, 29, 0.22);
-    text-align: center;
     position: relative;
+    width: 92%;
+    max-width: 520px;
+
+    background: #1b1b1b;
+    color: #f1f1f1;
+
+    padding: 22px 24px 28px;
+    border-radius: 20px;
+
+    box-shadow: 0 12px 32px rgba(0,0,0,0.55);
+    border: 1px solid rgba(255,255,255,0.06);
+
+    animation: scaleIn 0.28s ease forwards;
+
+    max-height: 85vh;
     overflow-y: auto;
+
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
 }
 
+/* Картинка */
+.modal-content img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+
+    width: auto;
+    max-width: 100%;
+    max-height: 260px;
+    object-fit: contain;
+
+    border-radius: 14px;
+    box-shadow: 0 4px 14px rgba(0,0,0,0.35);
+}
+
+/* Заголовок */
+.modal-content h2 {
+    margin: 0 auto;
+    font-size: 23px;
+    text-align: center;
+    font-weight: 700;
+    color: #fff;
+}
+
+/* Текст */
+.modal-content p {
+    margin-top: 4px;
+    font-size: 16px;
+    line-height: 1.6;
+    opacity: 0.92;
+    text-align: left;
+}
+
+/* Закрывашка */
 .modal-close {
     position: absolute;
-    right: 18px;
-    top: 18px;
-    background: none;
+    right: 14px;
+    top: 12px;
+
+    width: 38px;
+    height: 38px;
+
     border: none;
-    font-size: 3rem;
-    color: red;
+    border-radius: 50%;
+    background: rgba(255, 0, 0, 0.12);
+
+    color: #ff4a4a;
+    font-size: 1.6rem;
     cursor: pointer;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    transition: 0.25s ease;
 }
+
+.modal-close:hover {
+    background: rgba(255, 0, 0, 0.28);
+    transform: scale(1.08) rotate(90deg);
+}
+
 
 /* ========================================================================== 
   БЛОК НАВЫКИ 
