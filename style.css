@@ -29,8 +29,11 @@ body.light-theme {
     --link-color: #007acc;
     --section-bg: #fff;
     --section-text: #222;
+    --projects-h3: #222;
     --gallery-item-bg: #fff;
     --gallery-item-text: #222;
+    --gallery-item-h3: #222;
+    --gallery-item-a: #222;
     --skill-card-bg: #222;
     --skill-card-text: #fff;
     --form-bg-gradient: linear-gradient(90deg, azure 0%, #444 100%);
@@ -331,222 +334,225 @@ section {
     box-shadow: 0 8px 15px rgba(0, 0, 0, 0.25);
 }
 
-/* ========================================================================== 
-  ГАЛЕРЕЯ ПРОЕКТОВ 
+/* ==========================================================================  
+   БЛОК ПРОЕКТОВ — НОВЫЙ ДИЗАЙН  
 ========================================================================== */
 
-.gallery-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-    gap: 28px;
-    margin-top: 30px;
+#projects h2 {
+    text-align: center;
+    font-size: 2.4rem;
+    margin-bottom: 35px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    color: #fff(--projects-h3);
 }
 
-/* Карточка проекта */
-.gallery-item {
-    background: rgba(20, 20, 20, 0.85);
-    backdrop-filter: blur(6px);
-    border: 1px solid rgba(255, 255, 255, 0.05);
-    border-radius: 14px;
+/* GRID */
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 32px;
+    padding: 10px 0;
+}
 
-    padding: 0 0 16px 0;
+/* КАРТОЧКА */
+.gallery-item {
+    background: rgba(255,255,255,0.06);
+    backdrop-filter: blur(12px);
+    border-radius: 18px;
+    overflow: hidden;
+
+    border: 1px solid rgba(255,255,255,0.12);
+    box-shadow: 0 8px 26px rgba(0,0,0,0.35);
+
     display: flex;
     flex-direction: column;
-    text-align: center;
-
     transition: 0.35s ease;
-    box-shadow: 0 4px 14px rgba(0,0,0,0.28);
 }
 
 .gallery-item:hover {
-    transform: translateY(-6px);
-    box-shadow: 0 12px 28px rgba(0,0,0,0.45);
-    border-color: rgba(255,255,255,0.12);
-
-    background: rgba(30, 30, 30, 0.92);
+    transform: translateY(-8px);
+    box-shadow: 0 14px 40px rgba(0,0,0,0.45);
+    border-color: rgba(255,255,255,0.22);
 }
 
-/* Изображение */
+/* КАРТИНКА */
 .gallery-item img {
     width: 100%;
-    height: 190px;
+    height: 210px;
     object-fit: cover;
-    border-radius: 14px 14px 0 0;
+
+    filter: brightness(0.86);
+    transition: 0.3s ease;
 }
 
-/* Заголовок */
+.gallery-item:hover img {
+    filter: brightness(1);
+}
+
+/* ЗАГОЛОВОК */
 .gallery-item h3 {
-    font-size: 19px;
-    margin: 16px 0 6px 0;
-    color: #fff;
+    font-size: 1.25rem;
+    margin: 16px 0 10px;
+    padding: 0 16px;
+    font-weight: 600;
+    color: #fff(--gallery-item-h3);
 }
 
-/* Кнопка "Описание" */
+/* КНОПКА "Описание" */
 .desc-btn {
-    width: 86%;
-    margin: 10px auto;
+    margin: 8px auto;
+    width: 88%;
     padding: 10px 0;
 
-    background: linear-gradient(135deg, #808ea0, #cfd5db);
-    color: #111;
-
-    font-size: 1rem;
+    border-radius: 14px;
     border: none;
-    border-radius: 18px;
 
-    box-shadow: 0 2px 8px rgba(255, 255, 255, 0.12);
-    cursor: pointer;
+    background: linear-gradient(135deg, #9aa8b7, #f1f4f6);
+    color: #101010;
+
     font-weight: 600;
-
+    cursor: pointer;
     transition: 0.25s ease;
 }
 
 .desc-btn:hover {
     transform: translateY(-3px);
-    box-shadow: 0 8px 18px rgba(255,255,255,0.22);
+    box-shadow: 0 6px 14px rgba(255,255,255,0.25);
 }
 
-/* Кнопка "Перейти к проекту" */
+/* ССЫЛКА "Перейти" */
 .gallery-item a {
     margin-top: auto;
-    display: block;
-    width: 86%;
+    width: 88%;
     margin-left: auto;
     margin-right: auto;
+    margin-bottom: 18px;
 
-    padding: 10px 0;
-    border-radius: 12px;
+    padding: 11px 0;
+    border-radius: 14px;
 
-    border: 1px solid rgba(255,255,255,0.2);
-    color: #eaeaea;
+    border: 1px solid rgba(255,255,255,0.25);
+    color: #f1f1f1 var(--gallery-item-a);
+    font-size: 0.95rem;
     text-decoration: none;
-    font-size: 15px;
 
     transition: 0.25s ease;
+    text-align: center;
 }
 
 .gallery-item a:hover {
-    background: #2a2a2a;
-    border-color: rgba(255,255,255,0.35);
+    background: rgba(255,255,255,0.12);
+    border-color: rgba(255,255,255,0.45);
 }
 
-/* ===========================
-      POPUP (MODAL) — v2.0
-   =========================== */
+/* ==========================================================================  
+   МОДАЛЬНОЕ ОКНО — НОВЫЙ ДИЗАЙН  
+========================================================================== */
 
 .modal {
     position: fixed;
     inset: 0;
     display: none;
-
     justify-content: center;
     align-items: center;
+    margin-top: 100px;
+    background: rgba(0,0,0,0.7);
+    backdrop-filter: blur(6px);
 
-    padding: 30px;
-    background: rgba(0, 0, 0, 0.75);
-    backdrop-filter: blur(4px);
-
-    z-index: 2000;
-    animation: fadeIn 0.3s ease forwards;
-}
-
-/* Появление фона */
-@keyframes fadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
+    padding: 25px;
+    z-index: 9999;
 }
 
 .modal.active {
     display: flex;
 }
 
-/* Контейнер */
+/* КОНТЕЙНЕР — фиксированный размер */
 .modal-content {
-    position: relative;
-    width: 92%;
-    max-width: 520px;
+    background: rgba(255,255,255,0.08);
+    border-radius: 22px;
+    padding: 26px;
 
-    background: #1b1b1b;
-    color: #f1f1f1;
+    width: 460px;             /* фиксированная ширина */
+    max-width: 95%;           /* адаптивность */
 
-    padding: 22px 24px 28px;
-    border-radius: 20px;
-
-    box-shadow: 0 12px 32px rgba(0,0,0,0.55);
-    border: 1px solid rgba(255,255,255,0.06);
-
-    animation: scaleIn 0.28s ease forwards;
-
-    max-height: 85vh;
-    overflow-y: auto;
+    height: 520px;            /* фиксированная высота */
+    max-height: 90vh;         /* адаптация под маленькие экраны */
 
     display: flex;
     flex-direction: column;
-    gap: 14px;
-}
+    overflow-y: auto;         /* текст прокручивается */
 
-/* Картинка */
-.modal-content img {
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
+    border: 1px solid rgba(255,255,255,0.15);
+    box-shadow: 0 12px 32px rgba(0,0,0,0.55);
 
-    width: auto;
-    max-width: 100%;
-    max-height: 260px;
-    object-fit: contain;
+    animation: scaleIn 0.25s ease forwards;
 
-    border-radius: 14px;
-    box-shadow: 0 4px 14px rgba(0,0,0,0.35);
-}
-
-/* Заголовок */
-.modal-content h2 {
-    margin: 0 auto;
-    font-size: 23px;
-    text-align: center;
-    font-weight: 700;
+    backdrop-filter: blur(10px);
     color: #fff;
 }
 
-/* Текст */
-.modal-content p {
-    margin-top: 4px;
-    font-size: 16px;
-    line-height: 1.6;
-    opacity: 0.92;
-    text-align: left;
+/* Анимация появления */
+@keyframes scaleIn {
+    from { transform: scale(0.85); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
 }
 
-/* Закрывашка */
+/* КНОПКА ЗАКРЫТИЯ */
 .modal-close {
     position: absolute;
-    right: 14px;
+    right: 12px;
     top: 12px;
 
-    width: 38px;
-    height: 38px;
-
-    border: none;
+    width: 40px;
+    height: 40px;
     border-radius: 50%;
-    background: rgba(255, 0, 0, 0.12);
+    border: none;
 
-    color: #ff4a4a;
     font-size: 1.6rem;
     cursor: pointer;
 
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    background: rgba(255,255,255,0.12);
+    color: #ff5f5f;
 
-    transition: 0.25s ease;
+    transition: 0.3s ease;
 }
 
 .modal-close:hover {
-    background: rgba(255, 0, 0, 0.28);
-    transform: scale(1.08) rotate(90deg);
+    background: rgba(255,0,0,0.35);
+    transform: scale(1.1) rotate(90deg);
 }
 
+/* КАРТИНКА — не растягивается и не ломает окно */
+.modal-content img {
+    width: 200px;
+    height: auto;
+    max-height: 160px;
+    object-fit: cover;
+
+    margin: 0 auto 16px auto;
+    border-radius: 14px;
+
+    flex-shrink: 0; /* запрет сжимания */
+}
+
+/* ТЕКСТ */
+.modal-content h2 {
+    text-align: center;
+    font-size: 1.45rem;
+    font-weight: 700;
+    margin-bottom: 10px;
+    flex-shrink: 0;
+}
+
+.modal-content p {
+    font-size: 1rem;
+    line-height: 1.55;
+    opacity: 0.92;
+    flex-grow: 1;
+    overflow-y: auto;
+}
 
 /* ========================================================================== 
   БЛОК НАВЫКИ 

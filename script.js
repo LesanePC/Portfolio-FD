@@ -47,8 +47,9 @@ window.addEventListener('load', () => {
 ----------------------------- */
 const scrollBtn = $('#scrollTopBtn');
 if (scrollBtn) {
-  // показываем/скрываем кнопку при скролле
-  const toggleScrollBtn = () => scrollBtn.classList.toggle('visible', window.scrollY > 600);
+  const toggleScrollBtn = () =>
+    scrollBtn.classList.toggle('visible', window.scrollY > 600);
+
   window.addEventListener('scroll', toggleScrollBtn, { passive: true });
 
   scrollBtn.addEventListener('click', () => {
@@ -61,9 +62,8 @@ if (scrollBtn) {
 ----------------------------- */
 const themeToggle = $('#theme-toggle');
 if (themeToggle) {
-  // respect system preference unless overridden
   if (!localStorage.getItem('theme')) {
-    if (window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches) {
+    if (window.matchMedia('(prefers-color-scheme: light)').matches) {
       document.body.classList.add('light-theme');
     }
   } else if (localStorage.getItem('theme') === 'light') {
@@ -78,7 +78,7 @@ if (themeToggle) {
 }
 
 /* -----------------------------
-   Canvas 
+   Canvas фон
 ----------------------------- */
 (() => {
   const canvas = $('#backgroundCanvas');
@@ -126,7 +126,6 @@ if (themeToggle) {
     width = canvas.width;
     height = canvas.height;
 
-    // адаптивное количество частиц по разрешению
     const base = Math.max(60, Math.floor((width * height) / (1920 * 1080) * 120));
     PARTICLES_COUNT = Math.min(180, base);
     createParticles(PARTICLES_COUNT);
@@ -138,8 +137,8 @@ if (themeToggle) {
         const dx = particles[a].x - particles[b].x;
         const dy = particles[a].y - particles[b].y;
         const dist = dx * dx + dy * dy;
-        // порог с учётом экрана (динамический)
         const maxDist = (width + height) * 0.18;
+
         if (dist < maxDist * maxDist) {
           ctx.strokeStyle = 'rgba(100,200,250,0.18)';
           ctx.lineWidth = 1;
@@ -175,7 +174,7 @@ if (themeToggle) {
 })();
 
 /* -----------------------------
-   Модальное окно для проектов 
+   Модальное окно проектов (обновлённое)
 ----------------------------- */
 (() => {
   const modal = $('#project-modal');
@@ -186,43 +185,50 @@ if (themeToggle) {
 
   if (!modal || !modalImg || !modalTitle || !modalDesc) return;
 
+  // Открытие модалки
   document.body.addEventListener('click', (e) => {
     const btn = e.target.closest('.desc-btn');
     if (!btn) return;
 
-    // сбрасываем старое изображение, чтобы избежать мерцания
     modalImg.classList.remove('loaded');
-    modalImg.src = ''; // сброс
+    modalImg.src = '';
+
     modalTitle.textContent = btn.dataset.title || '';
     modalDesc.textContent = btn.dataset.desc || '';
 
-    // безопасно подставляем src — картинка загрузится и покажется
     modalImg.src = btn.dataset.img || '';
+
     modal.classList.add('active');
   });
 
-  // image load handler: плавное появление
   modalImg.addEventListener('load', () => modalImg.classList.add('loaded'));
 
-  // Закрытие (кнопка)
-  if (modalClose) modalClose.addEventListener('click', () => modal.classList.remove('active'));
+  // Закрытие плавное
+  const closeModal = () => {
+    if (!modal.classList.contains('active')) return;
 
-  // Закрытие по клику на фон
+    modal.classList.add('closing');
+    setTimeout(() => {
+      modal.classList.remove('active', 'closing');
+    }, 250);
+  };
+
+  if (modalClose) modalClose.addEventListener('click', closeModal);
+
   modal.addEventListener('click', (e) => {
-    if (e.target === modal) modal.classList.remove('active');
+    if (e.target === modal) closeModal();
   });
 
-  // Закрытие по Esc
   document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && modal.classList.contains('active')) modal.classList.remove('active');
+    if (e.key === 'Escape') closeModal();
   });
 })();
 
 /* -----------------------------
-   MagnificPopup 
+   MagnificPopup
 ----------------------------- */
 if (window.jQuery) {
-  (function($) {
+  (function ($) {
     if ($.fn && $.fn.magnificPopup) {
       $('.popup-gallery').magnificPopup({
         delegate: 'a.image-popup',
@@ -236,7 +242,7 @@ if (window.jQuery) {
 }
 
 /* -----------------------------
-   Отправка формы + валидация email
+   Отправка формы + email валидация
 ----------------------------- */
 (() => {
   const form = $('#contactForm');
@@ -251,7 +257,6 @@ if (window.jQuery) {
     const formData = new FormData(form);
     const values = Array.from(formData.values()).map(v => (v || '').toString().trim());
 
-    // Проверка пустых полей
     if (values.some(v => v === '')) {
       formMessage.style.color = 'red';
       formMessage.textContent = 'Пожалуйста, заполните все поля.';
@@ -287,7 +292,6 @@ if (window.jQuery) {
     } catch (err) {
       formMessage.style.color = 'red';
       formMessage.textContent = 'Ошибка сети, попробуйте позже.';
-      // console.error(err);
     }
   });
 })();
