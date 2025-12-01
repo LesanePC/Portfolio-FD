@@ -34,18 +34,20 @@
 ## 📂 Структура проекта
 
 
-Portfolio-FD
+📁 Portfolio-FD
 │
-├── img/ # изображения
-├── svg/ # svg-иконки
+├── 📂 img/                 # изображения
+├── 📂 svg/                 # svg-иконки
 │
-├── index.html # главная страница
-├── style.css # основной файл стилей
-├── script.js # интерактив + логика
+├── 📄 index.html           # главная страница
+├── 🎨 style.css            # основной файл стилей
+├── 🧠 script.js            # интерактив + логика
 │
-├── package.json # зависимости
-├── eslint.config.mjs # линтинг
-└── README.md # описание проекта
+├── 📦 package.json         # зависимости
+├── 🔧 eslint.config.mjs    # линтинг
+└── 📘 README.md            # описание проекта
+
+
 
 
 ---
