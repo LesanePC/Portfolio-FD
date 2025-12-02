@@ -21,6 +21,7 @@
     --scroll-footer-text: #fff;
     --icon-color-dark: #fff;
     --icon-color-light: #696969;
+
 }
 
 body.light-theme {
@@ -38,6 +39,7 @@ body.light-theme {
     --skill-card-text: #fff;
     --form-bg-gradient: linear-gradient(90deg, azure 0%, #444 100%);
     --icon-color: var(--icon-color-light);
+
 }
 
 *,
@@ -68,6 +70,7 @@ body {
     overflow-y: auto;
 
 }
+
 
 h1,
 h2,
@@ -314,28 +317,82 @@ section {
   БЛОК «О СЕБЕ» 
 ========================================================================== */
 
-.about-container {
+.about-card {
+    background: var(--gallery-item-bg);
+    color: var(--gallery-item-text);
+    padding: 40px;
+    border-radius: 22px;
+    box-shadow: 0 0 25px rgba(0, 0, 0, 0.25);
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.about-content {
     display: flex;
     align-items: center;
-    gap: 20px;
+    justify-content: space-between;
+    gap: 40px;
     flex-wrap: wrap;
 }
 
 .about-text {
-    flex: 1;
-    font-size: 14px;
+    flex: 1 1 55%;
+    font-size: 1.1rem;
+    line-height: 1.7;
+    color: var(--gallery-item-text);
 }
 
-.about-photo img {
-    width: 300px;
-    height: 300px;
+.about-text p {
+    margin-bottom: 16px;
+    text-align: left;
+}
+
+.about-photo {
+    flex: 1 1 35%;
+    display: flex;
+    justify-content: center;
+}
+
+.about-photo-wrapper {
+    width: 320px;
+    height: 320px;
     border-radius: 50%;
+    overflow: hidden;
+    box-shadow: 0 0 18px rgba(0, 0, 0, 0.35);
+    border: 3px solid rgba(255, 255, 255, 0.06);
+}
+
+.about-photo-wrapper img {
+    width: 100%;
+    height: 100%;
     object-fit: cover;
-    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.25);
+}
+
+/* АДАПТИВ */
+@media (max-width: 1024px) {
+    .about-content {
+        flex-direction: column-reverse;
+        text-align: center;
+    }
+
+    .about-text p {
+        text-align: center;
+    }
+}
+
+@media (max-width: 600px) {
+    .about-card {
+        padding: 25px;
+    }
+
+    .about-photo-wrapper {
+        width: 240px;
+        height: 240px;
+    }
 }
 
 /* ==========================================================================  
-   БЛОК ПРОЕКТОВ — НОВЫЙ ДИЗАЙН  
+   БЛОК ПРОЕКТОВ 
 ========================================================================== */
 
 #projects h2 {
@@ -344,7 +401,7 @@ section {
     margin-bottom: 35px;
     font-weight: 700;
     letter-spacing: 1px;
-    color: #fff(--projects-h3);
+    color: var(--projects-h2, #fff);
 }
 
 /* GRID */
@@ -357,13 +414,13 @@ section {
 
 /* КАРТОЧКА */
 .gallery-item {
-    background: rgba(255,255,255,0.06);
+    background: rgba(255, 255, 255, 0.06);
     backdrop-filter: blur(12px);
     border-radius: 18px;
     overflow: hidden;
 
-    border: 1px solid rgba(255,255,255,0.12);
-    box-shadow: 0 8px 26px rgba(0,0,0,0.35);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    box-shadow: 0 8px 26px rgba(0, 0, 0, 0.35);
 
     display: flex;
     flex-direction: column;
@@ -372,8 +429,8 @@ section {
 
 .gallery-item:hover {
     transform: translateY(-8px);
-    box-shadow: 0 14px 40px rgba(0,0,0,0.45);
-    border-color: rgba(255,255,255,0.22);
+    box-shadow: 0 14px 40px rgba(0, 0, 0, 0.45);
+    border-color: rgba(255, 255, 255, 0.22);
 }
 
 /* КАРТИНКА */
@@ -396,7 +453,7 @@ section {
     margin: 16px 0 10px;
     padding: 0 16px;
     font-weight: 600;
-    color: #fff(--gallery-item-h3);
+    color: var(--gallery-item-h3, #fff);
 }
 
 /* КНОПКА "Описание" */
@@ -418,7 +475,7 @@ section {
 
 .desc-btn:hover {
     transform: translateY(-3px);
-    box-shadow: 0 6px 14px rgba(255,255,255,0.25);
+    box-shadow: 0 6px 14px rgba(255, 255, 255, 0.25);
 }
 
 /* ССЫЛКА "Перейти" */
@@ -432,8 +489,8 @@ section {
     padding: 11px 0;
     border-radius: 14px;
 
-    border: 1px solid rgba(255,255,255,0.25);
-    color: #f1f1f1 var(--gallery-item-a);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    color: var(--gallery-item-a, #f1f1f1);
     font-size: 0.95rem;
     text-decoration: none;
 
@@ -442,116 +499,71 @@ section {
 }
 
 .gallery-item a:hover {
-    background: rgba(255,255,255,0.12);
-    border-color: rgba(255,255,255,0.45);
+    background: rgba(255, 255, 255, 0.12);
+    border-color: rgba(255, 255, 255, 0.45);
 }
 
-/* ==========================================================================  
-   МОДАЛЬНОЕ ОКНО — НОВЫЙ ДИЗАЙН  
-========================================================================== */
-
+/* === FULLSCREEN MODAL === */
 .modal {
     position: fixed;
-    inset: 0;
-    display: none;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.75);
+    display: flex;
     justify-content: center;
     align-items: center;
-    margin-top: 100px;
-    background: rgba(0,0,0,0.7);
-    backdrop-filter: blur(6px);
-
-    padding: 25px;
+    opacity: 0;
+    visibility: hidden;
+    transition: 0.25s ease;
     z-index: 9999;
 }
 
-.modal.active {
-    display: flex;
+.modal.show {
+    opacity: 1;
+    visibility: visible;
 }
 
-/* КОНТЕЙНЕР — фиксированный размер */
 .modal-content {
-    background: rgba(255,255,255,0.08);
-    border-radius: 22px;
-    padding: 26px;
+    max-width: 600px;
+    width: 90%;
+    background: #111;
+    padding: 30px;
+    border-radius: 12px;
+    text-align: center;
+    position: relative;
+    line-height: 1.6;
+}
 
-    width: 460px;             /* фиксированная ширина */
-    max-width: 95%;           /* адаптивность */
-
-    height: 520px;            /* фиксированная высота */
-    max-height: 90vh;         /* адаптация под маленькие экраны */
-
-    display: flex;
-    flex-direction: column;
-    overflow-y: auto;         /* текст прокручивается */
-
-    border: 1px solid rgba(255,255,255,0.15);
-    box-shadow: 0 12px 32px rgba(0,0,0,0.55);
-
-    animation: scaleIn 0.25s ease forwards;
-
-    backdrop-filter: blur(10px);
+#modal-title {
     color: #fff;
 }
 
-/* Анимация появления */
-@keyframes scaleIn {
-    from { transform: scale(0.85); opacity: 0; }
-    to { transform: scale(1); opacity: 1; }
+#modal-desc {
+    color: #fff;
 }
 
-/* КНОПКА ЗАКРЫТИЯ */
 .modal-close {
     position: absolute;
-    right: 12px;
-    top: 12px;
-
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
+    top: 10px;
+    right: 15px;
+    font-size: 28px;
+    color: #fff;
+    background: none;
     border: none;
-
-    font-size: 1.6rem;
     cursor: pointer;
-
-    background: rgba(255,255,255,0.12);
-    color: #ff5f5f;
-
-    transition: 0.3s ease;
+    transition: 0.2s;
 }
 
 .modal-close:hover {
-    background: rgba(255,0,0,0.35);
-    transform: scale(1.1) rotate(90deg);
+    transform: scale(1.2);
+    color: #f33;
 }
 
-/* КАРТИНКА — не растягивается и не ломает окно */
-.modal-content img {
-    width: 200px;
-    height: auto;
-    max-height: 160px;
-    object-fit: cover;
-
-    margin: 0 auto 16px auto;
-    border-radius: 14px;
-
-    flex-shrink: 0; /* запрет сжимания */
-}
-
-/* ТЕКСТ */
-.modal-content h2 {
-    text-align: center;
-    font-size: 1.45rem;
-    font-weight: 700;
-    margin-bottom: 10px;
-    flex-shrink: 0;
-}
-
-.modal-content p {
-    font-size: 1rem;
-    line-height: 1.55;
-    opacity: 0.92;
-    flex-grow: 1;
-    overflow-y: auto;
+/* Блокируем прокрутку */
+body.modal-open {
+    overflow: hidden;
 }
 
 /* ========================================================================== 

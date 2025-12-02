@@ -41,130 +41,175 @@
     <main>
         <section class="section" id="about">
             <h2>О себе</h2>
-            <div class="about-container">
-                <div class="about-text">
-                    <p>Я — фронтенд-разработчик с самостоятельным стартом в верстке через изучение профильной литературы и видео-курсов. Также прошёл профессиональную переквалификацию на курсе «Фронтенд-разработчик» в Нетологии с длительностью обучения 15 месяцев.</p>
 
-                    <p>Реализовал несколько проектов, среди которых: сайт для строительной компании, успешно работающий более года, сайт для риэлторской компании и ряд небольших личных и фриланс-заказов.</p>
+            <div class="about-card">
+                <div class="about-content">
 
-                    <p>Участвую в фокус группе по оптимизации и улучшению работоспособности приложений. Моя роль тестировать обновления, предлагать идеи по улучшению, вносить корректировки в визуальную составляющую интерфейса.</p>
+                    <div class="about-text">
+                        <p>
+                            Я — фронтенд-разработчик. Создаю современные, удобные и адаптивные сайты и интерфейсы.
+                            Начал с самостоятельного изучения HTML, CSS и JavaScript, а позже прошёл программу
+                            «Фронтенд-разработчик» в Нетологии, что помогло получить опыт полноценной разработки проектов.
+                        </p>
 
-                    <p>Постоянно изучаю новые технологии, слежу за изменениями в экосистеме фронтенд-разработки, активно практикуюсь и развиваю навыки.</p>
-                </div>
-                <div class="about-photo">
-                    <img src="img/Fokin.webp" alt="Фото Евгения" loading="lazy">
+                        <p>
+                            Сделал несколько коммерческих и учебных работ: сайты для строительной и риэлторской компаний,
+                            веб-приложения с интерактивным функционалом, страницы с анимациями и интерфейсы с динамическими данными.
+                            Один из крупных проектов — кино-портал с админ-панелью.
+                        </p>
+
+                        <p>
+                            Также участвую в фокус-группе по улучшению приложений: тестирую обновления, нахожу проблемы
+                            и предлагаю улучшения в UX и визуальной части.
+                        </p>
+
+                        <p>
+                            Постоянно развиваюсь, изучаю новые инструменты и стремлюсь создавать интерфейсы,
+                            которые решают задачи и удобны для людей.
+                        </p>
+                    </div>
+
+                    <div class="about-photo">
+                        <div class="about-photo-wrapper">
+                            <img src="img/Fokin.webp" alt="Фото Евгения" loading="lazy">
+                        </div>
+                    </div>
+
                 </div>
             </div>
         </section>
 
+
+
         <section class="section" id="projects">
-    <h2>Проекты</h2>
+            <h2>Проекты</h2>
 
-    <div class="gallery-grid">
+            <div class="gallery-grid">
 
-        <!-- Киносайт + админка -->
-        <div class="gallery-item">
-            <img src="img/Cinema.webp" alt="Киносайт + Админка" loading="lazy">
-            <h3>Киносайт + Админка</h3>
-            <button class="desc-btn"
-                    data-title="Киносайт + Админка"
-                    data-desc="Полноценный кино-портал с админ-панелью: управление фильмами, сеансами, покупкой и бронированием билетов. Асинхронная работа с API, хранение данных через LocalStorage."
-                    data-img="img/Cinema.webp">Описание</button>
-            <a href="https://lesanepc.github.io/shfe-diplom/index.html" target="_blank">Перейти к проекту</a>
-        </div>
+                <!-- Киносайт + админка -->
+                <div class="gallery-item">
+                    <a href="img/Cinema.webp" class="image-popup">
+                        <img src="img/Cinema.webp" alt="Киносайт + Админка" loading="lazy">
+                    </a>
+                    <h3>Киносайт + Админка</h3>
+                    <button class="desc-btn" data-title="Киносайт + Админка" data-desc="Полноценный кино-портал с пользовательской частью и собственной админ-панелью.  
+Использованный стек: HTML, SCSS, JavaScript, LocalStorage, Fetch API.  
+Что сделал: разработал каталог фильмов, систему карточек, поиск, фильтрацию, бронирование билетов, модальные окна, форму покупки, личный кабинет и панель управления контентом.  
+Реализация: динамическая генерация контента, работа с локальным API, сохранение данных, валидация форм, адаптивная и отзывчивая верстка.  
+Итог: готовое мини-кино-приложение с функционалом реального сервиса.">
+                        Описание
+                    </button>
+                    <a href="https://lesanepc.github.io/shfe-diplom/index.html" target="_blank">Перейти к проекту</a>
+                </div>
 
-        <!-- Адаптивный блог -->
-        <div class="gallery-item">
-            <img src="img/layouts.webp" alt="Адаптивный блог" loading="lazy">
-            <h3>Адаптивный блог</h3>
-            <button class="desc-btn"
-                    data-title="Адаптивный блог"
-                    data-desc="Верстка по макету: адаптивная сетка, плавная типографика, удобная навигация и интерактивные элементы. Оптимизирован для мобильных устройств."
-                    data-img="img/layouts.webp">Описание</button>
-            <a href="https://lesanepc.github.io/MQ-Diplom/" target="_blank">Перейти к проекту</a>
-        </div>
+                <!-- Адаптивный блог -->
+                <div class="gallery-item">
+                    <a href="img/layouts.webp" class="image-popup">
+                        <img src="img/layouts.webp" alt="Адаптивный блог" loading="lazy">
+                    </a>
+                    <h3>Адаптивный блог</h3>
+                    <button class="desc-btn" data-title="Адаптивный блог" data-desc="Pixel-perfect верстка блога по макету.  
+Стек: HTML, CSS (Flex/Grid), адаптивная типографика, медиазапросы.  
+Что сделал: сетка, карточки статей, меню, навигация, интерактивные элементы, плавные эффекты.  
+Итог: полностью адаптивный интерфейс, корректно работающий на всех разрешениях.">
+                        Описание
+                    </button>
+                    <a href="https://lesanepc.github.io/MQ-Diplom/" target="_blank">Перейти к проекту</a>
+                </div>
 
-        <!-- Altair -->
-        <div class="gallery-item">
-            <img src="img/altair.webp" alt="Сайт агентства недвижимости" loading="lazy">
-            <h3>Агентство недвижимости</h3>
-            <button class="desc-btn"
-                    data-title="Агентство недвижимости"
-                    data-desc="Коммерческий сайт для действующего агентства: каталог объектов, карточки недвижимости, удобная навигация, формы связи, карта. Полностью адаптивная верстка."
-                    data-img="img/altair.webp">Описание</button>
-            <a href="https://lesanepc.github.io/altair-projects/" target="_blank">Перейти к проекту</a>
-        </div>
+                <!-- Altair -->
+                <div class="gallery-item">
+                    <a href="img/altair.webp" class="image-popup">
+                        <img src="img/altair.webp" alt="Сайт агентства недвижимости" loading="lazy">
+                    </a>
+                    <h3>Агентство недвижимости</h3>
+                    <button class="desc-btn" data-title="Агентство недвижимости" data-desc="Коммерческий проект — сайт агентства недвижимости.  
+Стек: HTML, CSS, адаптивная верстка, JavaScript.  
+Что сделал: каталог объектов, карточки недвижимости, фильтры, формы заявок, интеграция карты, SEO-структура, оптимизация изображений.  
+Итог: современный, быстрый и удобный сайт, готовый к использованию клиентом.">
+                        Описание
+                    </button>
+                    <a href="https://lesanepc.github.io/altair-projects/" target="_blank">Перейти к проекту</a>
+                </div>
 
-        <!-- Bakery -->
-        <div class="gallery-item">
-            <img src="img/Bakery.webp" alt="Bakery — Сайт пекарни" loading="lazy">
-            <h3>Bakery — Сайт пекарни</h3>
-            <button class="desc-btn"
-                    data-title="Bakery — Сайт пекарни"
-                    data-desc="Адаптивный сайт с анимациями, плавными эффектами и интерактивными блоками. Легкий, современный дизайн в фирменной стилистике."
-                    data-img="img/Bakery.webp">Описание</button>
-            <a href="https://lesanepc.github.io/bakery/" target="_blank">Перейти к проекту</a>
-        </div>
+                <!-- Bakery -->
+                <div class="gallery-item">
+                    <a href="img/Bakery.webp" class="image-popup">
+                        <img src="img/Bakery.webp" alt="Bakery — Сайт пекарни" loading="lazy">
+                    </a>
+                    <h3>Bakery — Сайт пекарни</h3>
+                    <button class="desc-btn" data-title="Bakery — Сайт пекарни" data-desc="Лёгкий и стильный сайт для небольшой пекарни.  
+Стек: HTML, CSS, анимации, JS-эффекты.  
+Что сделал: полностью адаптивную верстку, плавные анимации, галерею, интерактивные элементы, акцент на фирменную стилистику.  
+Итог: привлекательный промо-сайт с современным UI.">
+                        Описание
+                    </button>
+                    <a href="https://lesanepc.github.io/bakery/" target="_blank">Перейти к проекту</a>
+                </div>
 
-        <!-- ToDo -->
-        <div class="gallery-item">
-            <img src="img/ToDo.webp" alt="ToDo — Планировщик задач" loading="lazy">
-            <h3>ToDo — Планировщик задач</h3>
-            <button class="desc-btn"
-                    data-title="ToDo — Планировщик задач"
-                    data-desc="Мини-приложение для управления задачами: добавление, редактирование, удаление, сохранение данных. Легкий и быстрый UI."
-                    data-img="img/ToDo.webp">Описание</button>
-            <a href="https://lesanepc.github.io/ToDo/" target="_blank">Перейти к проекту</a>
-        </div>
+                <!-- ToDo -->
+                <div class="gallery-item">
+                    <a href="img/ToDo.webp" class="image-popup">
+                        <img src="img/ToDo.webp" alt="ToDo — Планировщик задач" loading="lazy">
+                    </a>
+                    <h3>ToDo — Планировщик задач</h3>
+                    <button class="desc-btn" data-title="ToDo — Планировщик задач" data-desc="Мини-веб-приложение для работы со списком задач.  
+Стек: HTML, CSS, JavaScript, LocalStorage.  
+Что сделал: добавление, редактирование, удаление, сохранение задач, фильтры, отметки о выполнении.  
+Итог: удобный и быстрый планировщик с простым UI.">
+                        Описание
+                    </button>
+                    <a href="https://lesanepc.github.io/ToDo/" target="_blank">Перейти к проекту</a>
+                </div>
 
-        <!-- Rem-Stroy -->
-        <div class="gallery-item">
-            <img src="img/Rem-Stroy.webp" alt="Сайт строительной компании" loading="lazy">
-            <h3>Строительная компания</h3>
-            <button class="desc-btn"
-                    data-title="Строительная компания"
-                    data-desc="Многостраничный сайт с услугами, галереей, контактами и геолокацией. Реальный коммерческий проект с удобной структурой и адаптивным дизайном."
-                    data-img="img/Rem-Stroy.webp">Описание</button>
-            <a href="https://lesanepc.github.io/Rem-Stroy/index.html" target="_blank">Перейти к проекту</a>
-        </div>
+                <!-- Rem-Stroy -->
+                <div class="gallery-item">
+                    <a href="img/Rem-Stroy.webp" class="image-popup">
+                        <img src="img/Rem-Stroy.webp" alt="Сайт строительной компании" loading="lazy">
+                    </a>
+                    <h3>Строительная компания</h3>
+                    <button class="desc-btn" data-title="Строительная компания" data-desc="Многостраничный сайт строительной компании.  
+Стек: HTML, CSS, JavaScript, адаптивная верстка.  
+Что сделал: структуру услуг, галерею работ, страницу контактов, встроенную карту, формы обратной связи.  
+Итог: коммерческий проект с чистым UI и удобной структурой.">
+                        Описание
+                    </button>
+                    <a href="https://lesanepc.github.io/Rem-Stroy/index.html" target="_blank">Перейти к проекту</a>
+                </div>
 
-        <!-- Test App -->
-        <div class="gallery-item">
-            <img src="img/test.webp" alt="Простой тест" loading="lazy">
-            <h3>Тестовое приложение</h3>
-            <button class="desc-btn"
-                    data-title="Тестовое приложение"
-                    data-desc="Интерактивный тест: вопросы, таймер, прогресс-бар, выдача результата. Легкий JS-функционал для обучения."
-                    data-img="img/test.webp">Описание</button>
-            <a href="https://lesanepc.github.io/MyTest/" target="_blank">Перейти к проекту</a>
-        </div>
+                <!-- Test App -->
+                <div class="gallery-item">
+                    <a href="img/test.webp" class="image-popup">
+                        <img src="img/test.webp" alt="Простой тест" loading="lazy">
+                    </a>
+                    <h3>Тестовое приложение</h3>
+                    <button class="desc-btn" data-title="Тестовое приложение" data-desc="Интерактивный тест с подсчётом результатов.  
+Стек: HTML, CSS, JavaScript.  
+Что сделал: логику вопросов, таймер, прогресс-бар, вывод результата, сохранение состояния.  
+Итог: лёгкое учебное приложение с приятным UI.">
+                        Описание
+                    </button>
+                    <a href="https://lesanepc.github.io/MyTest/" target="_blank">Перейти к проекту</a>
+                </div>
 
-        <!-- Calculator -->
-        <div class="gallery-item">
-            <img src="img/Calc.webp" alt="MyCalculator" loading="lazy">
-            <h3>MyCalculator</h3>
-            <button class="desc-btn"
-                    data-title="MyCalculator"
-                    data-desc="Современный веб-калькулятор с неоновым UI. Чистый JavaScript, адаптивный интерфейс, плавные эффекты."
-                    data-img="img/Calc.webp">Описание</button>
-            <a href="https://lesanepc.github.io/MyCalculator/" target="_blank">Перейти к проекту</a>
-        </div>
+                <!-- Calculator -->
+                <div class="gallery-item">
+                    <a href="img/Calc.webp" class="image-popup">
+                        <img src="img/Calc.webp" alt="MyCalculator" loading="lazy">
+                    </a>
+                    <h3>MyCalculator</h3>
+                    <button class="desc-btn" data-title="MyCalculator" data-desc="Современный веб-калькулятор с неоновым оформлением.  
+Стек: HTML, CSS, JavaScript.  
+Что сделал: полностью кастомный UI, анимации, интерактивные кнопки, математическую логику.  
+Итог: стильное и удобное приложение.">
+                        Описание
+                    </button>
+                    <a href="https://lesanepc.github.io/MyCalculator/" target="_blank">Перейти к проекту</a>
+                </div>
 
-    </div>
-</section>
 
-
-        <!-- Модальное окно -->
-        <div id="project-modal" class="modal">
-            <div class="modal-content">
-                <button id="modal-close" class="modal-close">&times;</button>
-                <img id="modal-img" src="" alt="" style="max-width:220px;margin-bottom:18px;">
-                <h2 id="modal-title"></h2>
-                <p id="modal-desc"></p>
             </div>
-        </div>
-
-
+        </section>
         <section class="section" id="skills">
             <h2>Навыки</h2>
             <div class="skills-grid">
@@ -241,7 +286,14 @@
         </section>
 
     </main>
-
+    <!-- Модальное окно ОПИСАНИЯ -->
+    <div id="project-modal" class="modal">
+        <div class="modal-content">
+            <button id="modal-close" class="modal-close">&times;</button>
+            <h2 id="modal-title"></h2>
+            <p id="modal-desc"></p>
+        </div>
+    </div>
     <footer>
         <p>© <span id="year"></span> Eugene Fokin</p>
 
