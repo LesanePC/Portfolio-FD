@@ -39,6 +39,7 @@ body.light-theme {
     --skill-card-text: #fff;
     --form-bg-gradient: linear-gradient(90deg, azure 0%, #444 100%);
     --icon-color: var(--icon-color-light);
+    --projects-h2: #222;
 
 }
 
