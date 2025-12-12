@@ -391,7 +391,6 @@ section {
 /* АДАПТИВ */
 @media (max-width: 1024px) {
     .about-content {
-        flex-direction: column-reverse;
         text-align: center;
     }
 
