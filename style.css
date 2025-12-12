@@ -369,6 +369,25 @@ section {
     object-fit: cover;
 }
 
+.cv-wrapper {
+    text-align: center;
+}
+
+.btn-cv {
+    display: inline-block;
+    padding: 10px 18px;
+    border-radius: 6px;
+    background: #2f80ed;
+    color: #fff;
+    text-decoration: none;
+}
+
+
+.btn-cv:hover {
+    background: #1c62c7;
+    transform: translateY(-1px);
+}
+
 /* АДАПТИВ */
 @media (max-width: 1024px) {
     .about-content {
