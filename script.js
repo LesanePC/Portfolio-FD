@@ -188,26 +188,106 @@ if (themeToggle) {
 /* -----------------------------------------
    Модальное окно описания проекта (исправлено)
 ----------------------------------------- */
+const projectData = {
+    "Киносайт + Админка": {
+        stack: "HTML, SCSS, JavaScript, Fetch API, LocalStorage",
+        contribution: [
+            "Разработал каталог фильмов, систему карточек, поиск и фильтры",
+            "Реализовал бронирование билетов и модальные окна",
+            "Создал личный кабинет и админ-панель для управления контентом"
+        ],
+        result: "Готовое мини-кино-приложение с функционалом реального сервиса"
+    },
+    "Адаптивный блог": {
+        stack: "HTML, CSS, Flex/Grid, Адаптивная типографика",
+        contribution: [
+            "Сверстал макет по pixel-perfect",
+            "Создал карточки статей, меню, интерактивные элементы",
+            "Обеспечил адаптивность и корректное отображение на всех устройствах"
+        ],
+        result: "Полностью адаптивный интерфейс блога"
+    },
+    "Агентство недвижимости": {
+        stack: "HTML, CSS, JS, Адаптивная верстка",
+        contribution: [
+            "Реализовал каталог объектов и фильтры",
+            "Добавил формы заявок и интеграцию карты",
+            "Оптимизировал изображения и SEO-структуру"
+        ],
+        result: "Современный, быстрый и удобный сайт для клиента"
+    },
+    "Bakery — Сайт пекарни": {
+        stack: "HTML, CSS, JS, Анимации",
+        contribution: [
+            "Создал адаптивную верстку",
+            "Реализовал галерею и плавные анимации",
+            "Сделал акцент на фирменной стилистике"
+        ],
+        result: "Привлекательный промо-сайт с современным UI"
+    },
+    "ToDo — Планировщик задач": {
+        stack: "HTML, CSS, JavaScript, LocalStorage",
+        contribution: [
+            "Реализовал добавление, редактирование и удаление задач",
+            "Сделал фильтры и отметки о выполнении",
+            "Сохраняю данные в LocalStorage"
+        ],
+        result: "Удобный и быстрый планировщик задач"
+    },
+    "Строительная компания": {
+        stack: "HTML, CSS, JS, Адаптивная верстка",
+        contribution: [
+            "Разработал структуру услуг и галерею работ",
+            "Добавил страницу контактов с картой",
+            "Настроил формы обратной связи"
+        ],
+        result: "Коммерческий проект с чистым UI и удобной структурой"
+    }
 
+};
+
+// Функция открытия модалки
 document.querySelectorAll(".desc-btn").forEach(btn => {
     btn.addEventListener("click", () => {
-        document.getElementById("modal-title").textContent = btn.dataset.title;
-        document.getElementById("modal-desc").textContent = btn.dataset.desc;
+        const projectName = btn.dataset.title;
+        const data = projectData[projectName];
+        if (!data) return;
+
+        const modalTitle = document.getElementById("modal-title");
+        const modalDesc = document.getElementById("modal-desc");
+
+        modalTitle.textContent = projectName;
+
+        // Чистим и создаём список
+        modalDesc.innerHTML = '';
+        const stackLi = document.createElement('li');
+        stackLi.innerHTML = `<strong>Стек:</strong> ${data.stack}`;
+        modalDesc.appendChild(stackLi);
+
+        const contributionLi = document.createElement('li');
+        contributionLi.innerHTML = `<strong>Моя роль:</strong> ${data.contribution.join('; ')}`;
+        modalDesc.appendChild(contributionLi);
+
+        const resultLi = document.createElement('li');
+        resultLi.innerHTML = `<strong>Итог:</strong> ${data.result}`;
+        modalDesc.appendChild(resultLi);
 
         document.getElementById("project-modal").classList.add("show");
         document.body.classList.add("modal-open");
     });
 });
 
+// Закрытие модалки
+const modal = document.getElementById("project-modal");
 document.getElementById("modal-close").addEventListener("click", () => {
-    document.getElementById("project-modal").classList.remove("show");
+    modal.classList.remove("show");
     document.body.classList.remove("modal-open");
 });
 
 // Клик по фону
-document.getElementById("project-modal").addEventListener("click", (e) => {
+modal.addEventListener("click", (e) => {
     if (e.target === e.currentTarget) {
-        e.currentTarget.classList.remove("show");
+        modal.classList.remove("show");
         document.body.classList.remove("modal-open");
     }
 });
@@ -215,11 +295,10 @@ document.getElementById("project-modal").addEventListener("click", (e) => {
 // Закрытие по ESC
 document.addEventListener("keydown", (e) => {
     if (e.key === "Escape") {
-        document.getElementById("project-modal").classList.remove("show");
+        modal.classList.remove("show");
         document.body.classList.remove("modal-open");
     }
 });
-
 
 /* -----------------------------------------
    MagnificPopup (попап большого изображения)
