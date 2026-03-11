@@ -9,19 +9,22 @@
     --header-bg: #222;
     --header-text: #fff;
     --section-bg: #222;
-    --section-text: azure;
+    --section-text: #f0ffff;
     --gallery-item-bg: #222;
     --gallery-item-text: #fff;
-    --skill-card-bg: azure;
+    --gallery-item-h3: #fff;
+    --gallery-item-a: #00eaff;
+    --projects-h2: #fff;
+    --projects-h3: #fff;
+    --skill-card-bg: #f0ffff;
     --skill-card-text: #222;
-    --form-bg-gradient: linear-gradient(90deg, #444 0%, azure 100%);
+    --form-bg-gradient: linear-gradient(90deg, #444 0%, #f0ffff 100%);
     --footer-bg: #222;
     --footer-text: #fff;
     --scroll-footer-bg: #222;
     --scroll-footer-text: #fff;
     --icon-color-dark: #fff;
     --icon-color-light: #696969;
-
 }
 
 body.light-theme {
@@ -30,18 +33,21 @@ body.light-theme {
     --link-color: #007acc;
     --section-bg: #fff;
     --section-text: #222;
-    --projects-h3: #222;
     --gallery-item-bg: #fff;
     --gallery-item-text: #222;
     --gallery-item-h3: #222;
-    --gallery-item-a: #222;
+    --gallery-item-a: #007acc;
+    --projects-h2: #222;
+    --projects-h3: #222;
     --skill-card-bg: #222;
     --skill-card-text: #fff;
-    --form-bg-gradient: linear-gradient(90deg, azure 0%, #444 100%);
+    --form-bg-gradient: linear-gradient(90deg, #f0ffff 0%, #444 100%);
     --icon-color: var(--icon-color-light);
-    --projects-h2: #222;
-
 }
+
+/* ========================================================================== 
+  БАЗОВЫЕ СТИЛИ 
+========================================================================== */
 
 *,
 *::before,
@@ -54,7 +60,6 @@ body {
     height: 100%;
     margin: 0;
     padding: 0;
-
 }
 
 body {
@@ -69,9 +74,7 @@ body {
     color: var(--text-color);
     overflow-x: hidden;
     overflow-y: auto;
-
 }
-
 
 h1,
 h2,
@@ -97,6 +100,10 @@ a {
 a:hover {
     text-decoration: underline;
 }
+
+/* ========================================================================== 
+  ЛОАДЕР
+========================================================================== */
 
 .center-body {
     display: flex;
@@ -165,23 +172,13 @@ a:hover {
 }
 
 @keyframes animateC {
-    0% {
-        transform: rotate(0deg);
-    }
-
-    100% {
-        transform: rotate(360deg);
-    }
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
 }
 
 @keyframes animate {
-    0% {
-        transform: rotate(45deg);
-    }
-
-    100% {
-        transform: rotate(405deg);
-    }
+    0% { transform: rotate(45deg); }
+    100% { transform: rotate(405deg); }
 }
 
 /* ========================================================================== 
@@ -246,9 +243,7 @@ header.visible {
 
 body.light-theme #theme-toggle .lightbulb {
     background-color: #ffeb3b;
-    box-shadow:
-        0 0 12px 6px #fff176,
-        inset 0 0 8px 3px #fdd835;
+    box-shadow: 0 0 12px 6px #fff176, inset 0 0 8px 3px #fdd835;
 }
 
 /* ========================================================================== 
@@ -283,7 +278,8 @@ main {
 ========================================================================== */
 
 section {
-    background: #fff;
+    background-color: var(--section-bg);
+    color: var(--section-text);
     margin: 40px;
     max-width: 100%;
     padding: 20px;
@@ -291,8 +287,6 @@ section {
     opacity: 0;
     transform: translateY(30px);
     transition: opacity 0.6s ease, transform 0.4s ease;
-    background-color: var(--section-bg);
-    color: var(--section-text);
 }
 
 .section.visible {
@@ -301,18 +295,9 @@ section {
 }
 
 .section:hover {
-    transform: translateY(-10px) scale(1.05);
+    transform: translateY(-8px) scale(1.03);
     box-shadow: 0 10px 15px rgba(0, 0, 0, 0.50);
-}
-
-/* ========================================================================== 
-  ВЫДЕЛЕНИЕ ТЕКСТА 
-========================================================================== */
-
-.highlight {
-    background-color: lightslategray;
-    opacity: 0.7;
-    font-weight: bold;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 /* ========================================================================== 
@@ -341,12 +326,6 @@ section {
     flex: 1 1 55%;
     font-size: 1.1rem;
     line-height: 1.7;
-    color: var(--gallery-item-text);
-}
-
-.about-text p {
-    margin-bottom: 16px;
-    text-align: left;
 }
 
 .about-photo {
@@ -383,12 +362,10 @@ section {
     text-decoration: none;
 }
 
-
 .btn-cv:hover {
     background: #1c62c7;
     transform: translateY(-1px);
 }
-
 
 /* ==========================================================================  
    БЛОК ПРОЕКТОВ 
@@ -400,7 +377,7 @@ section {
     margin-bottom: 35px;
     font-weight: 700;
     letter-spacing: 1px;
-    color: var(--projects-h2, #fff);
+    color: var(--projects-h2);
 }
 
 /* GRID */
@@ -420,7 +397,6 @@ section {
     text-align: center;
     border: 1px solid rgba(255, 255, 255, 0.12);
     box-shadow: 0 8px 26px rgba(0, 0, 0, 0.35);
-
     display: flex;
     flex-direction: column;
     transition: 0.35s ease;
@@ -432,12 +408,10 @@ section {
     border-color: rgba(255, 255, 255, 0.22);
 }
 
-/* КАРТИНКА */
 .gallery-item img {
     width: 100%;
     height: 210px;
     object-fit: cover;
-
     filter: brightness(0.86);
     transition: 0.3s ease;
 }
@@ -446,18 +420,14 @@ section {
     filter: brightness(1);
 }
 
-/* ЗАГОЛОВОК */
 .gallery-item h3 {
     font-size: 1.25rem;
     margin: 16px 0 10px;
     padding: 0 16px;
     font-weight: 600;
-    color: var(--gallery-item-h3, #fff);
+    color: var(--gallery-item-h3);
 }
 
-/* ========================================================================== 
-  КНОПКИ ГАЛЕРЕИ (DESC + LINK)
-========================================================================== */
 .gallery-item .desc-btn,
 .gallery-item a {
     display: block;
@@ -473,7 +443,6 @@ section {
     text-decoration: none;
 }
 
-/* Универсальный фон и цвет */
 .gallery-item .desc-btn {
     background: linear-gradient(135deg, #007acc, #00eaff);
     color: #fff;
@@ -482,28 +451,24 @@ section {
 
 .gallery-item a {
     background: none;
-    color: #00eaff;
-    border: 2px solid #00eaff;
+    color: var(--gallery-item-a);
+    border: 2px solid var(--gallery-item-a);
 }
 
-/* Hover-анимации для обеих */
 .gallery-item .desc-btn:hover,
 .gallery-item a:hover {
     transform: translateY(-3px);
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.25);
-    background: linear-gradient(135deg, #005f99, #00b8d4);
-    color: #fff;
-    border-color: #00eaff;
 }
 
-/* === FULLSCREEN MODAL === */
+/* FULLSCREEN MODAL */
 .modal {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.75);
+    background: rgba(0,0,0,0.75);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -527,23 +492,28 @@ section {
     text-align: center;
     position: relative;
     line-height: 1.6;
+    color: #fff;
+}
+
+body.light-theme .modal-content {
+    background: #fff;
+    color: #222;
 }
 
 #modal-title {
-    color: #fff;
+    color: inherit;
 }
 
 #modal-desc li {
     text-align: left;
     margin-bottom: 12px;
     line-height: 1.5;
-    color: #fff;
+    color: inherit;
 }
 
 #modal-desc li strong {
     display: inline-block;
     width: 100px;
-    /* фиксированная ширина для подписи */
     font-weight: 600;
 }
 
@@ -564,21 +534,20 @@ section {
     color: #f33;
 }
 
-/* Блокируем прокрутку */
 body.modal-open {
     overflow: hidden;
 }
-
 /* ========================================================================== 
   БЛОК НАВЫКИ 
 ========================================================================== */
+
 #skills h2 {
     text-align: center;
     font-size: 2.4rem;
     margin-bottom: 35px;
     font-weight: 700;
     letter-spacing: 1px;
-
+    color: var(--projects-h2);
 }
 
 .skills-grid {
@@ -622,7 +591,7 @@ body.modal-open {
 }
 
 /* ========================================================================== 
-  КОНТАКТЫ И ФОРМА - ГОРИЗОНТАЛЬНОЕ РАСПОЛОЖЕНИЕ 
+  КОНТАКТЫ И ФОРМА 
 ========================================================================== */
 
 .contacts-container {
@@ -721,7 +690,7 @@ body.modal-open {
 }
 
 /* ========================================================================== 
-  ФУТЕР 
+  ФУТЕР И КНОПКА СКРОЛЛА 
 ========================================================================== */
 
 footer {
@@ -756,56 +725,116 @@ footer {
     color: #007bff;
     transform: translateY(-8px) scale(1.07);
 }
-
 /* ========================================================================== 
   MEDIA 
 ========================================================================== */
 @media (max-width: 480px) {
+    html, body {
+        overflow-x: hidden;
+        width: 100%;
+        padding: 0;
+        margin: 0;
+    }
+
     body {
-        padding-top: 200px;
+        padding-top: 200px; /* твое значение */
+    }
+
+    main {
+        max-width: 100%;
+        padding: 0 12px;
+        box-sizing: border-box;
+    }
+
+    .about-card {
+        width: 100%;
+        max-width: 100%;
+        padding: 16px;
+        margin: 0 auto;
+        box-sizing: border-box;
     }
 
     .about-photo-wrapper {
         width: 160px;
         height: 160px;
+        flex-shrink: 0;
     }
 
-    .about-card {
-        padding: 16px;
+    .about-content {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        gap: 16px;
+    }
+
+    /* Навыки */
+    .skills-grid {
+        flex-direction: column;
+        align-items: center;
+        gap: 16px;
+    }
+
+    .skill-card {
+        width: 100%;
+        max-width: 100%;
+        margin: 0 auto;
+        flex: 1 1 auto;
+    }
+
+    .skill-card img {
+        width: 60%;
+        max-width: 120px;
+        height: auto;
+    }
+
+    /* Проекты */
+    .gallery-grid {
+        grid-template-columns: 1fr;
+        gap: 16px;
+        padding: 0;
+    }
+
+    .gallery-item {
+        width: 100%;
+        max-width: 100%;
+        margin: 0 auto;
+        box-sizing: border-box;
+        flex-direction: column;
+    }
+
+    .gallery-item img {
+        width: 100%;
+        height: auto;
+        border-radius: 10px;
+    }
+
+    .desc-btn {
+        width: 90%;
+        max-width: 310px;
+    }
+
+    /* Модалки */
+    .modal-content {
+        width: 90%;
+        max-width: 95%;
+        padding: 20px;
+        box-sizing: border-box;
+    }
+
+    #modal-desc li {
+        word-wrap: break-word;
+    }
+
+    /* Кнопки */
+    .gallery-item a,
+    .gallery-item .desc-btn {
+        width: 90%;
+        max-width: 310px;
+        margin: 8px auto;
     }
 }
 
 @media (max-width: 768px) {
-
-    html {
-        max-width: 100vw;
-        overflow-x: hidden;
-        background: var(--bg-color);
-    }
-
-    body {
-        overflow-x: hidden;
-    }
-
-    main,
-    .main-container {
-        max-width: 98vw;
-        margin: 0 auto;
-        padding: 0 2vw;
-        box-sizing: border-box;
-    }
-
-    header,
-    footer {
-        padding: 12px 0;
-    }
-
-
-    section {
-        margin: 16px 0;
-        padding: 16px;
-    }
-
     .about-content {
         flex-direction: column;
         align-items: center;
@@ -816,63 +845,6 @@ footer {
         width: 240px;
         height: 240px;
     }
-
-    .skill-card,
-    .gallery-item {
-        width: 100%;
-        max-width: 360px;
-        margin: 0 auto 10px auto;
-        box-sizing: border-box;
-    }
-
-    .gallery-item img,
-    .skill-card img {
-        max-width: 96vw;
-        height: auto;
-        border-radius: 10px;
-        margin: 0 auto;
-        display: block;
-    }
-
-
-
-    .desc-btn {
-        display: block;
-        margin: 12px auto;
-        width: 90%;
-        max-width: 310px;
-    }
-
-    .contacts-container,
-    .contact-info,
-    .contact-form {
-        flex-direction: column;
-        align-items: center;
-        width: 100%;
-        min-width: 0;
-    }
-
-    .contact-form input,
-    .contact-form textarea {
-        width: 96vw;
-        max-width: 340px;
-        margin: 0 auto 14px auto;
-    }
-
-    #theme-toggle {
-        position: static;
-        margin: 18px auto 8px auto;
-        display: block;
-    }
-
-    .scroll-footer {
-        position: static;
-        width: 52px;
-        height: 52px;
-        margin: 14px auto;
-        display: block;
-    }
-
 }
 
 @media (max-width: 1024px) {
