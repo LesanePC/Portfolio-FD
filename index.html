@@ -14,7 +14,7 @@
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://lesanepc.github.io/Portfolio-FD/">
 
-    <title>Portfolio Frontend Developer</title>
+    <title>Евгений Фокин | Frontend Developer</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="icon" href="img/favicon.svg" type="image/svg+xml">
@@ -25,17 +25,14 @@
 </head>
 
 <body>
-    <div class="center-body">
-        <div class="loader">
-            Loading
-            <span></span>
-        </div>
-    </div>
 
     <header class="header">
         <div class="header-center">
             <h1>Eugene Fokin — Frontend Developer</h1>
             <p>HTML5 · CSS3 · JavaScript (ES6+) · React · TypeScript · Git · Адаптивная верстка · UX/UI</p>
+            <div class="header-links">
+                <a href="https://hh.ru/resume/915b9760ff0f87867f0039ed1f65477830644b" target="_blank" class="btn-hh" aria-label="Открыть резюме на hh.ru">Резюме на hh.ru</a>
+            </div>
         </div>
         <button id="theme-toggle" aria-pressed="false" aria-label="Переключить тему" aria-expanded="false">
             <span class="lightbulb"></span>
@@ -58,148 +55,144 @@
 
                     <div class="about-text">
                         <p>
-                            Привет! Меня зовут Евгений, я — фронтенд-разработчик. Создаю современные и удобные интерфейсы с React и TypeScript, от учебных проектов до реальных веб-приложений, включая корпоративные сайты, кино-портал с админ-панелью и интерактивные интерфейсы с динамическими данными. Работаю с адаптивной версткой, анимациями и UX-решениями, чтобы интерфейсы были понятными и приятными для пользователей.
+                            Привет! Я Евгений — фронтенд-разработчик с нестандартным бэкграундом. До того как писать код, я 10 лет управлял розничным бизнесом: руководил командой из 25 человек, внедрял корпоративные веб-приложения, тестировал их и ставил задачи разработчикам.
                         </p>
                         <p>
-                            За время обучения и работы реализовал несколько коммерческих и учебных проектов, участвовал в тестировании и улучшении приложений, выявлял UX-проблемы и предлагал решения. Постоянно развиваюсь, изучаю новые технологии, фреймворки и инструменты.
+                            Теперь я создаю интерфейсы на React и TypeScript. Моё преимущество — я понимаю и код, и бизнес. Знаю, как собрать требования, спроектировать удобный UX и довести продукт до реальных пользователей. В портфолио — проекты, где я применял эти навыки.
                         </p>
                         <p>
-                            Помимо разработки, активно изучаю английский язык для работы с международной документацией и командами, а спорт помогает поддерживать концентрацию и продуктивность.
+                            Постоянно развиваюсь: изучаю новые технологии, прохожу code review на работе, учу английский для чтения документации. А спорт помогает держать фокус.
                         </p>
                     </div>
                 </div>
 
                 <div class="cv-wrapper">
-                    <a href="assets/cv/Fokin-Frontend.pdf" download class="btn-cv">
-                        Скачать резюме (PDF)
-                    </a>
+                    <a href="assets/cv/Fokin-Frontend.pdf" download class="btn-cv" aria-label="Скачать резюме в PDF">Скачать резюме (PDF)</a>
                 </div>
             </div>
         </section>
 
-
-
         <section class="section" id="projects">
-    <h2>Проекты</h2>
+            <h2>Проекты</h2>
 
-    <div class="gallery-grid">
+            <div class="gallery-grid">
 
-        <!-- Киносайт + админка -->
-        <article class="gallery-item">
-            <a href="img/Cinema.webp" class="image-popup">
-                <img src="img/Cinema.webp" alt="Киносайт + Админка" loading="lazy">
-            </a>
-            <h3>Киносайт + Админка</h3>
-            <p class="tech-stack">
-                HTML · SCSS · JavaScript · Fetch API · LocalStorage
-            </p>
-            <p class="project-role">
-                Реализация фронтенда, интеграция с админ-панелью, работа с динамическими данными.
-            </p>
-            <div class="project-links">
-                <button class="desc-btn" data-title="Киносайт + Админка">Подробнее</button>
-                <a href="https://lesanepc.github.io/shfe-diplom/index.html" target="_blank" rel="noopener">Демо</a>
-                <a href="https://github.com/LesanePC/shfe-diplom" target="_blank" rel="noopener">GitHub</a>
+                <!-- Киносайт + админка -->
+                <article class="gallery-item">
+                    <a href="img/Cinema.webp" class="image-popup">
+                        <img src="img/Cinema.webp" alt="Киносайт + Админка" loading="lazy">
+                    </a>
+                    <h3>Киносайт + Админка</h3>
+                    <p class="tech-stack">
+                        HTML · SCSS · JavaScript · Fetch API · LocalStorage
+                    </p>
+                    <p class="project-role">
+                        Дипломный проект: кино-портал с админ-панелью, каталог фильмов, поиск.
+                    </p>
+                    <div class="project-links">
+                        <button class="desc-btn" data-title="Киносайт + Админка">Подробнее</button>
+                        <a href="https://lesanepc.github.io/shfe-diplom/index.html" target="_blank" rel="noopener">Демо</a>
+                        <a href="https://github.com/LesanePC/shfe-diplom" target="_blank" rel="noopener">GitHub</a>
+                    </div>
+                </article>
+
+                <!-- Адаптивный блог -->
+                <article class="gallery-item">
+                    <a href="img/layouts.webp" class="image-popup">
+                        <img src="img/layouts.webp" alt="Адаптивный блог" loading="lazy">
+                    </a>
+                    <h3>Адаптивный блог</h3>
+                    <p class="tech-stack">
+                        HTML · CSS · Flex/Grid · Адаптивная типографика
+                    </p>
+                    <p class="project-role">
+                        Pixel-perfect верстка, адаптивность под все устройства.
+                    </p>
+                    <div class="project-links">
+                        <button class="desc-btn" data-title="Адаптивный блог">Подробнее</button>
+                        <a href="https://lesanepc.github.io/MQ-Diplom/" target="_blank" rel="noopener">Демо</a>
+                        <a href="https://github.com/LesanePC/MQ-Diplom" target="_blank" rel="noopener">GitHub</a>
+                    </div>
+                </article>
+
+                <!-- Агентство недвижимости -->
+                <article class="gallery-item">
+                    <a href="img/altair.webp" class="image-popup">
+                        <img src="img/altair.webp" alt="Сайт агентства недвижимости" loading="lazy">
+                    </a>
+                    <h3>Агентство недвижимости</h3>
+                    <p class="tech-stack">
+                        HTML · CSS · JavaScript · Адаптивная верстка
+                    </p>
+                    <p class="project-role">
+                        Коммерческий проект: динамическая фильтрация объектов без перезагрузки.
+                    </p>
+                    <div class="project-links">
+                        <button class="desc-btn" data-title="Агентство недвижимости">Подробнее</button>
+                        <a href="https://lesanepc.github.io/altair-projects/" target="_blank" rel="noopener">Демо</a>
+                        <a href="https://github.com/LesanePC/altair-projects" target="_blank" rel="noopener">GitHub</a>
+                    </div>
+                </article>
+
+                <!-- Bakery -->
+                <article class="gallery-item">
+                    <a href="img/Bakery.webp" class="image-popup">
+                        <img src="img/Bakery.webp" alt="Bakery — Сайт пекарни" loading="lazy">
+                    </a>
+                    <h3>Bakery — Сайт пекарни</h3>
+                    <p class="tech-stack">
+                        HTML · CSS · JavaScript · Анимации
+                    </p>
+                    <p class="project-role">
+                        Промо-сайт с анимациями и адаптивной версткой.
+                    </p>
+                    <div class="project-links">
+                        <button class="desc-btn" data-title="Bakery — Сайт пекарни">Подробнее</button>
+                        <a href="https://lesanepc.github.io/bakery/" target="_blank" rel="noopener">Демо</a>
+                        <a href="https://github.com/LesanePC/bakery" target="_blank" rel="noopener">GitHub</a>
+                    </div>
+                </article>
+
+                <!-- ToDo -->
+                <article class="gallery-item">
+                    <a href="img/ToDo.webp" class="image-popup">
+                        <img src="img/ToDo.webp" alt="ToDo — Планировщик задач" loading="lazy">
+                    </a>
+                    <h3>ToDo — Планировщик задач</h3>
+                    <p class="tech-stack">
+                        HTML · CSS · JavaScript · LocalStorage
+                    </p>
+                    <p class="project-role">
+                        Полный функционал задач, сохранение в LocalStorage.
+                    </p>
+                    <div class="project-links">
+                        <button class="desc-btn" data-title="ToDo — Планировщик задач">Подробнее</button>
+                        <a href="https://lesanepc.github.io/ToDo/" target="_blank" rel="noopener">Демо</a>
+                        <a href="https://github.com/LesanePC/ToDo" target="_blank" rel="noopener">GitHub</a>
+                    </div>
+                </article>
+
+                <!-- Строительная компания -->
+                <article class="gallery-item">
+                    <a href="img/Rem-Stroy.webp" class="image-popup">
+                        <img src="img/Rem-Stroy.webp" alt="Сайт строительной компании" loading="lazy">
+                    </a>
+                    <h3>Строительная компания</h3>
+                    <p class="tech-stack">
+                        HTML · CSS · JavaScript · Адаптивная верстка
+                    </p>
+                    <p class="project-role">
+                        Коммерческий проект, 3 страницы, поддержка в течение года.
+                    </p>
+                    <div class="project-links">
+                        <button class="desc-btn" data-title="Строительная компания">Подробнее</button>
+                        <a href="https://lesanepc.github.io/Rem-Stroy/index.html" target="_blank" rel="noopener">Демо</a>
+                        <a href="https://github.com/LesanePC/Rem-Stroy" target="_blank" rel="noopener">GitHub</a>
+                    </div>
+                </article>
+
             </div>
-        </article>
-
-        <!-- Адаптивный блог -->
-        <article class="gallery-item">
-            <a href="img/layouts.webp" class="image-popup">
-                <img src="img/layouts.webp" alt="Адаптивный блог" loading="lazy">
-            </a>
-            <h3>Адаптивный блог</h3>
-            <p class="tech-stack">
-                HTML · CSS · Flex/Grid · Адаптивная типографика
-            </p>
-            <p class="project-role">
-                Создание адаптивного дизайна, верстка макета, работа с контентом.
-            </p>
-            <div class="project-links">
-                <button class="desc-btn" data-title="Адаптивный блог">Подробнее</button>
-                <a href="https://lesanepc.github.io/MQ-Diplom/" target="_blank" rel="noopener">Демо</a>
-                <a href="https://github.com/LesanePC/MQ-Diplom" target="_blank" rel="noopener">GitHub</a>
-            </div>
-        </article>
-
-        <!-- Агентство недвижимости -->
-        <article class="gallery-item">
-            <a href="img/altair.webp" class="image-popup">
-                <img src="img/altair.webp" alt="Сайт агентства недвижимости" loading="lazy">
-            </a>
-            <h3>Агентство недвижимости</h3>
-            <p class="tech-stack">
-                HTML · CSS · JavaScript · Адаптивная верстка
-            </p>
-            <p class="project-role">
-                Верстка, интерактивные элементы, адаптация под мобильные устройства.
-            </p>
-            <div class="project-links">
-                <button class="desc-btn" data-title="Агентство недвижимости">Подробнее</button>
-                <a href="https://lesanepc.github.io/altair-projects/" target="_blank" rel="noopener">Демо</a>
-                <a href="https://github.com/LesanePC/altair-projects" target="_blank" rel="noopener">GitHub</a>
-            </div>
-        </article>
-
-        <!-- Bakery -->
-        <article class="gallery-item">
-            <a href="img/Bakery.webp" class="image-popup">
-                <img src="img/Bakery.webp" alt="Bakery — Сайт пекарни" loading="lazy">
-            </a>
-            <h3>Bakery — Сайт пекарни</h3>
-            <p class="tech-stack">
-                HTML · CSS · JavaScript · Анимации
-            </p>
-            <p class="project-role">
-                Создание анимаций, адаптивная верстка, работа с визуальными эффектами.
-            </p>
-            <div class="project-links">
-                <button class="desc-btn" data-title="Bakery — Сайт пекарни">Подробнее</button>
-                <a href="https://lesanepc.github.io/bakery/" target="_blank" rel="noopener">Демо</a>
-                <a href="https://github.com/LesanePC/bakery" target="_blank" rel="noopener">GitHub</a>
-            </div>
-        </article>
-
-        <!-- ToDo -->
-        <article class="gallery-item">
-            <a href="img/ToDo.webp" class="image-popup">
-                <img src="img/ToDo.webp" alt="ToDo — Планировщик задач" loading="lazy">
-            </a>
-            <h3>ToDo — Планировщик задач</h3>
-            <p class="tech-stack">
-                HTML · CSS · JavaScript · LocalStorage
-            </p>
-            <p class="project-role">
-                Разработка функционала добавления/удаления задач, хранение данных в LocalStorage.
-            </p>
-            <div class="project-links">
-                <button class="desc-btn" data-title="ToDo — Планировщик задач">Подробнее</button>
-                <a href="https://lesanepc.github.io/ToDo/" target="_blank" rel="noopener">Демо</a>
-                <a href="https://github.com/LesanePC/ToDo" target="_blank" rel="noopener">GitHub</a>
-            </div>
-        </article>
-
-        <!-- Строительная компания -->
-        <article class="gallery-item">
-            <a href="img/Rem-Stroy.webp" class="image-popup">
-                <img src="img/Rem-Stroy.webp" alt="Сайт строительной компании" loading="lazy">
-            </a>
-            <h3>Строительная компания</h3>
-            <p class="tech-stack">
-                HTML · CSS · JavaScript · Адаптивная верстка
-            </p>
-            <p class="project-role">
-                Верстка страниц, адаптация под мобильные устройства, интеграция интерактивных элементов.
-            </p>
-            <div class="project-links">
-                <button class="desc-btn" data-title="Строительная компания">Подробнее</button>
-                <a href="https://lesanepc.github.io/Rem-Stroy/index.html" target="_blank" rel="noopener">Демо</a>
-                <a href="https://github.com/LesanePC/Rem-Stroy" target="_blank" rel="noopener">GitHub</a>
-            </div>
-        </article>
-
-    </div>
-</section>
+        </section>
 
         <!-- Навыки -->
         <section class="section" id="skills">
@@ -277,12 +270,12 @@
 
     <!-- Модальное окно описания проекта -->
     <div id="project-modal" class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
-        <div class="modal-content">
-            <button id="modal-close" class="modal-close" aria-label="Закрыть">&times;</button>
-            <h2 id="modal-title"></h2>
-            <p id="modal-desc"></p>
-        </div>
+    <div class="modal-content">
+        <button id="modal-close" class="modal-close" aria-label="Закрыть">&times;</button>
+        <h2 id="modal-title"></h2>
+        <div id="modal-desc"></div>
     </div>
+</div>
 
     <footer>
         <p>© <span id="year"></span> Eugene Fokin</p>

@@ -101,85 +101,6 @@ a:hover {
     text-decoration: underline;
 }
 
-/* ========================================================================== 
-  ЛОАДЕР
-========================================================================== */
-
-.center-body {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    height: 100%;
-    background: #262626;
-}
-
-.loader {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 70px;
-    height: 70px;
-    background: transparent;
-    border: 3px solid #3c3c3c;
-    border-radius: 50%;
-    text-align: center;
-    line-height: 70px;
-    font-family: sans-serif;
-    font-size: 12px;
-    color: #00eaff;
-    text-transform: uppercase;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
-}
-
-.loader:before {
-    content: "";
-    position: absolute;
-    top: -3px;
-    left: -3px;
-    width: 100%;
-    height: 100%;
-    border: 3px solid transparent;
-    border-top: 3px solid #00eaff;
-    border-right: 3px solid #00eaff;
-    border-radius: 50%;
-    animation: animateC 2s linear infinite;
-}
-
-.loader span {
-    display: block;
-    position: absolute;
-    top: calc(50% - 2px);
-    left: 50%;
-    width: 50%;
-    height: 4px;
-    background: transparent;
-    transform-origin: left;
-    animation: animate 2s linear infinite;
-}
-
-.loader span:before {
-    content: "";
-    position: absolute;
-    width: 16px;
-    height: 16px;
-    border-radius: 50%;
-    background: #00eaff;
-    top: -6px;
-    right: -8px;
-    box-shadow: 0 0 20px #00eaff;
-}
-
-@keyframes animateC {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
-}
-
-@keyframes animate {
-    0% { transform: rotate(45deg); }
-    100% { transform: rotate(405deg); }
-}
 
 /* ========================================================================== 
   ШАПКА 
@@ -247,6 +168,84 @@ body.light-theme #theme-toggle .lightbulb {
 }
 
 /* ========================================================================== 
+  КНОПКИ В ШАПКЕ (РЕЗЮМЕ)
+========================================================================== */
+
+.header-links {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    margin-top: 15px;
+    flex-wrap: wrap;
+}
+
+.btn-cv-header,
+.btn-hh {
+    display: inline-block;
+    padding: 8px 20px;
+    border-radius: 30px;
+    font-size: 0.95rem;
+    font-weight: 500;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
+}
+
+.btn-cv-header {
+    background: #2f80ed;
+    color: white;
+    border-color: #2f80ed;
+}
+
+.btn-cv-header:hover {
+    background: #1c62c7;
+    border-color: #1c62c7;
+    transform: translateY(-2px);
+    text-decoration: none;
+    box-shadow: 0 5px 15px rgba(47, 128, 237, 0.4);
+}
+
+.btn-hh {
+    background: transparent;
+    color: var(--header-text);
+    border-color: var(--header-text);
+}
+
+.btn-hh:hover {
+    background: rgba(255, 255, 255, 0.1);
+    transform: translateY(-2px);
+    text-decoration: none;
+    box-shadow: 0 5px 15px rgba(255, 255, 255, 0.2);
+}
+
+/* Светлая тема для кнопки hh */
+body.light-theme .btn-hh {
+    color: #222;
+    border-color: #222;
+}
+
+body.light-theme .btn-hh:hover {
+    background: rgba(0, 0, 0, 0.05);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* Адаптация для мобильных */
+@media (max-width: 600px) {
+    .header-links {
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .btn-cv-header,
+    .btn-hh {
+        width: 80%;
+        max-width: 250px;
+        text-align: center;
+    }
+}
+
+/* ========================================================================== 
   ФОН И ОСНОВНОЙ КОНТЕНТ 
 ========================================================================== */
 
@@ -266,7 +265,7 @@ main {
     max-width: 900px;
     margin: 0 auto;
     position: relative;
-    z-index: 1;
+    z-index: 5;
     padding: 15px;
     display: flex;
     flex-direction: column;
@@ -399,6 +398,7 @@ section {
     box-shadow: 0 8px 26px rgba(0, 0, 0, 0.35);
     display: flex;
     flex-direction: column;
+    height: 100%;
     transition: 0.35s ease;
 }
 
@@ -422,17 +422,41 @@ section {
 
 .gallery-item h3 {
     font-size: 1.25rem;
-    margin: 16px 0 10px;
-    padding: 0 16px;
+    margin: 16px 16px 10px;
     font-weight: 600;
     color: var(--gallery-item-h3);
 }
 
+/* Добавляем класс для стека технологий */
+.gallery-item .tech-stack {
+    margin: 0 16px 10px;
+    font-size: 0.9rem;
+    color: var(--gallery-item-a);
+}
+
+/* Класс для описания роли в проекте */
+.gallery-item .project-role {
+    flex-grow: 1;
+    margin: 0 16px 15px;
+    font-size: 0.95rem;
+    line-height: 1.5;
+    color: var(--gallery-item-text);
+}
+
+/* Контейнер для кнопок */
+.gallery-item .project-links {
+    margin-top: auto;
+    padding: 0 16px 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+/* Стили для кнопок (упрощённые, без дублирования) */
 .gallery-item .desc-btn,
-.gallery-item a {
+.gallery-item .project-links a {
     display: block;
-    width: 80%;
-    margin: 12px auto;
+    width: 100%;
     padding: 10px 0;
     border-radius: 14px;
     font-weight: 600;
@@ -441,6 +465,7 @@ section {
     cursor: pointer;
     transition: 0.3s ease, transform 0.2s;
     text-decoration: none;
+    box-sizing: border-box;
 }
 
 .gallery-item .desc-btn {
@@ -449,33 +474,35 @@ section {
     border: none;
 }
 
-.gallery-item a {
+.gallery-item .project-links a {
     background: none;
     color: var(--gallery-item-a);
     border: 2px solid var(--gallery-item-a);
 }
 
 .gallery-item .desc-btn:hover,
-.gallery-item a:hover {
+.gallery-item .project-links a:hover {
     transform: translateY(-3px);
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.25);
 }
 
-/* FULLSCREEN MODAL */
+/* ========================================================================== 
+  МОДАЛЬНОЕ ОКНО 
+========================================================================== */
 .modal {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0,0,0,0.75);
+    background-color: rgba(0, 0, 0, 0.8);
     display: flex;
     justify-content: center;
     align-items: center;
+    z-index: 9999;
     opacity: 0;
     visibility: hidden;
-    transition: 0.25s ease;
-    z-index: 9999;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
 }
 
 .modal.show {
@@ -484,15 +511,17 @@ section {
 }
 
 .modal-content {
-    max-width: 600px;
+    max-width: 700px;
     width: 90%;
+    max-height: 80vh;
+    overflow-y: auto;
     background: #111;
-    padding: 30px;
-    border-radius: 12px;
-    text-align: center;
+    padding: 35px;
+    border-radius: 16px;
     position: relative;
     line-height: 1.6;
     color: #fff;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
 }
 
 body.light-theme .modal-content {
@@ -501,32 +530,66 @@ body.light-theme .modal-content {
 }
 
 #modal-title {
-    color: inherit;
+    margin-top: 0;
+    margin-bottom: 25px;
+    font-size: 1.8rem;
+    text-align: center;
+}
+
+#modal-desc {
+    text-align: left;
+}
+
+#modal-desc ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
 }
 
 #modal-desc li {
-    text-align: left;
-    margin-bottom: 12px;
-    line-height: 1.5;
-    color: inherit;
+    margin-bottom: 16px;
+    padding-left: 20px;
+    position: relative;
+    line-height: 1.6;
+}
+
+#modal-desc li::before {
+    content: "•";
+    position: absolute;
+    left: 0;
+    color: #00eaff;
+    font-weight: bold;
+    font-size: 1.2rem;
 }
 
 #modal-desc li strong {
     display: inline-block;
-    width: 100px;
+    min-width: 100px;
     font-weight: 600;
+    color: #00eaff;
+}
+
+body.light-theme #modal-desc li::before,
+body.light-theme #modal-desc li strong {
+    color: #007acc;
 }
 
 .modal-close {
     position: absolute;
-    top: 10px;
-    right: 15px;
-    font-size: 28px;
+    top: 15px;
+    right: 20px;
+    font-size: 32px;
     color: #fff;
     background: none;
     border: none;
     cursor: pointer;
     transition: 0.2s;
+    line-height: 1;
+    z-index: 10;
+}
+
+body.light-theme .modal-close {
+    color: #222;
 }
 
 .modal-close:hover {
@@ -534,9 +597,6 @@ body.light-theme .modal-content {
     color: #f33;
 }
 
-body.modal-open {
-    overflow: hidden;
-}
 /* ========================================================================== 
   БЛОК НАВЫКИ 
 ========================================================================== */
@@ -725,11 +785,19 @@ footer {
     color: #007bff;
     transform: translateY(-8px) scale(1.07);
 }
+
+body.modal-open {
+    overflow: hidden;
+    padding-right: 15px;
+}
+
 /* ========================================================================== 
   MEDIA 
 ========================================================================== */
 @media (max-width: 480px) {
-    html, body {
+
+    html,
+    body {
         overflow-x: hidden;
         width: 100%;
         padding: 0;
@@ -737,7 +805,8 @@ footer {
     }
 
     body {
-        padding-top: 200px; /* твое значение */
+        padding-top: 200px;
+        /* твое значение */
     }
 
     main {
