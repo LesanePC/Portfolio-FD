@@ -1,3 +1,13 @@
+<div align="center">
+  
+  [![GitHub last commit](https://img.shields.io/github/last-commit/LesanePC/Portfolio-FD)](https://github.com/LesanePC/Portfolio-FD)
+  [![GitHub repo size](https://img.shields.io/github/repo-size/LesanePC/Portfolio-FD)](https://github.com/LesanePC/Portfolio-FD)
+  [![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=flat&logo=html5&logoColor=white)](https://developer.mozilla.org/en-US/docs/Web/HTML)
+  [![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=flat&logo=css3&logoColor=white)](https://developer.mozilla.org/en-US/docs/Web/CSS)
+  [![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=flat&logo=javascript&logoColor=black)](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
+  
+</div>
+
 # 🚀 Portfolio-FD — персональное портфолио Frontend-разработчика
 
 Добро пожаловать в мой проект **Portfolio-FD** — это мой личный сайт-портфолио, где представлены мои навыки, лучшие работы и контакты для связи.  
@@ -61,7 +71,7 @@ https://lesanepc.github.io/Portfolio-FD/
 
 ## 📸 Скриншоты
 
-
+*Скриншоты будут добавлены позже*
 
 ---
 
@@ -79,7 +89,20 @@ https://lesanepc.github.io/Portfolio-FD/
 
 ## ⬇️ Установка и запуск локально
 
+```bash
 
+# Клонировать репозиторий
+git clone https://github.com/LesanePC/Portfolio-FD.git
+
+# Перейти в папку проекта
+cd Portfolio-FD
+
+# Открыть в браузере (достаточно просто открыть index.html)
+open index.html  # для macOS
+# или
+start index.html # для Windows
+
+```
 
 ## 📌 Планы по улучшению
 
@@ -97,12 +120,16 @@ https://lesanepc.github.io/Portfolio-FD/
 
 ## 👨‍💻 Обо мне
 
-Привет! Меня зовут Eugene — я начинающий Frontend-разработчик, который любит красивый UI, аккуратную вёрстку и современные веб-технологии.
-Я постоянно изучаю новое и развиваюсь в направлении Frontend.
+Привет! Я Евгений — фронтенд-разработчик с нестандартным бэкграундом.  
+До того как писать код, я 10 лет управлял розничным бизнесом: руководил командой из 25 человек, внедрял корпоративные веб-приложения, тестировал их и ставил задачи разработчикам.
 
-Если вы ищете разработчика с вниманием к деталям — буду рад сотрудничеству 🚀
+Теперь я создаю интерфейсы на **React** и **TypeScript**. Моё преимущество — я понимаю и код, и бизнес. Знаю, как собрать требования, спроектировать удобный UX и довести продукт до реальных пользователей.
+
+Если вам нужен разработчик, который смотрит на задачи не только как исполнитель, а как партнёр, — буду рад сотрудничеству 🚀
 
 📬 Контакты
+
+📄 **Резюме:** [hh.ru](https://hh.ru/resume/915b9760ff0f87867f0039ed1f65477830644b)
 
 💬 Telegram: https://t.me/eugene_1312
 
