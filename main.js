@@ -118,6 +118,427 @@ const initTheme = () => {
 };
 
 /* -----------------------------
+   Динамическая карта навыков
+----------------------------- */
+const initSkillsChart = () => {
+    const canvas = $('#skillsChart');
+    if (!canvas) return;
+
+    const ctx = canvas.getContext('2d');
+    const container = canvas.parentElement;
+
+    const skills = [{
+            name: 'HTML/CSS',
+            level: 85,
+            color: '#ff6b6b',
+            description: 'Семантическая верстка, Flexbox, Grid, SCSS, адаптивность, pixel-perfect, анимации, поддержка темной/светлой темы'
+        },
+        {
+            name: 'JavaScript',
+            level: 65,
+            color: '#ffd93d',
+            description: 'ES6+, DOM, Fetch API, LocalStorage, асинхронность, обработка событий, фильтрация, модальные окна, валидация форм'
+        },
+        {
+            name: 'React',
+            level: 65,
+            color: '#6bcb77',
+            description: 'Hooks (useState, useEffect), компоненты, работа с API, TypeScript (в процессе изучения)'
+        },
+        {
+            name: 'Git',
+            level: 75,
+            color: '#ff9f4a',
+            description: 'Ветвление, слияние, разрешение конфликтов, GitHub Pages, работа с удаленными репозиториями'
+        },
+        {
+            name: 'Адаптивность',
+            level: 85,
+            color: '#4d9de0',
+            description: 'Mobile-first подход, медиазапросы, резиновая верстка, адаптация под все устройства (320px → 1920px), pixel-perfect'
+        },
+        {
+            name: 'SEO/Доступность',
+            level: 75,
+            color: '#b980ea',
+            description: 'Мета-теги, Open Graph, микроразметка Schema.org, ARIA-атрибуты, семантическая верстка, Lighthouse 98/100'
+        }
+    ];
+
+    let width = 400;
+    let height = 400;
+    let centerX = width / 2;
+    let centerY = height / 2;
+    let radius = 150;
+
+    // Устанавливаем размеры canvas
+    const setCanvasSize = () => {
+        const size = Math.min(container.clientWidth, 400);
+        canvas.width = size;
+        canvas.height = size;
+        width = size;
+        height = size;
+        centerX = width / 2;
+        centerY = height / 2;
+        radius = width * 0.35;
+
+        drawChart();
+    };
+
+    // Хранение текущего выделенного сегмента
+    let selectedIndex = -1;
+
+    // Функция отрисовки круговой диаграммы
+    const drawChart = (highlightIndex = -1) => {
+        ctx.clearRect(0, 0, width, height);
+
+        let startAngle = -Math.PI / 2;
+        const total = skills.reduce((sum, s) => sum + s.level, 0);
+
+        skills.forEach((skill, index) => {
+            const angle = (skill.level / total) * Math.PI * 2;
+            const endAngle = startAngle + angle;
+
+            // Определяем цвет (выделенный или обычный)
+            let fillColor = skill.color;
+            let strokeColor = '#ffffff';
+            let lineWidth = 1;
+
+            if (highlightIndex === index) {
+                fillColor = skill.color;
+                strokeColor = '#ffffff';
+                lineWidth = 3;
+                ctx.shadowBlur = 15;
+                ctx.shadowColor = skill.color;
+            } else {
+                ctx.shadowBlur = 0;
+            }
+
+            // Рисуем сегмент
+            ctx.beginPath();
+            ctx.moveTo(centerX, centerY);
+            ctx.arc(centerX, centerY, radius, startAngle, endAngle);
+            ctx.closePath();
+
+            ctx.fillStyle = fillColor + 'cc'; // Добавляем прозрачность
+            ctx.fill();
+
+            ctx.strokeStyle = strokeColor;
+            ctx.lineWidth = lineWidth;
+            ctx.stroke();
+
+            // Рисуем белую границу между сегментами
+            ctx.beginPath();
+            ctx.moveTo(centerX, centerY);
+            ctx.arc(centerX, centerY, radius, startAngle, startAngle);
+            ctx.lineTo(centerX, centerY);
+            ctx.strokeStyle = '#ffffff';
+            ctx.lineWidth = 2;
+            ctx.stroke();
+
+            // Добавляем текст с процентом (если сегмент достаточно большой)
+            const midAngle = startAngle + angle / 2;
+            const textRadius = radius * 0.65;
+            const x = centerX + Math.cos(midAngle) * textRadius;
+            const y = centerY + Math.sin(midAngle) * textRadius;
+
+            if (angle > 0.3) { // Показываем только если сегмент достаточно большой
+                ctx.font = `bold ${Math.max(12, radius * 0.08)}px 'Inter', sans-serif`;
+                ctx.fillStyle = '#ffffff';
+                ctx.shadowBlur = 0;
+                ctx.fillText(`${skill.level}%`, x - 15, y + 5);
+            }
+
+            startAngle = endAngle;
+        });
+
+        // Рисуем центр
+        ctx.beginPath();
+        ctx.arc(centerX, centerY, radius * 0.3, 0, Math.PI * 2);
+        ctx.fillStyle = 'rgba(0, 0, 0, 0.7)';
+        ctx.fill();
+        ctx.strokeStyle = 'var(--gallery-item-a)';
+        ctx.lineWidth = 2;
+        ctx.stroke();
+
+        // Текст в центре
+        ctx.font = `bold ${radius * 0.1}px 'Inter', sans-serif`;
+        ctx.fillStyle = '#64c8fabe';
+        ctx.shadowBlur = 0;
+        ctx.fillText('Навыки', centerX - 30, centerY + 8);
+
+        ctx.font = `${radius * 0.07}px 'Inter', sans-serif`;
+        ctx.fillStyle = 'var(--gallery-item-a)';
+        
+    };
+
+    // Создание легенды
+    const createLegend = () => {
+        const legendContainer = $('#skillsLegend');
+        if (!legendContainer) return;
+
+        legendContainer.innerHTML = '';
+
+        skills.forEach((skill, index) => {
+            const legendItem = document.createElement('div');
+            legendItem.className = 'legend-item';
+            legendItem.setAttribute('data-index', index);
+
+            legendItem.innerHTML = `
+                <div class="legend-color" style="background: ${skill.color}"></div>
+                <div class="legend-label">${skill.name}</div>
+                <div class="legend-percent">${skill.level}%</div>
+            `;
+
+            // Hover эффект на легенде
+            legendItem.addEventListener('mouseenter', () => {
+                selectedIndex = index;
+                drawChart(selectedIndex);
+                showTooltip(skill, index);
+            });
+
+            legendItem.addEventListener('mouseleave', () => {
+                selectedIndex = -1;
+                drawChart();
+                hideTooltip();
+            });
+
+            legendContainer.appendChild(legendItem);
+        });
+    };
+
+    // Tooltip с подробным описанием
+    let tooltip = null;
+
+    const showTooltip = (skill, index) => {
+        if (!tooltip) {
+            tooltip = document.createElement('div');
+            tooltip.className = 'skills-tooltip';
+            document.body.appendChild(tooltip);
+        }
+
+        // Получаем позицию сегмента
+        const angles = getSegmentAngles(index);
+        const midAngle = angles.start + angles.angle / 2;
+        const x = centerX + Math.cos(midAngle) * (radius + 20);
+        const y = centerY + Math.sin(midAngle) * (radius + 20);
+
+        tooltip.innerHTML = `
+            <div class="tooltip-header">
+                <span class="tooltip-color" style="background: ${skill.color}"></span>
+                <strong>${skill.name}</strong>
+                <span class="tooltip-percent">${skill.level}%</span>
+            </div>
+            <div class="tooltip-desc">${skill.description}</div>
+        `;
+
+        const canvasRect = canvas.getBoundingClientRect();
+        tooltip.style.left = canvasRect.left + x - 100 + 'px';
+        tooltip.style.top = canvasRect.top + y - 50 + 'px';
+        tooltip.style.display = 'block';
+    };
+
+    const hideTooltip = () => {
+        if (tooltip) {
+            tooltip.style.display = 'none';
+        }
+    };
+
+    const getSegmentAngles = (index) => {
+        let startAngle = -Math.PI / 2;
+        const total = skills.reduce((sum, s) => sum + s.level, 0);
+
+        for (let i = 0; i <= index; i++) {
+            const angle = (skills[i].level / total) * Math.PI * 2;
+            if (i === index) {
+                return {
+                    start: startAngle,
+                    angle: angle
+                };
+            }
+            startAngle += angle;
+        }
+        return {
+            start: 0,
+            angle: 0
+        };
+    };
+
+    // Обработка клика на canvas
+    const handleCanvasClick = (e) => {
+        const rect = canvas.getBoundingClientRect();
+        const scaleX = canvas.width / rect.width;
+        const scaleY = canvas.height / rect.height;
+
+        const mouseX = (e.clientX - rect.left) * scaleX;
+        const mouseY = (e.clientY - rect.top) * scaleY;
+
+        const dx = mouseX - centerX;
+        const dy = mouseY - centerY;
+        const distance = Math.sqrt(dx * dx + dy * dy);
+
+        if (distance <= radius) {
+            let angle = Math.atan2(dy, dx);
+            if (angle < -Math.PI / 2) angle += Math.PI * 2;
+
+            let startAngle = -Math.PI / 2;
+            const total = skills.reduce((sum, s) => sum + s.level, 0);
+
+            for (let i = 0; i < skills.length; i++) {
+                const segmentAngle = (skills[i].level / total) * Math.PI * 2;
+                const endAngle = startAngle + segmentAngle;
+
+                if (angle >= startAngle && angle <= endAngle) {
+                    // Показываем модалку с деталями навыка
+                    alert(`${skills[i].name}\nУровень: ${skills[i].level}%\n${skills[i].description}`);
+                    break;
+                }
+                startAngle = endAngle;
+            }
+        }
+    };
+
+    // Обработка наведения мыши на canvas
+    const handleCanvasMouseMove = (e) => {
+        const rect = canvas.getBoundingClientRect();
+        const scaleX = canvas.width / rect.width;
+        const scaleY = canvas.height / rect.height;
+
+        const mouseX = (e.clientX - rect.left) * scaleX;
+        const mouseY = (e.clientY - rect.top) * scaleY;
+
+        const dx = mouseX - centerX;
+        const dy = mouseY - centerY;
+        const distance = Math.sqrt(dx * dx + dy * dy);
+
+        if (distance <= radius) {
+            let angle = Math.atan2(dy, dx);
+            if (angle < -Math.PI / 2) angle += Math.PI * 2;
+
+            let startAngle = -Math.PI / 2;
+            const total = skills.reduce((sum, s) => sum + s.level, 0);
+
+            for (let i = 0; i < skills.length; i++) {
+                const segmentAngle = (skills[i].level / total) * Math.PI * 2;
+                const endAngle = startAngle + segmentAngle;
+
+                if (angle >= startAngle && angle <= endAngle) {
+                    if (selectedIndex !== i) {
+                        selectedIndex = i;
+                        drawChart(selectedIndex);
+                        showTooltip(skills[i], i);
+                    }
+                    canvas.style.cursor = 'pointer';
+                    return;
+                }
+                startAngle = endAngle;
+            }
+        }
+
+        if (selectedIndex !== -1) {
+            selectedIndex = -1;
+            drawChart();
+            hideTooltip();
+        }
+        canvas.style.cursor = 'default';
+    };
+
+    // Добавляем слушатели событий
+    canvas.addEventListener('click', handleCanvasClick);
+    canvas.addEventListener('mousemove', handleCanvasMouseMove);
+    canvas.addEventListener('mouseleave', () => {
+        selectedIndex = -1;
+        drawChart();
+        hideTooltip();
+    });
+
+    // Стили для тултипа
+    const addTooltipStyles = () => {
+        const style = document.createElement('style');
+        style.textContent = `
+            .skills-tooltip {
+                position: fixed;
+                background: rgba(0, 0, 0, 0.95);
+                backdrop-filter: blur(8px);
+                border-radius: 12px;
+                padding: 12px 16px;
+                max-width: 280px;
+                z-index: 10000;
+                pointer-events: none;
+                border: 1px solid rgba(100, 200, 250, 0.3);
+                box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+                animation: tooltipFadeIn 0.2s ease;
+            }
+            
+            @keyframes tooltipFadeIn {
+                from {
+                    opacity: 0;
+                    transform: translateY(-5px);
+                }
+                to {
+                    opacity: 1;
+                    transform: translateY(0);
+                }
+            }
+            
+            .tooltip-header {
+                display: flex;
+                align-items: center;
+                gap: 8px;
+                margin-bottom: 8px;
+            }
+            
+            .tooltip-color {
+                width: 12px;
+                height: 12px;
+                border-radius: 3px;
+            }
+            
+            .tooltip-header strong {
+                font-size: 1rem;
+                color: #fff;
+            }
+            
+            .tooltip-percent {
+                margin-left: auto;
+                font-size: 0.9rem;
+                font-weight: 600;
+                color: #64c8fa;
+            }
+            
+            .tooltip-desc {
+                font-size: 0.8rem;
+                color: rgba(255, 255, 255, 0.8);
+                line-height: 1.4;
+            }
+            
+            .light-theme .skills-tooltip {
+                background: rgba(255, 255, 255, 0.95);
+                border-color: rgba(30, 111, 159, 0.3);
+            }
+            
+            .light-theme .tooltip-header strong {
+                color: #222;
+            }
+            
+            .light-theme .tooltip-desc {
+                color: #444;
+            }
+        `;
+        document.head.appendChild(style);
+    };
+
+    // Инициализация
+    addTooltipStyles();
+    createLegend();
+    setCanvasSize();
+    window.addEventListener('resize', () => {
+        setCanvasSize();
+        createLegend();
+    });
+};
+
+/* -----------------------------
    Canvas фон
 ----------------------------- */
 const initCanvas = () => {
@@ -485,7 +906,7 @@ const initContactForm = () => {
     const formMessage = form.querySelector('.form-message');
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-    form.addEventListener('submit', async(e) => {
+    form.addEventListener('submit', async (e) => {
         e.preventDefault();
 
         const formData = new FormData(form);
@@ -529,7 +950,7 @@ const initContactForm = () => {
                         }
                     }
                 } catch {
-                    // Оставляем стандартное сообщение
+
                 }
                 formMessage.style.color = 'red';
                 formMessage.textContent = errorMessage;
@@ -549,10 +970,10 @@ const initCopyEmail = () => {
     const copyBtn = $('.copy-email-btn');
     if (!copyBtn) return;
 
-    const email = $('.email-address') ?.textContent || 'evgen94@bk.ru';
+    const email = $('.email-address')?.textContent || 'evgen94@bk.ru';
     const copyMessage = $('.copy-message');
 
-    copyBtn.addEventListener('click', async() => {
+    copyBtn.addEventListener('click', async () => {
         try {
             await navigator.clipboard.writeText(email);
 
@@ -625,5 +1046,6 @@ document.addEventListener('DOMContentLoaded', () => {
     initCopyEmail();
     initYearFooter();
     initHeaderScroll();
+    initSkillsChart();
 
 });
