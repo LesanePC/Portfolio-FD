@@ -73,6 +73,27 @@ const initScrollButton = () => {
 };
 
 /* -----------------------------
+   Печатная машинка для заголовка
+----------------------------- */
+const initTypewriter = () => {
+    const titleElement = document.querySelector('.welcome-title');
+    if (!titleElement) return;
+
+    const text = 'Frontend Developer с бизнес-мышлением';
+    let i = 0;
+    titleElement.textContent = '';
+
+    const timer = setInterval(() => {
+        if (i < text.length) {
+            titleElement.textContent += text.charAt(i);
+            i++;
+        } else {
+            clearInterval(timer);
+        }
+    }, 80);
+};
+
+/* -----------------------------
    IntersectionObserver — секции
 ----------------------------- */
 const initSectionObserver = () => {
@@ -263,13 +284,9 @@ const initSkillsChart = () => {
 
         // Текст в центре
         ctx.font = `bold ${radius * 0.1}px 'Inter', sans-serif`;
-        ctx.fillStyle = '#64c8fabe';
+        ctx.fillStyle = '#64c8fa';
         ctx.shadowBlur = 0;
         ctx.fillText('Навыки', centerX - 30, centerY + 8);
-
-        ctx.font = `${radius * 0.07}px 'Inter', sans-serif`;
-        ctx.fillStyle = 'var(--gallery-item-a)';
-        
     };
 
     // Создание легенды
@@ -539,11 +556,14 @@ const initSkillsChart = () => {
 };
 
 /* -----------------------------
-   Canvas фон
+   Canvas фон (яркая версия)
 ----------------------------- */
 const initCanvas = () => {
     const canvas = $('#backgroundCanvas');
-    if (!canvas) return;
+    if (!canvas) {
+        console.warn('Canvas не найден');
+        return;
+    }
 
     const ctx = canvas.getContext('2d');
     let width = 0;
@@ -551,11 +571,13 @@ const initCanvas = () => {
     let particles = [];
     let animationId = null;
 
-    const PARTICLE_OPACITY = 0.45;
-    const LINE_OPACITY = 0.18;
-    const BASE_PARTICLE_COUNT = 100;
-    const MAX_PARTICLES = 180;
-    const MOBILE_MAX_PARTICLES = 80;
+    // Более яркие настройки для частиц
+    const PARTICLE_OPACITY = 0.6;
+    const LINE_OPACITY = 0.25;
+    const PARTICLE_COLOR = '100, 200, 250'; // голубой
+    const BASE_PARTICLE_COUNT = 80;
+    const MAX_PARTICLES = 120;
+    const MOBILE_MAX_PARTICLES = 60;
 
     class Particle {
         constructor() {
@@ -564,9 +586,9 @@ const initCanvas = () => {
         reset() {
             this.x = Math.random() * width;
             this.y = Math.random() * height;
-            this.size = Math.random() * 2 + 0.8;
-            this.speedX = (Math.random() - 0.5) * 0.6;
-            this.speedY = (Math.random() - 0.5) * 0.6;
+            this.size = Math.random() * 3 + 1.5;
+            this.speedX = (Math.random() - 0.5) * 0.4;
+            this.speedY = (Math.random() - 0.5) * 0.4;
         }
         update() {
             this.x += this.speedX;
@@ -575,7 +597,7 @@ const initCanvas = () => {
             if (this.y < 0 || this.y > height) this.speedY *= -1;
         }
         draw() {
-            ctx.fillStyle = `rgba(25,25,112,${PARTICLE_OPACITY})`;
+            ctx.fillStyle = `rgba(${PARTICLE_COLOR}, ${PARTICLE_OPACITY})`;
             ctx.beginPath();
             ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
             ctx.fill();
@@ -590,18 +612,19 @@ const initCanvas = () => {
     };
 
     const connectParticles = () => {
-        if (particles.length > 200) return;
+        if (particles.length > 150) return;
 
         for (let a = 0; a < particles.length; a++) {
             for (let b = a + 1; b < particles.length; b++) {
                 const dx = particles[a].x - particles[b].x;
                 const dy = particles[a].y - particles[b].y;
                 const distSq = dx * dx + dy * dy;
-                const maxDist = (width + height) * 0.18;
+                const maxDist = (width + height) * 0.2;
                 const maxDistSq = maxDist * maxDist;
 
                 if (distSq < maxDistSq) {
-                    ctx.strokeStyle = `rgba(100,200,250,${LINE_OPACITY})`;
+                    const opacity = LINE_OPACITY * (1 - distSq / maxDistSq);
+                    ctx.strokeStyle = `rgba(${PARTICLE_COLOR}, ${opacity})`;
                     ctx.lineWidth = 1;
                     ctx.beginPath();
                     ctx.moveTo(particles[a].x, particles[a].y);
@@ -622,7 +645,7 @@ const initCanvas = () => {
         const maxParticles = isMobile ? MOBILE_MAX_PARTICLES : MAX_PARTICLES;
 
         const base = Math.max(
-            60,
+            50,
             Math.floor(((width * height) / (1920 * 1080)) * BASE_PARTICLE_COUNT)
         );
         const particleCount = Math.min(maxParticles, base);
@@ -633,6 +656,10 @@ const initCanvas = () => {
         if (!ctx) return;
 
         ctx.clearRect(0, 0, width, height);
+
+        // Рисуем полупрозрачный фон для эффекта "хвостов"
+        ctx.fillStyle = 'rgba(0, 0, 0, 0.1)';
+        ctx.fillRect(0, 0, width, height);
 
         for (const particle of particles) {
             particle.update();
@@ -662,8 +689,8 @@ const initCanvas = () => {
 
     resizeCanvas();
     animate();
+    console.log('Canvas фон инициализирован');
 };
-
 /* -----------------------------
    Фильтрация проектов с подсчетом
 ----------------------------- */
@@ -970,7 +997,7 @@ const initCopyEmail = () => {
     const copyBtn = $('.copy-email-btn');
     if (!copyBtn) return;
 
-    const email = $('.email-address')?.textContent || 'evgen94@bk.ru';
+    const email = $('.email-address') ?.textContent || 'evgen94@bk.ru';
     const copyMessage = $('.copy-message');
 
     copyBtn.addEventListener('click', async () => {
@@ -1013,6 +1040,31 @@ const initYearFooter = () => {
 };
 
 /* -----------------------------
+   Счетчик посещений
+----------------------------- */
+const initVisitCounter = () => {
+    const counterElement = $('#visitCount');
+    if (!counterElement) return;
+
+    const sessionCounted = sessionStorage.getItem('visit_counted');
+    let visits = localStorage.getItem('portfolio_visits');
+
+    if (visits === null) {
+        visits = 0;
+    } else {
+        visits = parseInt(visits);
+    }
+
+    if (!sessionCounted) {
+        visits++;
+        localStorage.setItem('portfolio_visits', visits);
+        sessionStorage.setItem('visit_counted', 'true');
+    }
+
+    counterElement.textContent = visits;
+};
+
+/* -----------------------------
    Эффект шапки при скролле
 ----------------------------- */
 const initHeaderScroll = () => {
@@ -1047,5 +1099,6 @@ document.addEventListener('DOMContentLoaded', () => {
     initYearFooter();
     initHeaderScroll();
     initSkillsChart();
-
+    initTypewriter();
+    initVisitCounter();
 });
