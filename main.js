@@ -156,7 +156,7 @@ const initSkillsChart = () => {
         },
         {
             name: 'JavaScript',
-            level: 65,
+            level: 75,
             color: '#ffd93d',
             description: 'ES6+, DOM, Fetch API, LocalStorage, асинхронность, обработка событий, фильтрация, модальные окна, валидация форм'
         },
