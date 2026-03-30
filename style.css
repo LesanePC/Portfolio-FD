@@ -1050,11 +1050,6 @@ body.light-theme .modal-close {
     border-radius: 30px;
 }
 
-/* .chart-note::before {
- content: '💡';
- font-size: 0.9rem;
-} */
-
 /* ========================================================================== 
   КОПИРОВАНИЕ EMAIL
 ========================================================================== */
@@ -1652,9 +1647,6 @@ body.modal-open {
     }
 
     /* Шапка */
-    .logo-subtitle {
-        display: none;
-    }
 
     .lightbulb {
         width: 16px;
@@ -1694,7 +1686,7 @@ body.modal-open {
 
     .code-snippet {
         padding: 14px;
-        font-size: 0.7rem;
+        font-size: 1.3rem;
     }
 
     .code-line {

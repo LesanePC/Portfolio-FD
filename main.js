@@ -220,7 +220,6 @@ const initSkillsChart = () => {
             const angle = (skill.level / total) * Math.PI * 2;
             const endAngle = startAngle + angle;
 
-            // Определяем цвет (выделенный или обычный)
             let fillColor = skill.color;
             let strokeColor = '#ffffff';
             let lineWidth = 1;
@@ -273,20 +272,20 @@ const initSkillsChart = () => {
             startAngle = endAngle;
         });
 
-        // Рисуем центр
-        ctx.beginPath();
-        ctx.arc(centerX, centerY, radius * 0.3, 0, Math.PI * 2);
-        ctx.fillStyle = 'rgba(0, 0, 0, 0.7)';
-        ctx.fill();
-        ctx.strokeStyle = 'var(--gallery-item-a)';
-        ctx.lineWidth = 2;
-        ctx.stroke();
+//        // Рисуем центр
+//        ctx.beginPath();
+//        ctx.arc(centerX, centerY, radius * 0.3, 0, Math.PI * 2);
+//        ctx.fillStyle = 'rgba(0, 0, 0, 0.7)';
+//        ctx.fill();
+//        ctx.strokeStyle = 'var(--gallery-item-a)';
+//        ctx.lineWidth = 2;
+//        ctx.stroke();
 
         // Текст в центре
-        ctx.font = `bold ${radius * 0.1}px 'Inter', sans-serif`;
-        ctx.fillStyle = '#64c8fa';
-        ctx.shadowBlur = 0;
-        ctx.fillText('Навыки', centerX - 30, centerY + 8);
+//        ctx.font = `bold ${radius * 0.1}px 'Inter', sans-serif`;
+//        ctx.fillStyle = '#64c8fa';
+//        ctx.shadowBlur = 0;
+//        ctx.fillText('Навыки', centerX - 18, centerY + 8);
     };
 
     // Создание легенды
@@ -556,7 +555,7 @@ const initSkillsChart = () => {
 };
 
 /* -----------------------------
-   Canvas фон (яркая версия)
+   Canvas фон 
 ----------------------------- */
 const initCanvas = () => {
     const canvas = $('#backgroundCanvas');
@@ -571,10 +570,9 @@ const initCanvas = () => {
     let particles = [];
     let animationId = null;
 
-    // Более яркие настройки для частиц
     const PARTICLE_OPACITY = 0.6;
     const LINE_OPACITY = 0.25;
-    const PARTICLE_COLOR = '100, 200, 250'; // голубой
+    const PARTICLE_COLOR = '100, 200, 250';
     const BASE_PARTICLE_COUNT = 80;
     const MAX_PARTICLES = 120;
     const MOBILE_MAX_PARTICLES = 60;
@@ -657,7 +655,6 @@ const initCanvas = () => {
 
         ctx.clearRect(0, 0, width, height);
 
-        // Рисуем полупрозрачный фон для эффекта "хвостов"
         ctx.fillStyle = 'rgba(0, 0, 0, 0.1)';
         ctx.fillRect(0, 0, width, height);
 
