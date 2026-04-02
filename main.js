@@ -124,8 +124,26 @@ const initTheme = () => {
         document.body.classList.add('light-theme');
     }
 
+    const updateThemeIcon = () => {
+        const icon = themeToggle.querySelector('i');
+        const isLight = document.body.classList.contains('light-theme');
+
+        if (icon) {
+            if (isLight) {
+                icon.classList.remove('fa-moon');
+                icon.classList.add('fa-sun');
+            } else {
+                icon.classList.remove('fa-sun');
+                icon.classList.add('fa-moon');
+            }
+        }
+    };
+
+    updateThemeIcon();
+
     themeToggle.addEventListener('click', () => {
         const isLight = document.body.classList.toggle('light-theme');
+
         if (isLight) {
             localStorage.setItem('theme', 'light');
             themeToggle.setAttribute('aria-pressed', 'true');
@@ -133,6 +151,8 @@ const initTheme = () => {
             localStorage.removeItem('theme');
             themeToggle.setAttribute('aria-pressed', 'false');
         }
+
+        updateThemeIcon();
     });
 
     themeToggle.setAttribute('aria-pressed', document.body.classList.contains('light-theme'));
@@ -192,7 +212,6 @@ const initSkillsChart = () => {
     let centerY = height / 2;
     let radius = 150;
 
-    // Устанавливаем размеры canvas
     const setCanvasSize = () => {
         const size = Math.min(container.clientWidth, 400);
         canvas.width = size;
@@ -202,14 +221,11 @@ const initSkillsChart = () => {
         centerX = width / 2;
         centerY = height / 2;
         radius = width * 0.35;
-
         drawChart();
     };
 
-    // Хранение текущего выделенного сегмента
     let selectedIndex = -1;
 
-    // Функция отрисовки круговой диаграммы
     const drawChart = (highlightIndex = -1) => {
         ctx.clearRect(0, 0, width, height);
 
@@ -234,20 +250,18 @@ const initSkillsChart = () => {
                 ctx.shadowBlur = 0;
             }
 
-            // Рисуем сегмент
             ctx.beginPath();
             ctx.moveTo(centerX, centerY);
             ctx.arc(centerX, centerY, radius, startAngle, endAngle);
             ctx.closePath();
 
-            ctx.fillStyle = fillColor + 'cc'; // Добавляем прозрачность
+            ctx.fillStyle = fillColor + 'cc';
             ctx.fill();
 
             ctx.strokeStyle = strokeColor;
             ctx.lineWidth = lineWidth;
             ctx.stroke();
 
-            // Рисуем белую границу между сегментами
             ctx.beginPath();
             ctx.moveTo(centerX, centerY);
             ctx.arc(centerX, centerY, radius, startAngle, startAngle);
@@ -256,13 +270,12 @@ const initSkillsChart = () => {
             ctx.lineWidth = 2;
             ctx.stroke();
 
-            // Добавляем текст с процентом (если сегмент достаточно большой)
             const midAngle = startAngle + angle / 2;
             const textRadius = radius * 0.65;
             const x = centerX + Math.cos(midAngle) * textRadius;
             const y = centerY + Math.sin(midAngle) * textRadius;
 
-            if (angle > 0.3) { // Показываем только если сегмент достаточно большой
+            if (angle > 0.3) {
                 ctx.font = `bold ${Math.max(12, radius * 0.08)}px 'Inter', sans-serif`;
                 ctx.fillStyle = '#ffffff';
                 ctx.shadowBlur = 0;
@@ -272,23 +285,9 @@ const initSkillsChart = () => {
             startAngle = endAngle;
         });
 
-//        // Рисуем центр
-//        ctx.beginPath();
-//        ctx.arc(centerX, centerY, radius * 0.3, 0, Math.PI * 2);
-//        ctx.fillStyle = 'rgba(0, 0, 0, 0.7)';
-//        ctx.fill();
-//        ctx.strokeStyle = 'var(--gallery-item-a)';
-//        ctx.lineWidth = 2;
-//        ctx.stroke();
-
-        // Текст в центре
-//        ctx.font = `bold ${radius * 0.1}px 'Inter', sans-serif`;
-//        ctx.fillStyle = '#64c8fa';
-//        ctx.shadowBlur = 0;
-//        ctx.fillText('Навыки', centerX - 18, centerY + 8);
+        ctx.fillText('Навыки', centerX - 18, centerY + 8);
     };
 
-    // Создание легенды
     const createLegend = () => {
         const legendContainer = $('#skillsLegend');
         if (!legendContainer) return;
@@ -306,7 +305,6 @@ const initSkillsChart = () => {
                 <div class="legend-percent">${skill.level}%</div>
             `;
 
-            // Hover эффект на легенде
             legendItem.addEventListener('mouseenter', () => {
                 selectedIndex = index;
                 drawChart(selectedIndex);
@@ -323,7 +321,6 @@ const initSkillsChart = () => {
         });
     };
 
-    // Tooltip с подробным описанием
     let tooltip = null;
 
     const showTooltip = (skill, index) => {
@@ -333,7 +330,6 @@ const initSkillsChart = () => {
             document.body.appendChild(tooltip);
         }
 
-        // Получаем позицию сегмента
         const angles = getSegmentAngles(index);
         const midAngle = angles.start + angles.angle / 2;
         const x = centerX + Math.cos(midAngle) * (radius + 20);
@@ -380,7 +376,6 @@ const initSkillsChart = () => {
         };
     };
 
-    // Обработка клика на canvas
     const handleCanvasClick = (e) => {
         const rect = canvas.getBoundingClientRect();
         const scaleX = canvas.width / rect.width;
@@ -405,7 +400,6 @@ const initSkillsChart = () => {
                 const endAngle = startAngle + segmentAngle;
 
                 if (angle >= startAngle && angle <= endAngle) {
-                    // Показываем модалку с деталями навыка
                     alert(`${skills[i].name}\nУровень: ${skills[i].level}%\n${skills[i].description}`);
                     break;
                 }
@@ -414,7 +408,6 @@ const initSkillsChart = () => {
         }
     };
 
-    // Обработка наведения мыши на canvas
     const handleCanvasMouseMove = (e) => {
         const rect = canvas.getBoundingClientRect();
         const scaleX = canvas.width / rect.width;
@@ -459,7 +452,6 @@ const initSkillsChart = () => {
         canvas.style.cursor = 'default';
     };
 
-    // Добавляем слушатели событий
     canvas.addEventListener('click', handleCanvasClick);
     canvas.addEventListener('mousemove', handleCanvasMouseMove);
     canvas.addEventListener('mouseleave', () => {
@@ -468,7 +460,6 @@ const initSkillsChart = () => {
         hideTooltip();
     });
 
-    // Стили для тултипа
     const addTooltipStyles = () => {
         const style = document.createElement('style');
         style.textContent = `
@@ -544,7 +535,6 @@ const initSkillsChart = () => {
         document.head.appendChild(style);
     };
 
-    // Инициализация
     addTooltipStyles();
     createLegend();
     setCanvasSize();
@@ -654,7 +644,6 @@ const initCanvas = () => {
         if (!ctx) return;
 
         ctx.clearRect(0, 0, width, height);
-
         ctx.fillStyle = 'rgba(0, 0, 0, 0.1)';
         ctx.fillRect(0, 0, width, height);
 
@@ -664,7 +653,6 @@ const initCanvas = () => {
         }
 
         connectParticles();
-
         animationId = requestAnimationFrame(animate);
     };
 
@@ -688,6 +676,7 @@ const initCanvas = () => {
     animate();
     console.log('Canvas фон инициализирован');
 };
+
 /* -----------------------------
    Фильтрация проектов с подсчетом
 ----------------------------- */
@@ -822,20 +811,20 @@ const projectData = {
         result: 'Проект поддерживался в течение года, вносились правки и обновления',
     },
     'Task Manager - React Todo App': {
-    stack: 'React 19, TypeScript, Vite, localStorage, CSS Modules',
-    contribution: [
-        'Разработал полноценное React-приложение с нуля',
-        'Реализовал управление задачами (CRUD) с приоритетами и датами',
-        'Добавил фильтрацию по статусу и дате (сегодня/завтра/неделя)',
-        'Реализовал сортировку по дате, приоритету и названию',
-        'Создал светлую и тёмную тему с сохранением выбора',
-        'Настроил адаптивный дизайн с боковой панелью',
-        'Использовал TypeScript для типизации компонентов и пропсов',
-        'Настроил деплой на GitHub Pages через Vite'
-    ],
-    result: 'Полноценное приложение для планирования задач с сохранением в localStorage и удобной навигацией.',
-    metrics: 'Приоритеты | Фильтры по дате | Сортировка | Светлая/тёмная тема | Автосохранение'
-},
+        stack: 'React 19, TypeScript, Vite, localStorage, CSS Modules',
+        contribution: [
+            'Разработал полноценное React-приложение с нуля',
+            'Реализовал управление задачами (CRUD) с приоритетами и датами',
+            'Добавил фильтрацию по статусу и дате (сегодня/завтра/неделя)',
+            'Реализовал сортировку по дате, приоритету и названию',
+            'Создал светлую и тёмную тему с сохранением выбора',
+            'Настроил адаптивный дизайн с боковой панелью',
+            'Использовал TypeScript для типизации компонентов и пропсов',
+            'Настроил деплой на GitHub Pages через Vite'
+        ],
+        result: 'Полноценное приложение для планирования задач с сохранением в localStorage и удобной навигацией.',
+        metrics: 'Приоритеты | Фильтры по дате | Сортировка | Светлая/тёмная тема | Автосохранение'
+    },
 };
 
 const initProjectModal = () => {
@@ -1095,8 +1084,43 @@ const initHeaderScroll = () => {
 };
 
 /* -----------------------------
-   Инициализация при загрузке DOM
+   Детали курса Brainscloud
 ----------------------------- */
+function toggleCourseDetails() {
+    const details = document.getElementById('brainscloud-details');
+    if (!details) return;
+
+    if (details.style.display === 'none' || details.style.display === '') {
+        details.style.display = 'flex';
+        document.body.style.overflow = 'hidden';
+    } else {
+        details.style.display = 'none';
+        document.body.style.overflow = '';
+    }
+}
+
+// Закрытие по клику вне модалки
+document.addEventListener('click', function(e) {
+    const details = document.getElementById('brainscloud-details');
+    if (details && details.style.display === 'flex') {
+        if (!e.target.closest('.course-details-content') && !e.target.closest('.course-details-btn')) {
+            details.style.display = 'none';
+            document.body.style.overflow = '';
+        }
+    }
+});
+
+// Закрытие по Escape
+document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') {
+        const details = document.getElementById('brainscloud-details');
+        if (details && details.style.display === 'flex') {
+            details.style.display = 'none';
+            document.body.style.overflow = '';
+        }
+    }
+});
+
 document.addEventListener('DOMContentLoaded', () => {
     initHeader();
     initScrollButton();

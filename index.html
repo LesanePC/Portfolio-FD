@@ -29,7 +29,7 @@
                 <span class="logo-subtitle">Frontend Developer</span>
             </div>
             <button id="theme-toggle" aria-pressed="false" aria-label="Переключить тему">
-                <span class="lightbulb"></span>
+                <i class="fas fa-moon"></i>
             </button>
         </div>
     </header>
@@ -43,26 +43,21 @@
                 <h1 class="welcome-name">Евгений Фокин</h1>
                 <p class="welcome-title">Frontend Developer с бизнес-мышлением</p>
                 <p class="welcome-description">
-                    Более 10 лет управляю бизнесом. Теперь создаю интерфейсы на JavaScript, HTML и CSS —
-                    и активно осваиваю React с TypeScript. Моё преимущество: вижу проект целиком,
-                    от бизнес-задачи до готового интерфейса. Умею собирать требования,
-                    проектировать UX и доводить продукты до людей.
+                    10+ лет руководил бизнесом и командой из 25 человек. Теперь сам создаю интерфейсы,
+                    которые реально работают на результат.
+                    <strong>Понимаю задачу со стороны бизнеса</strong> и довожу её до удобного, быстрого и красивого интерфейса.
                 </p>
+
                 <div class="welcome-buttons">
-                    <a href="https://hh.ru/resume/915b9760ff0f87867f0039ed1f65477830644b" target="_blank" class="btn-primary">
-                        <i class="fab fa-hh"></i> Резюме hh.ru
-                    </a>
-                    <a href="#projects" class="btn-secondary">Проекты</a>
-                    <a href="#contacts" class="btn-secondary">Связаться</a>
+                    <a href="#projects" class="btn-primary">Смотреть проекты</a>
+                    <a href="assets/cv/Fokin-Frontend.pdf" download class="btn-secondary">Смотреть резюме</a>
+                    <a href="#contacts" class="btn-secondary">Связаться со мной</a>
                 </div>
             </div>
+
             <div class="welcome-visual">
-                <!-- можно добавить мини-анимацию или просто декоративный элемент -->
-                <div class="code-snippet">
-                    <span class="code-line">&lt;Frontend&gt;</span>
-                    <span class="code-line"> Clean Code · UX · Business Mindset</span>
-                    <span class="code-line"> React · TypeScript (in progress)</span>
-                    <span class="code-line">&lt;/Frontend&gt;</span>
+                <div class="about-photo-wrapper">
+                    <img src="img/Fokin.webp" alt="Евгений Фокин — Frontend Developer" loading="lazy" />
                 </div>
             </div>
         </section>
@@ -71,29 +66,20 @@
             <h2>О себе</h2>
             <div class="about-card">
                 <div class="about-content">
-                    <div class="about-photo">
-                        <div class="about-photo-wrapper">
-                            <img src="img/Fokin.webp" alt="Фото Евгения" loading="lazy" />
-                        </div>
-                    </div>
-
                     <div class="about-text">
                         <p>
-                            Привет! Я Евгений. Более 10 лет управляю магазином: руковожу командой из 25 человек, внедряю корпоративные системы, ставлю задачи разработчикам.
-                            И однажды понял , что хочу сам создавать продукт, а не просто управлять их созданием. Так я стал фронтенд-разработчиком.
+                            Более 10 лет я управлял магазином и командой из 25 человек: внедрял системы, ставил задачи разработчикам и отвечал за результат.
                         </p>
                         <p>
-                            Сейчас создаю интерфейсы на чистом JavaScript, HTML и CSS — без фреймворков, но с глубоким пониманием архитектуры и пользовательского опыта.
-                            Активно осваиваю React и TypeScript, чтобы расширять стек и решать более сложные задачи.
+                            Сейчас я Frontend Developer. Создаю чистые, быстрые и адаптивные интерфейсы на HTML, CSS и JavaScript,
+                            а также активно развиваю <strong>React + TypeScript</strong>.
                         </p>
                         <p>
-                            Моё главное отличие — я знаю, как код превращается в бизнес-результат.
-                            Умею услышать настоящую задачу, спроектировать удобный интерфейс и довести продукт до людей.
-                            В портфолио — кейсы с цифрами: рост заявок, снижение отказов, довольные клиенты.
+                            <strong>Моё главное преимущество</strong> — я вижу проект целиком: от бизнес-задачи и сбора требований
+                            до готового продукта, который увеличивает продажи и улучшает пользовательский опыт.
                         </p>
                         <p>
-                            В работе ценю чистый код, понятную архитектуру и обратную связь.
-                            Развиваюсь: новые технологии, code review, английский, занимаюсь спортом.
+                            В портфолио — реальные кейсы с цифрами (+35% заявок, продление контрактов, высокие оценки Lighthouse).
                         </p>
                     </div>
                 </div>
@@ -103,11 +89,143 @@
                 </div>
             </div>
         </section>
+        <!-- ==================== ОПЫТ РАБОТЫ ==================== -->
+        <section class="section" id="experience">
+            <h2>Опыт работы</h2>
+            <div class="experience-card">
+                <!-- Pointpulse -->
+                <div class="experience-item">
+                    <div class="exp-header">
+                        <div class="exp-title">
+                            <h3>Frontend Developer</h3>
+                            <span class="exp-company">Pointpulse</span>
+                        </div>
+                        <span class="exp-date">Январь 2026 — настоящее время</span>
+                    </div>
+                    <ul class="exp-description">
+                        <li>Разработка платформы в составе фронтенд-команды (React, TypeScript, React Router)</li>
+                        <li>Работа по Git-flow: создание веток, Merge Request, code review</li>
+                        <li>Исправление багов и доработка функционала — от анализа до выкладки решения</li>
+                        <li>Проведение ревью кода коллег</li>
+                    </ul>
+                </div>
 
+                <!-- Альтаир Недвижимость -->
+                <div class="experience-item">
+                    <div class="exp-header">
+                        <div class="exp-title">
+                            <h3>Frontend Developer (фриланс)</h3>
+                            <span class="exp-company">Альтаир Недвижимость</span>
+                        </div>
+                        <span class="exp-date">Октябрь 2025 — настоящее время</span>
+                    </div>
+                    <ul class="exp-description">
+                        <li>Разработал frontend сайта с нуля: адаптивная вёрстка, интерактивные элементы, фильтрация объектов</li>
+                        <li>Реализовал динамическую фильтрацию без перезагрузки → +15% заявок по отзывам заказчика</li>
+                        <li>Стек: HTML5, CSS3, JavaScript (ES6+), адаптивность, SEO, доступность</li>
+                        <li>Интегрировал слайдеры и формы обратной связи</li>
+                    </ul>
+                </div>
+
+                <!-- АО "НОВАЯ МОДА" -->
+                <div class="experience-item">
+                    <div class="exp-header">
+                        <div class="exp-title">
+                            <h3>Директор магазина</h3>
+                            <span class="exp-company">АО "НОВАЯ МОДА"</span>
+                        </div>
+                        <span class="exp-date">Декабрь 2022 — настоящее время</span>
+                    </div>
+                    <ul class="exp-description">
+                        <li>Руководство командой из 25 человек: распределение задач, контроль KPI, обучение</li>
+                        <li>Супер-юзер при внедрении корпоративных веб-приложений: тестирование, сбор обратной связи, постановка задач разработчикам</li>
+                        <li>80% моих правок (фильтрация по сезонам, блокировка позиций) были приняты в работу</li>
+                        <li>Сокращал время исправления багов в 2 раза благодаря чёткому ТЗ</li>
+                    </ul>
+                </div>
+
+                <!-- РемСтрой -->
+                <div class="experience-item">
+                    <div class="exp-header">
+                        <div class="exp-title">
+                            <h3>Frontend Developer (фриланс)</h3>
+                            <span class="exp-company">РемСтрой (строительная компания)</span>
+                        </div>
+                        <span class="exp-date">Июль 2024 — Июль 2025</span>
+                    </div>
+                    <ul class="exp-description">
+                        <li>Разработал многостраничный сайт с интерактивными элементами (плавный скролл, подсветка меню, кнопка «наверх»)</li>
+                        <li>Оптимизировал обработку событий прокрутки для плавной работы на всех устройствах</li>
+                        <li>Сопровождал проект в течение года: 8 успешных правок, продление контракта</li>
+                        <li>Стек: HTML, CSS, JavaScript</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==================== ОБРАЗОВАНИЕ И КУРСЫ ==================== -->
+        <section class="section" id="education">
+            <h2>Образование и курсы</h2>
+
+            <div class="education-card">
+                <div class="education-item">
+                    <div class="edu-header">
+                        <h3>Frontend-разработчик</h3>
+                        <span class="edu-date">2025</span>
+                    </div>
+                    <p class="edu-place">Нетология</p>
+                    <p class="edu-desc">Курс по современной фронтенд-разработке: React, TypeScript, адаптивная верстка, работа с API.</p>
+                    <a href="https://netology.ru/backend/api/user/programs/56913/pdf_certificate" class="cert-link" target="_blank">
+                        <i class="fas fa-certificate"></i> Сертификат
+                    </a>
+                </div>
+
+                <!-- Brainscloud -->
+                <div class="education-item course-item">
+                    <div class="edu-header">
+                        <h3>HTML и CSS для начинающих</h3>
+                        <span class="edu-date">2024</span>
+                    </div>
+                    <p class="edu-place">Brainscloud</p>
+                    <p class="edu-desc">Полный курс по основам веб-разработки: HTML5, CSS3, Flexbox, адаптивная верстка, анимации.</p>
+                    <div class="course-badge">
+                        <i class="fas fa-graduation-cap"></i> Пройден · 42 урока · 10ч 40м
+                    </div>
+                    <button class="course-details-btn" onclick="toggleCourseDetails()">
+                        <i class="fas fa-info-circle"></i> Подробнее о курсе
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Модальное окно с программой курса Brainscloud -->
+        <div id="brainscloud-details" class="course-details" style="display: none;">
+            <div class="course-details-content">
+                <button class="close-details" onclick="toggleCourseDetails()">&times;</button>
+                <h4>Brainscloud — HTML и CSS для начинающих</h4>
+                <div class="course-stats">
+                    <span>42 видеоурока</span>
+                    <span>10 часов 40 минут</span>
+                    <span>12 домашних заданий</span>
+                </div>
+                <div class="course-topics">
+                    <span class="topic-tag">HTML5</span>
+                    <span class="topic-tag">CSS3</span>
+                    <span class="topic-tag">Flexbox</span>
+                    <span class="topic-tag">Адаптивная верстка</span>
+                    <span class="topic-tag">CSS-анимации</span>
+                    <span class="topic-tag">Работа с формами</span>
+                    <span class="topic-tag">Pixel-perfect</span>
+                    <span class="topic-tag">Figma</span>
+                </div>
+                <button class="close-details-btn" onclick="toggleCourseDetails()">Закрыть</button>
+            </div>
+        </div>
+
+        <!-- ==================== ПРОЕКТЫ ==================== -->
         <section class="section" id="projects">
             <h2>Проекты</h2>
 
-            <!-- Блок фильтров -->
             <div class="filter-container">
                 <button class="filter-btn active" data-filter="all">Все проекты</button>
                 <button class="filter-btn" data-filter="html-css">HTML/CSS</button>
@@ -116,7 +234,67 @@
             </div>
 
             <div class="gallery-grid">
-                <!-- Киносайт + админка -->
+                <!-- 1. React Task Manager -->
+                <article class="gallery-item" data-category="react">
+                    <a href="img/react-todo.webp" class="image-popup">
+                        <img src="img/react-todo.webp" alt="Task Manager — React Todo App" loading="lazy" />
+                    </a>
+                    <h3>Task Manager — React Todo App</h3>
+                    <p class="tech-stack">
+                        React 19 · TypeScript · Vite · localStorage · Адаптив + тёмная тема
+                    </p>
+                    <p class="project-role">
+                        <strong>Современный pet-проект:</strong> управление задачами с приоритетами, фильтрами по дате, сортировкой и автосохранением.
+                        <span class="project-metrics">React Hooks · TypeScript · Светлая/тёмная тема · Производительность</span>
+                    </p>
+                    <div class="project-links">
+                        <button class="desc-btn" data-title="Task Manager - React Todo App">Подробнее</button>
+                        <a href="https://lesanepc.github.io/react-todo" target="_blank" rel="noopener">Демо</a>
+                        <a href="https://github.com/LesanePC/react-todo" target="_blank" rel="noopener">GitHub</a>
+                    </div>
+                </article>
+
+                <!-- 2. Альтаир Недвижимость -->
+                <article class="gallery-item" data-category="javascript">
+                    <a href="img/altair.webp" class="image-popup">
+                        <img src="img/altair.webp" alt="Сайт агентства недвижимости Альтаир" loading="lazy">
+                    </a>
+                    <h3>Альтаир Недвижимость</h3>
+                    <p class="tech-stack">
+                        HTML5 · CSS3 · JavaScript (ES6+) · SEO · Доступность
+                    </p>
+                    <p class="project-role">
+                        <strong>Коммерческий корпоративный сайт:</strong> 6 страниц, фильтрация объектов, галерея, слайдер отзывов.
+                        <span class="project-metrics">+35% заявок · +2 мин время сессии · -15% отказов</span>
+                    </p>
+                    <div class="project-links">
+                        <button class="desc-btn" data-title="Альтаир Недвижимость">Подробнее</button>
+                        <a href="https://lesanepc.github.io/altair-projects/" target="_blank" rel="noopener">Демо</a>
+                        <a href="https://github.com/LesanePC/altair-projects" target="_blank" rel="noopener">GitHub</a>
+                    </div>
+                </article>
+
+                <!-- 3. Строительная компания -->
+                <article class="gallery-item" data-category="javascript">
+                    <a href="img/Rem-Stroy.webp" class="image-popup">
+                        <img src="img/Rem-Stroy.webp" alt="Сайт строительной компании" loading="lazy" />
+                    </a>
+                    <h3>Строительная компания</h3>
+                    <p class="tech-stack">
+                        HTML · CSS · JavaScript · Адаптивная верстка
+                    </p>
+                    <p class="project-role">
+                        <strong>Коммерческий проект:</strong> 3 страницы, год поддержки и продление контракта.
+                        <span class="project-metrics">8 успешных правок · 100% довольный клиент</span>
+                    </p>
+                    <div class="project-links">
+                        <button class="desc-btn" data-title="Строительная компания">Подробнее</button>
+                        <a href="https://lesanepc.github.io/Rem-Stroy/index.html" target="_blank" rel="noopener">Демо</a>
+                        <a href="https://github.com/LesanePC/Rem-Stroy" target="_blank" rel="noopener">GitHub</a>
+                    </div>
+                </article>
+
+                <!-- 4. Киносайт + Админка -->
                 <article class="gallery-item" data-category="javascript">
                     <a href="img/Cinema.webp" class="image-popup">
                         <img src="img/Cinema.webp" alt="Киносайт + Админка" loading="lazy" />
@@ -126,8 +304,8 @@
                         HTML · SCSS · JavaScript · Fetch API · LocalStorage
                     </p>
                     <p class="project-role">
-                        <strong>Дипломный проект:</strong> кино-портал с админ-панелью, каталог фильмов, поиск.
-                        <span class="project-metrics">200+ фильмов | Загрузка &lt; 1.2 сек | Оценка: 95/100</span>
+                        <strong>Дипломный проект:</strong> полнофункциональный кино-портал с админ-панелью и 200+ фильмами.
+                        <span class="project-metrics">Загрузка &lt; 1.2 сек · Lighthouse 95/100</span>
                     </p>
                     <div class="project-links">
                         <button class="desc-btn" data-title="Киносайт + Админка">Подробнее</button>
@@ -136,7 +314,7 @@
                     </div>
                 </article>
 
-                <!-- Адаптивный блог -->
+                <!-- 5. Блог -->
                 <article class="gallery-item" data-category="html-css">
                     <a href="img/layouts.webp" class="image-popup">
                         <img src="img/layouts.webp" alt="Адаптивный блог" loading="lazy" />
@@ -147,7 +325,7 @@
                     </p>
                     <p class="project-role">
                         <strong>Pixel-perfect верстка</strong> по макету Figma.
-                        <span class="project-metrics">5 разрешений | 100% соответствие макету | Lighthouse: 98/100</span>
+                        <span class="project-metrics">5 разрешений · Lighthouse 98/100</span>
                     </p>
                     <div class="project-links">
                         <button class="desc-btn" data-title="Адаптивный блог">Подробнее</button>
@@ -156,27 +334,7 @@
                     </div>
                 </article>
 
-                <!-- Агентство недвижимости -->
-                <article class="gallery-item" data-category="javascript">
-                    <a href="img/altair.webp" class="image-popup">
-                        <img src="img/altair.webp" alt="Сайт агентства недвижимости Альтаир" loading="lazy">
-                    </a>
-                    <h3>Альтаир Недвижимость</h3>
-                    <p class="tech-stack">
-                        HTML5 · CSS3 · JavaScript (ES6+) · Адаптивная верстка · SEO · Доступность
-                    </p>
-                    <p class="project-role">
-                        <strong>Корпоративный сайт:</strong> 6 страниц, фильтрация объектов, галерея, слайдер отзывов.
-                        <span class="project-metrics">+35% заявок | +2 мин время сессии | -15% отказов</span>
-                    </p>
-                    <div class="project-links">
-                        <button class="desc-btn" data-title="Альтаир Недвижимость - Корпоративный сайт">Подробнее</button>
-                        <a href="https://lesanepc.github.io/altair-projects/" target="_blank" rel="noopener">Демо</a>
-                        <a href="https://github.com/LesanePC/altair-projects" target="_blank" rel="noopener">GitHub</a>
-                    </div>
-                </article>
-
-                <!-- Bakery -->
+                <!-- 6. Пекарня -->
                 <article class="gallery-item" data-category="javascript">
                     <a href="img/Bakery.webp" class="image-popup">
                         <img src="img/Bakery.webp" alt="Bakery — Сайт пекарни" loading="lazy" />
@@ -185,7 +343,7 @@
                     <p class="tech-stack">HTML · CSS · JavaScript · Анимации</p>
                     <p class="project-role">
                         <strong>Промо-сайт</strong> с анимациями и адаптивной версткой.
-                        <span class="project-metrics">8+ анимаций | Mobile-first | Интерактивная галерея</span>
+                        <span class="project-metrics">8+ анимаций · Mobile-first</span>
                     </p>
                     <div class="project-links">
                         <button class="desc-btn" data-title="Bakery — Сайт пекарни">Подробнее</button>
@@ -194,7 +352,7 @@
                     </div>
                 </article>
 
-                <!-- ToDo -->
+                <!-- 7. Планировщик -->
                 <article class="gallery-item" data-category="javascript">
                     <a href="img/ToDo.webp" class="image-popup">
                         <img src="img/ToDo.webp" alt="ToDo — Планировщик задач" loading="lazy" />
@@ -202,8 +360,8 @@
                     <h3>ToDo — Планировщик задач</h3>
                     <p class="tech-stack">HTML · CSS · JavaScript · LocalStorage</p>
                     <p class="project-role">
-                        <strong>SPA-приложение:</strong> добавление, редактирование, удаление задач, фильтры.
-                        <span class="project-metrics">100% функционала | LocalStorage | 0 багов</span>
+                        <strong>SPA-приложение:</strong> добавление, редактирование, фильтры задач.
+                        <span class="project-metrics">LocalStorage · 100% функционала</span>
                     </p>
                     <div class="project-links">
                         <button class="desc-btn" data-title="ToDo — Планировщик задач">Подробнее</button>
@@ -211,67 +369,13 @@
                         <a href="https://github.com/LesanePC/ToDo" target="_blank" rel="noopener">GitHub</a>
                     </div>
                 </article>
-
-                <!-- Строительная компания -->
-                <article class="gallery-item" data-category="javascript">
-                    <a href="img/Rem-Stroy.webp" class="image-popup">
-                        <img src="img/Rem-Stroy.webp" alt="Сайт строительной компании" loading="lazy" />
-                    </a>
-                    <h3>Строительная компания</h3>
-                    <p class="tech-stack">
-                        HTML · CSS · JavaScript · Адаптивная верстка
-                    </p>
-                    <p class="project-role">
-                        <strong>Коммерческий проект:</strong> 3 страницы, поддержка в течение года.
-                        <span class="project-metrics">8 успешных правок | 100% довольный заказчик | Продление контракта</span>
-                    </p>
-                    <div class="project-links">
-                        <button class="desc-btn" data-title="Строительная компания">Подробнее</button>
-                        <a href="https://lesanepc.github.io/Rem-Stroy/index.html" target="_blank" rel="noopener">Демо</a>
-                        <a href="https://github.com/LesanePC/Rem-Stroy" target="_blank" rel="noopener">GitHub</a>
-                    </div>
-                </article>
-
-                <!-- React проект -->
-                <article class="gallery-item" data-category="react">
-    <a href="img/react-todo.webp" class="image-popup">
-        <img src="img/react-todo.webp" alt="Task Manager — React Todo App" loading="lazy" />
-    </a>
-    <h3>Task Manager - React Todo App</h3>
-    <p class="tech-stack">
-        React 19 · TypeScript · Vite · localStorage · Адаптивный дизайн
-    </p>
-    <p class="project-role">
-        <strong>Pet-проект:</strong> современное приложение для управления задачами с приоритетами, фильтрацией по дате, сортировкой и светлой/тёмной темой.
-        <span class="project-metrics">
-            Приоритеты | Фильтры по дате | Сортировка | Светлая/тёмная тема | Автосохранение
-        </span>
-    </p>
-    <div class="project-links">
-        <button class="desc-btn" data-title="Task Manager - React Todo App">Подробнее</button>
-        <a href="https://lesanepc.github.io/react-todo" target="_blank" rel="noopener">Демо</a>
-        <a href="https://github.com/LesanePC/react-todo" target="_blank" rel="noopener">GitHub</a>
-    </div>
-</article>
-
             </div>
         </section>
 
-        <!-- Навыки -->
+        <!-- ==================== НАВЫКИ ==================== -->
         <section class="section" id="skills">
             <h2>Навыки</h2>
 
-            <!-- Карта компетенций -->
-            <div class="skills-visualization">
-                <h3>Карта компетенций</h3>
-                <div class="skills-chart-container">
-                    <canvas id="skillsChart" width="400" height="400"></canvas>
-                    <div class="skills-legend" id="skillsLegend"></div>
-                </div>
-                <p class="chart-note">Наведите на сегмент для деталей</p>
-            </div>
-
-            <!-- Сетка навыков -->
             <div class="skills-grid">
                 <div class="skill-card">
                     <i class="fab fa-html5" style="font-size: 52px; color: #e34c26;"></i>
@@ -283,19 +387,19 @@
                 </div>
                 <div class="skill-card">
                     <i class="fab fa-react" style="font-size: 52px; color: #61dafb;"></i>
-                    <span>React (Hooks, компоненты) · TypeScript (в процессе)</span>
+                    <span>React 19 (Hooks) · TypeScript (в процессе)</span>
                 </div>
                 <div class="skill-card">
                     <i class="fab fa-git-alt" style="font-size: 52px; color: #f05032;"></i>
-                    <span>Git · GitHub · GitHub Pages · Работа с ветками</span>
+                    <span>Git · GitHub · GitHub Pages</span>
                 </div>
                 <div class="skill-card">
                     <i class="fab fa-figma" style="font-size: 52px; color: #f24e1e;"></i>
-                    <span>Figma · Pixel-perfect верстка · Работа с макетами</span>
+                    <span>Figma · Pixel-perfect верстка</span>
                 </div>
                 <div class="skill-card">
                     <i class="fas fa-chart-line" style="font-size: 52px; color: #64c8fa;"></i>
-                    <span>SEO · Доступность (a11y) · Open Graph · Микроразметка</span>
+                    <span>SEO · Доступность (a11y) · Open Graph</span>
                 </div>
                 <div class="skill-card">
                     <i class="fas fa-code" style="font-size: 52px; color: #007acc;"></i>
@@ -303,7 +407,7 @@
                 </div>
                 <div class="skill-card">
                     <i class="fab fa-node-js" style="font-size: 52px; color: #68a063;"></i>
-                    <span>Node.js (основы) · NPM · Formspree</span>
+                    <span>Node.js (основы) · NPM</span>
                 </div>
             </div>
         </section>
@@ -374,8 +478,10 @@
     </div>
 
     <footer>
-        <p>© <span id="year"></span> Eugene Fokin</p>
-        <p class="time-counter">Посещений: <span id="visitCount">0</span></p>
+        <div class="footer-content">
+            <p>© <span id="year"></span> Eugene Fokin</p>
+            <p class="time-counter">Посещений: <span id="visitCount">0</span></p>
+        </div>
         <button id="scrollTopBtn" class="scroll-footer" title="Наверх" aria-label="Наверх">
             &#x25B2;
         </button>
