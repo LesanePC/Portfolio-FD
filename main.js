@@ -1041,13 +1041,20 @@ const initYearFooter = () => {
 };
 
 /* -----------------------------
-   Счетчик посещений
+   Счетчик уникальных посещений 
 ----------------------------- */
 const initVisitCounter = () => {
     const counterElement = $('#visitCount');
     if (!counterElement) return;
 
-    const sessionCounted = sessionStorage.getItem('visit_counted');
+    // Проверяем, не локальный ли это просмотр (разработчик)
+    const isLocal = window.location.hostname === 'localhost' || 
+                    window.location.hostname === '127.0.0.1' ||
+                    window.location.hostname === '';
+
+    // Получаем сохранённые данные
+    const today = new Date().toDateString();
+    const lastVisit = localStorage.getItem('last_visit_date');
     let visits = localStorage.getItem('portfolio_visits');
 
     if (visits === null) {
@@ -1056,13 +1063,14 @@ const initVisitCounter = () => {
         visits = parseInt(visits);
     }
 
-    if (!sessionCounted) {
+    if (!isLocal && lastVisit !== today) {
         visits++;
         localStorage.setItem('portfolio_visits', visits);
-        sessionStorage.setItem('visit_counted', 'true');
+        localStorage.setItem('last_visit_date', today);
     }
 
     counterElement.textContent = visits;
+
 };
 
 /* -----------------------------

@@ -1248,12 +1248,26 @@ footer {
 
     .contacts-container {
         flex-direction: column;
-        align-items: center;
+        gap: 24px;
+        padding: 0;
     }
 
     .contact-info,
     .contact-form {
         max-width: 100%;
+        width: 100%;
+        margin: 0;
+        padding: 24px 20px;
+    }
+
+    .contact-form input,
+    .contact-form textarea {
+        padding: 12px 14px;
+        font-size: 0.95rem;
+    }
+
+    .contact-form button {
+        padding: 12px 20px;
     }
 
     .scroll-footer {
@@ -1339,6 +1353,25 @@ footer {
         flex-direction: column;
         align-items: stretch;
         text-align: center;
+    }
+
+    .contact-info,
+    .contact-form {
+        padding: 20px 16px;
+    }
+
+    .contact-info h2 {
+        font-size: 1.5rem;
+    }
+
+    .email-display {
+        flex-direction: column;
+        align-items: stretch;
+        text-align: center;
+    }
+
+    .copy-email-btn {
+        justify-content: center;
     }
 
     .scroll-footer {
